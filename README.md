@@ -6,19 +6,24 @@
 - [리뷰어](#리뷰어)
 - [타임라인](#타임라인)
 - [실행화면](#실행-화면)
-- [UML](#uml)
+- [UML](#UML)
+- [PR](#PR)
 - [트러블 슈팅](#트러블-슈팅)
     - [1️⃣ subscribe vs bind vs drive](#1%EF%B8%8F%E2%83%A3-subscribe-vs-bind-vs-drive)
     - [2️⃣ observable vs subject](#2%EF%B8%8F%E2%83%A3-observable-vs-subject)
-    - [3️⃣ clean architecture](#3%EF%B8%8F%E2%83%A3-clean-architecture)
-    - [4️⃣ DB 선정](#4%EF%B8%8F%E2%83%A3-db-%EC%84%A0%EC%A0%95)
-    - [5️⃣ UI](#5%EF%B8%8F%E2%83%A3-ui)
-    - [6️⃣ Mock Data Layer](#6%EF%B8%8F%E2%83%A3-mock-data-layer)
+    - [3️⃣ clean architecture와 MVVM](#3%EF%B8%8F⃣-clean-architecture와-MVVM)
+    - [4️⃣ DB 선정](#4%EF%B8%8F%E2%83%A3-DB-%EC%84%A0%EC%A0%95)
+    - [5️⃣ UI](#5%EF%B8%8F%E2%83%A3-UI)
+    - [6️⃣ Data Layer와 Mock Data Layer](#6%EF%B8%8F%E2%83%A3-Mock-Data-Layer)
+- [질문사항](#%EC%A7%88%EB%AC%B8%EC%82%AC%ED%95%AD)
+
+
 
 ## 소개
 프로젝트를 진행 상황을 todo list형태로 정리하고, 계획하는 아이패드 앱
 
 ## 팀원
+
 |[mmim](https://github.com/JoSH0318)|[Tiana](https://github.com/Kim-TaeHyun-A) |
 |:---:|:---:|
 |<img src="https://i.imgur.com/GUrxJqu.jpg" height="240">|<img src="https://i.imgur.com/BSxMgfj.png" width="240"> |
@@ -30,15 +35,25 @@
 ## 타임라인
 |일시|내용 |
 |:---:|:---:|
-|2022.07.04(월)|프로젝트 기술 스택 선정 및 기획 수립|
-|2022.07.05(화)|프로젝트 진행(UI 구현)|
-|2022.07.06(수)|프로젝트 진행(Main, Detail 화면 기능 구현)|
-|2022.07.07(목)|프로젝트 진행(설계 구조 변경으로 인한 리팩토링)|
-|2022.07.08(금)|프로젝트 진행(RxDataSource 적용 및 부가 기능 구현)|
+|2022.07.04(월)|STEP1 - 프로젝트 기술 스택 선정 및 기획 수립|
+|2022.07.05(화)|STEP2 - UI 구현|
+|2022.07.06(수)|STEP2 - Main, Detail 화면 기능 구현|
+|2022.07.07(목)|STEP2 - 설계 구조 변경으로 인한 리팩토링|
+|2022.07.08(금)|STEP2 - RxDataSource 적용 및 부가 기능 구현|
+|2022.07.11(월)|STEP2 - Modal(Detail) 화면 및 기능 구현|
+|2022.07.12(화)|STEP2 - Modal 화면 키보드 및 레이아웃 관련리팩토링|
+|2022.07.13(수)|STEP2 - Project 이동 및 삭제 기능 구현|
+|2022.07.14(목)|STEP2 - PR|
+|2022.07.15(금)|STEP2 - README 업데이트 및 리팩토링|
+
 
 ## UML
+![](https://i.imgur.com/F3hTyj2.png)
 
 ## 실행 화면
+
+## PR 바로가기
+[STEP2 PR](https://github.com/yagom-academy/ios-project-manager/pull/142)
 
 ## 트러블 슈팅
 ### 1️⃣ subscribe vs bind vs drive
@@ -188,7 +203,8 @@ public final class BehaviorRelay<Element>: ObservableType {
 }
 ```
 
-### 3️⃣ clean architecture
+### 3️⃣ clean architecture와 MVVM
+#### clean architecture
 - 프로젝트의 STEP1, 2는 local/remote DB를 사용하지 않는다. 이후에 프로젝트가 진행됨에 따라 local/remote DB 기능을 추가할 것으로 판단했고, 프로젝트의 기능 확장성을 고려한 설계구조를 고민했다.
 - 만약 clean architecture를 사용한다면 STEP1, 2는 Presentation, Domain Layer을 구현하고, 이후 STEP에서는 Data Layer를 구현하여 추가하면 편리할 것으로 예상했다.
 - 이러한 근거로 clean architecture를 설계 구조로 선택했다.
@@ -201,7 +217,32 @@ src="https://miro.medium.com/max/1400/1*MzkbfQsYb0wTBFeqplRoKg.png" height="150"
 <img
 src="https://miro.medium.com/max/1400/1*N3ypUNMUGv87qUL57JyqJA.png" height="150"/>
 
+⭐️ 각 그룹의 역할
+- Data
+    - data soruce: 로컬, 원격에서의 데이터를 담당하는 영역이다.
+    - repository(`MockStorageManager`): data soruce의 데이터를 조정하는 책임을 가진다.
+- Domain
+    - entity(`ProjectContent`): 프로젝트에 사용되는 비지니스 모델이다.
+    - repository(`ProjectRepository`): Persistence 인터페이스, 프로젝트 내에서 저장소에 CRUD하기 위한 인터페이스를 제공한다.
+    - use case(`ProjectUseCase`): Presentaion layer에서 Domain layer로 접근할 수 있는 인터페이스를 제공한다.
+- Presentation
+    - view: app 이벤트를 처리하고 화면에 보여주는 책임을 가진다.
+    - view model: view를 위한 비지니스 로직 구현의 책임을 가진다.
+
+
 [참고문헌: Clean Architecture and MVVM on iOS](https://tech.olx.com/clean-architecture-and-mvvm-on-ios-c9d167d9f5b3)
+
+#### MVVM
+<img src="https://i.imgur.com/DI9yu32.png" height="200">
+
+* Model: UI에 보여줄 데이터가 존재한다. UI에서 받은 이벤트로 데이터의 수정이 필요할 때 실제 데이터 수정한다.
+* View: 사용자의 이벤트를 받고, 보여줄 UI를 구현한다.
+* ViewModel: Model과 View의 가교로서 View는 ViewModel을 통해 Model에 접근한다. View에 나타내기 위한 데이터를 가공한다.
+
+#### VC vs View vs ViewModel vs Model
+MVVM에서는 ViewController도 View의 역할로 고려되지만 그 둘에 차이가 있다. View 타입들에서는(ex.` MainView`, `ProjectCell`) UI 보여주는 기능만 구현하고, 비동기 로직은 VC(ex. `MainViewController`, `PopOverViewController`)에서 구현하도록 했다. 이로 인해, View 타입의 프로퍼티(ex. `tableView`, `countLabel`) 은닉화가 어렵다.
+VC는 View 타입과 VM을 프로퍼티로 가진다.
+ViewModel(ex. `MainViewModel`, `RegistrationViewModel`)에서만 Model(ex. `ProjectUseCase`)에 접근할 수 있다.
 
 ### 4️⃣ DB 선정
 
@@ -255,3 +296,4 @@ final class MockStorageManager {
     func delete() {}
 }
 ```
+
