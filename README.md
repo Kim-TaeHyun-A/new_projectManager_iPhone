@@ -19,21 +19,20 @@
     - [7️⃣ Modal View Presentation]
     - [8️⃣ SceneDIContainer]
     - [9️⃣ 데이터 저장 및 백업 정책]
-- [트러블슈팅](#트러블_슈팅)
-
+    - [1️⃣0️⃣] SceneDIContainer
+    - [1️⃣1️⃣] ProjectManagerTests
+    - [1️⃣2️⃣] ProjectManagerTests 라이브러리 연결
 
 ## 소개
 프로젝트를 진행 상황을 todo list형태로 정리하고, 계획하는 아이패드 앱
 
 ## 팀원
-
 |[mmim](https://github.com/JoSH0318)|[Tiana](https://github.com/Kim-TaeHyun-A) |
 |:---:|:---:|
 |<img src="https://i.imgur.com/GUrxJqu.jpg" height="240">|<img src="https://i.imgur.com/BSxMgfj.png" width="240"> |
 
 ## 리뷰어
 [내일날씨맑음](https://github.com/SungPyo)
-
 
 ## 타임라인
 |일시|내용 |
@@ -60,7 +59,7 @@
 |2022.07.29(금)|STEP3 - README 업데이트 및 UnitTest|
 
 # UML
-![](https://i.imgur.com/gLUlPR5.png)
+![](https://i.imgur.com/ZpPgmux.png)
 
 ## 실행 화면
 |Main / 상세 / 기록 화면|Project 등록|
@@ -282,3 +281,95 @@ Network Process 부분은 조건에 따라 firebase에 create, update, delete를
 
 하지만 이러한 선택에는 명확한 단점이 있다. 앱 최초 실행이 아닌 이상 모두 삭제 후 재배치하는 것은 자원의 소모가 크다.
 이후 서버에 저장할 데이터가 많아지고 그 크기가 크다면 이러한 정책은 바뀌어야 한다. 
+
+1️⃣0️⃣ SceneDIContainer
+* 기존에는 Persitent, Network, History별로 앱 전역에 하나의 인스턴스를 주입시키기 위해 싱글턴 패턴을 사용했다. 
+* 차후에 VM Tests와 전체적인 DI를 관리하기 위해, 그리고 싱글턴이 안티패턴임을 감안하여 DIContainer가 필요하다고 판단했다. 
+* SceneDIContainer에서 Persitent, Network, History Manager 인스턴스를 생성하여 주입해주는 방법으로 변경했다.
+
+1️⃣1️⃣ ProjectManagerTests
+#### 구조 변경
+* layer 불명확
+    * Domain 영역의 Repository와 Data 영역의 Storage의 역할이 불분명하다고 느꼈다.
+    * 해결: 두 계층을 하나로 합쳤다. 외부 요인(ex. remote DB, local DB)에서 받은 데이터를 변환하는 역할을 하는 Repository만 남겼다.
+
+#### 가짜 객체
+* 실제 서버 사용 불가
+    * 테스트는 외부 요인에 의존성이 생기면 안된다.
+    * 해결: 실제와 유사하게 동작하지만 실제 내부/외부의 DB에 영향을 받지 않는 Mock 객체를 만들어 준다.
+
+
+* MockCoreData
+```swift
+final class MockCoreData {
+    var projects: [ProjectDTO] = []
+}
+
+final class MockPersistentManager {
+    let database = MockCoreData()
+}
+```
+
+* MockHistoryManager
+```swift
+final class MockHistoryManager {
+    var historyEntities = BehaviorRelay<[HistoryEntity]>(value: [])
+}
+```
+
+* MockFirebase 와 MockNetworkManager
+```swift
+final class MockFirebase {
+    let error: Error?
+    private let defaultData = SampleData.data
+    var database: [String: [String: String]] = [:]
+    
+    init(error: Error?) {
+        self.error = error
+        
+        database[defaultData.id] = ["id": defaultData.id,
+                                    "status": defaultData.status,
+                                    "title": defaultData.title,
+                                    "deadline": defaultData.deadline,
+                                    "body": defaultData.body]
+    }
+    
+    func getData(completion: @escaping (Error?, [String: [String: String]]?) -> Void) {
+        completion(error, database)
+    }
+    
+    func setValue(_ newData: [String: [String: String]]) {
+        database = newData
+    }
+}
+
+final class MockNetworkManager {
+    let mockFirebase = MockFirebase(error: nil)
+}
+```
+
+* stream 연결
+    * 가짜 coreData에 최초 데이터를 저장하면 문제가 생긴다.
+    * 저장된 데이터의 수와 BehaviorRelay에 저장된 value 개수가 달랐다. 즉, `persistentManager.database.projects.count`와 `read().value.count` 개수가 각각 1과 2로 차이를 보인다. 후자의 경우 최초 데이터만 중복되어 저장되는 것을 발견했다.
+    * BehaviorRelay 사용하면 모든 구독자에게 상태 변화를 알리기 때문에 VC까지 접근하게 된다.
+    * 또한, usecase 테스트 시에는 테스트 대상이 아닌 ViewController의 코드가 동작하면 안된다.
+    * 해결: PersistentRepository 타입을 테스트용으로 별도의 BehaviorRelay 프로퍼티만 필요하다는 것을 알고 convenience init 구현을 통해 주입받도록 수정했다.
+```swift
+    init(persistentManager: PersistentManagerProtocol) {
+        self.persistentManager = persistentManager
+    }
+    
+    convenience init(projectEntities: BehaviorRelay<[ProjectEntity]>, persistentManager: PersistentManagerProtocol) {
+        self.init(persistentManager: persistentManager)
+        self.projectEntities = projectEntities
+    }
+```
+
+1️⃣2️⃣ ProjectManagerTests 라이브러리 연결
+ProejctManager에서 사용되는 라이브러리는 Tests 코드에서도 사용된다.
+하지만 ProjectManagerTests은 해당 라이브러리의 target이 아니기 때문에 아래와 같은 오류가 발생한다.
+![](https://i.imgur.com/bh1XiAz.png)
+![](https://i.imgur.com/6dOum0f.png)
+
+해결: podfile에 라이브러리 target을 추가했다.  
+<img width="400" src="https://i.imgur.com/UrAx4d5.jpg"/>  
