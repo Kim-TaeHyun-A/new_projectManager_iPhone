@@ -82,6 +82,7 @@
 ## 트러블 슈팅
 1️⃣ **날짜나 이미지 데이터 저장 방식**
 CoreData 에서는 Date 타입, firebase realtime database에서는 String의 형태(timeintervalsince1970을 String으로 바꾼 것입니다.)로 저장한다.
+날짜의 경우 기기별로 지역 세팅이 다르면 날짜 포메팅에서 타입 캐스팅에 실패할 수 있다. 따라서 날짜는 createdAt으로 Double(time stamp)로 저장하는 것이 적절하다.
 
 2️⃣ **백업용으로만 사용되는 NetworkRepository, MockHistoryRepository의 위치나 방식**
 기기에서 최초로 앱을 실행시키지 않는다면, 코어 데이터는 항상 remote 데이터보다 최신 데이터를 가진다. 기존 코드를 최대한 수정하지 않으면서 backup 기능을 구현하고 싶은 생각에 usecase에  backkup 메서드를 구현했다.
