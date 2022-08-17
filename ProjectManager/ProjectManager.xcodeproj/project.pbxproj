@@ -55,6 +55,7 @@
 		0EC507D628AD6A4F00EF9515 /* MockProjectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507D528AD6A4F00EF9515 /* MockProjectUseCase.swift */; };
 		0EC507D928AD6E2A00EF9515 /* MockPersistentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507D828AD6E2A00EF9515 /* MockPersistentRepository.swift */; };
 		0EC507DB28AD6F8800EF9515 /* MockNetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507DA28AD6F8800EF9515 /* MockNetworkRepository.swift */; };
+		0EC507DD28AD709E00EF9515 /* MockHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507DC28AD709E00EF9515 /* MockHistoryRepository.swift */; };
 		C7431F0625F51E1D0094C4CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7431F0525F51E1D0094C4CF /* AppDelegate.swift */; };
 		C7431F0825F51E1D0094C4CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7431F0725F51E1D0094C4CF /* SceneDelegate.swift */; };
 		C7431F0F25F51E1E0094C4CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7431F0E25F51E1E0094C4CF /* Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		0EC507D528AD6A4F00EF9515 /* MockProjectUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProjectUseCase.swift; sourceTree = "<group>"; };
 		0EC507D828AD6E2A00EF9515 /* MockPersistentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPersistentRepository.swift; sourceTree = "<group>"; };
 		0EC507DA28AD6F8800EF9515 /* MockNetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRepository.swift; sourceTree = "<group>"; };
+		0EC507DC28AD709E00EF9515 /* MockHistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHistoryRepository.swift; sourceTree = "<group>"; };
 		19EB908D0FFD633F8AD5EFB9 /* Pods-ProjectManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-ProjectManagerTests/Pods-ProjectManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		398DAEAB83EA2395CF261AE9 /* Pods-ProjectManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectManager.release.xcconfig"; path = "Target Support Files/Pods-ProjectManager/Pods-ProjectManager.release.xcconfig"; sourceTree = "<group>"; };
 		4819746BAEB061C8DCAEBAE0 /* Pods-ProjectManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectManager.debug.xcconfig"; path = "Target Support Files/Pods-ProjectManager/Pods-ProjectManager.debug.xcconfig"; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 			children = (
 				0EC507D828AD6E2A00EF9515 /* MockPersistentRepository.swift */,
 				0EC507DA28AD6F8800EF9515 /* MockNetworkRepository.swift */,
+				0EC507DC28AD709E00EF9515 /* MockHistoryRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				0EB71CE128937CD00025F66C /* MockNetworkManager.swift in Sources */,
 				0EC507D628AD6A4F00EF9515 /* MockProjectUseCase.swift in Sources */,
 				0EC507DB28AD6F8800EF9515 /* MockNetworkRepository.swift in Sources */,
+				0EC507DD28AD709E00EF9515 /* MockHistoryRepository.swift in Sources */,
 				0EC507D128AD4B5800EF9515 /* MockMainViewModel.swift in Sources */,
 				0E5B6C0828936F5800A5FE48 /* MockPersistentManager.swift in Sources */,
 				0EC507D928AD6E2A00EF9515 /* MockPersistentRepository.swift in Sources */,
