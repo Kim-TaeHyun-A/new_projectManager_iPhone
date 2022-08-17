@@ -282,19 +282,19 @@
 		0E5B6C0928936F7B00A5FE48 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				0E5B6C0A28936F9E00A5FE48 /* Mock */,
+				0E5B6C0A28936F9E00A5FE48 /* Stub */,
 			);
 			path = Data;
 			sourceTree = "<group>";
 		};
-		0E5B6C0A28936F9E00A5FE48 /* Mock */ = {
+		0E5B6C0A28936F9E00A5FE48 /* Stub */ = {
 			isa = PBXGroup;
 			children = (
 				0334E70528770E3D00222EB7 /* StubPersistentManager.swift */,
 				0EB71CE028937CD00025F66C /* StubNetworkManager.swift */,
 				0E2C683028995889003DE006 /* StubHistoryManager.swift */,
 			);
-			path = Mock;
+			path = Stub;
 			sourceTree = "<group>";
 		};
 		0E8130E728869383003EC6C7 /* Model */ = {
