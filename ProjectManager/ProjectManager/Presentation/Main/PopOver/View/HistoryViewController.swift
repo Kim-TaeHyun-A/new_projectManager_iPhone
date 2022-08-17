@@ -10,10 +10,10 @@ import RxSwift
 
 final class HistoryViewController: UIViewController {
     private let historyView = HistoryView()
-    private var viewModel: HistoryViewModel?
+    private var viewModel: HistoryViewModelProtocol?
     private let disposeBag = DisposeBag()
     
-    init(with viewModel: HistoryViewModel, source: UIBarButtonItem) {
+    init(with viewModel: HistoryViewModelProtocol, source: UIBarButtonItem) {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
@@ -47,15 +47,14 @@ final class HistoryViewController: UIViewController {
     }
     
     private func setUpTable() {
-        viewModel?
-            .read()
-            .drive(
-                historyView.tableView.rx.items(
-                    cellIdentifier: "\(HistoryCell.self)",
-                    cellType: HistoryCell.self)
-            ) { _, item, cell in
-                cell.compose(content: item)
-            }
-            .disposed(by: disposeBag)
+        viewModel?.read()
+        viewModel?.currentHistory?.drive(
+            historyView.tableView.rx.items(
+                cellIdentifier: "\(HistoryCell.self)",
+                cellType: HistoryCell.self)
+        ) { _, item, cell in
+            cell.compose(content: item)
+        }
+        .disposed(by: disposeBag)
     }
 }

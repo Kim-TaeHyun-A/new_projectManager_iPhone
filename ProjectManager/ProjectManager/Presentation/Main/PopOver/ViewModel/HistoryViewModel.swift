@@ -8,19 +8,37 @@
 import RxCocoa
 import RxRelay
 
-struct HistoryViewModel {
+protocol HistoryViewModelInputProtocol {
+    func read()
+}
+
+protocol HistoryViewModelOutputProtocol {
+    var currentHistory: Driver<[HistoryEntity]>? { get }
+}
+
+protocol HistoryViewModelProtocol: HistoryViewModelInputProtocol, HistoryViewModelOutputProtocol { }
+
+final class HistoryViewModel: HistoryViewModelProtocol {
     private let projectUseCase: ProjectUseCaseProtocol
     private lazy var history: BehaviorRelay<[HistoryEntity]> = {
         return projectUseCase.readHistory()
     }()
     
+    // MARK: - Output
+    
+    var currentHistory: Driver<[HistoryEntity]>?
+    
     init(projectUseCase: ProjectUseCaseProtocol) {
         self.projectUseCase = projectUseCase
     }
-    
-    mutating func read() -> Driver<[HistoryEntity]> {
-        return history
-            .map { $0.sorted { $0.date > $1.date } }
-            .asDriver(onErrorJustReturn: [])
+}
+
+// MARK: - Output
+
+extension HistoryViewModel {
+    func read() {
+        currentHistory = history.map {
+            $0.sorted { $0.date > $1.date }
+        }.asDriver(onErrorJustReturn: [])
     }
 }
