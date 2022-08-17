@@ -7,9 +7,25 @@
 
 import Foundation
 
-struct DetailViewModel {
+protocol DetailViewModelInputProtocol {
+    func read()
+    func update(_ content: ProjectEntity)
+}
+
+protocol DetailViewModelOutputProtocol {
+    var content: ProjectEntity { get }
+    var currentProjectEntity: ProjectEntity? { get }
+}
+
+protocol DetailViewModelProtocol: DetailViewModelInputProtocol, DetailViewModelOutputProtocol { }
+
+final class DetailViewModel: DetailViewModelProtocol {
     private let projectUseCase: ProjectUseCaseProtocol
-    private let content: ProjectEntity
+    
+    // MARK: - Output
+    
+    var content: ProjectEntity
+    var currentProjectEntity: ProjectEntity?
     
     init(projectUseCase: ProjectUseCaseProtocol, content: ProjectEntity) {
         self.projectUseCase = projectUseCase
@@ -25,17 +41,17 @@ struct DetailViewModel {
         
         projectUseCase.createHistory(historyEntity: historyEntity)
     }
-    
-    func read() -> ProjectEntity? {
-        return projectUseCase.read(projectEntityID: content.id)
+}
+
+// MARK: - Input
+
+extension DetailViewModel {
+    func read() {
+        currentProjectEntity = projectUseCase.read(projectEntityID: content.id)
     }
     
     func update(_ content: ProjectEntity) {
         projectUseCase.update(projectEntity: content)
         updateHistory(by: content)
-    }
-    
-    func asContent() -> ProjectEntity {
-        return content
     }
 }

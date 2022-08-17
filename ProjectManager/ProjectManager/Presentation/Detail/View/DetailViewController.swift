@@ -77,7 +77,7 @@ final class DetailViewController: UIViewController {
     
     private func setUpModalView() {
         modalView.registerNotification()
-        modalView.navigationBar.modalTitle.text = viewModel?.asContent().status.string
+        modalView.navigationBar.modalTitle.text = viewModel?.content.status.string
     }
     
     private func bind() {
@@ -91,7 +91,8 @@ final class DetailViewController: UIViewController {
         modalView.navigationBar.leftButton.setTitle(Constant.edit, for: .normal)
         modalView.navigationBar.rightButton.setTitle(Constant.done, for: .normal)
         
-        guard let project = self.viewModel?.read() else {
+        self.viewModel?.read()
+        guard let project = self.viewModel?.currentProjectEntity else {
             return
         }
         self.modalView.compose(content: project)
@@ -157,7 +158,8 @@ extension DetailViewController {
         modalView.navigationBar.leftButton.setTitle(Constant.edit, for: .normal)
         modalView.navigationBar.rightButton.setTitle(Constant.done, for: .normal)
         
-        guard let project = self.viewModel?.read() else {
+        self.viewModel?.read()
+        guard let project = self.viewModel?.currentProjectEntity else {
             return
         }
         
@@ -171,7 +173,7 @@ extension DetailViewController {
         modalView.navigationBar.leftButton.setTitle(Constant.edit, for: .normal)
         modalView.navigationBar.rightButton.setTitle(Constant.done, for: .normal)
         
-        guard let content = viewModel?.asContent() else {
+        guard let content = viewModel?.content else {
             return
         }
         
