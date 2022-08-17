@@ -6,7 +6,6 @@
 //
 
 @testable import ProjectManager
-import Foundation
 
 final class MockMainViewModel: MainViewModelInputProtocol {
     var deleteProjectCallCount = 0
