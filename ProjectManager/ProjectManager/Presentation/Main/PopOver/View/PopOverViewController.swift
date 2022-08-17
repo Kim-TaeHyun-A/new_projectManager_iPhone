@@ -9,10 +9,10 @@ import RxSwift
 
 final class PopOverViewController: UIViewController {
     private let popOverView = PopOverView()
-    private var viewModel: PopOverViewModel?
+    private var viewModel: PopOverViewModelProtocol?
     private let disposeBag = DisposeBag()
     
-    init(with viewModel: PopOverViewModel) {
+    init(with viewModel: PopOverViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
@@ -49,7 +49,7 @@ final class PopOverViewController: UIViewController {
     }
     
     private func setUpButtonTitle() {
-        guard let (first, second) = viewModel?.getStatus() else {
+        guard let (first, second) = viewModel?.status else {
             return
         }
         

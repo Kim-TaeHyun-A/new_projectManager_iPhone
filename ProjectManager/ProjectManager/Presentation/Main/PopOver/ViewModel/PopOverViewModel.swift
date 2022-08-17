@@ -7,9 +7,31 @@
 
 import Foundation
 
-struct PopOverViewModel {
+protocol PopOverViewModelInputProtocol {
+    func moveCell(by text: String?)
+}
+
+protocol PopOverViewModelOutputProtocol {
+    var cell: ProjectCell { get }
+    var status: (first: ProjectStatus, second: ProjectStatus)? { get }
+}
+
+protocol PopOverViewModelProtocol: PopOverViewModelInputProtocol, PopOverViewModelOutputProtocol { }
+
+final class PopOverViewModel: PopOverViewModelProtocol {
     private let projectUseCase: ProjectUseCaseProtocol
+    
+    // MARK: - Output
+    
     let cell: ProjectCell
+    lazy var status: (first: ProjectStatus, second: ProjectStatus)? = {
+        guard let id = cell.contentID,
+              let project = projectUseCase.read(projectEntityID: id) else {
+            return nil
+        }
+        
+        return convertProcess(by: project.status)
+    }()
     
     init(projectUseCase: ProjectUseCaseProtocol, cell: ProjectCell) {
         self.projectUseCase = projectUseCase
@@ -51,20 +73,15 @@ struct PopOverViewModel {
             return (ProjectStatus.todo, ProjectStatus.doing)
         }
     }
-    
+}
+
+// MARK: - Input
+
+extension PopOverViewModel {
     func moveCell(by text: String?) {
         guard let status = ProjectStatus.convert(titleText: text) else {
             return
         }
         changeContent(status: status)
-    }
-    
-    func getStatus() -> (first: ProjectStatus, second: ProjectStatus)? {
-        guard let id = cell.contentID,
-              let project = projectUseCase.read(projectEntityID: id) else {
-            return nil
-        }
-        
-        return convertProcess(by: project.status)
     }
 }
