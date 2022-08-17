@@ -10,12 +10,12 @@ import RxCocoa
 import RxGesture
 
 struct MainViewModel {
-    private let projectUseCase: ProjectUseCase
+    private let projectUseCase: ProjectUseCaseProtocol
     private lazy var projects: BehaviorRelay<[ProjectEntity]> = {
         return projectUseCase.read()
     }()
     
-    init(projectUseCase: ProjectUseCase) {
+    init(projectUseCase: ProjectUseCaseProtocol) {
         self.projectUseCase = projectUseCase
     }
     

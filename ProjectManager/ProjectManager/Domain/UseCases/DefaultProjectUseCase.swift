@@ -1,5 +1,5 @@
 //
-//  ProjectUseCase.swift
+//  DefaultProjectUseCase.swift
 //  ProjectManager
 //
 //  Created by Tiana, mmim on 2022/07/12.
@@ -8,7 +8,7 @@
 import RxSwift
 import RxRelay
 
-protocol ProjectUseCase {
+protocol ProjectUseCaseProtocol {
     func create(projectEntity: ProjectEntity)
     func read() -> BehaviorRelay<[ProjectEntity]>
     func read(projectEntityID: UUID?) -> ProjectEntity?
@@ -20,7 +20,7 @@ protocol ProjectUseCase {
     func readHistory() -> BehaviorRelay<[HistoryEntity]>
 }
 
-struct DefaultProjectUseCase: ProjectUseCase {
+struct DefaultProjectUseCase: ProjectUseCaseProtocol {
     private let projectRepository: PersistentRepositoryProtocol
     private let networkRepository: NetworkRepositoryProtocol
     private let historyRepository: HistoryRepositoryProtocol

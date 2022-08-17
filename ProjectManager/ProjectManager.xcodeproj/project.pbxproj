@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		032D3D11287D629800A32E57 /* ProjectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3D10287D629800A32E57 /* ProjectUseCase.swift */; };
+		032D3D11287D629800A32E57 /* DefaultProjectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3D10287D629800A32E57 /* DefaultProjectUseCase.swift */; };
 		032D3D14287D64EB00A32E57 /* PersistentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3D13287D64EB00A32E57 /* PersistentRepository.swift */; };
 		033294B2287C713800EE7CBE /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033294B1287C713800EE7CBE /* PopOverViewController.swift */; };
 		033294B4287C717700EE7CBE /* PopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033294B3287C717700EE7CBE /* PopOverView.swift */; };
@@ -68,7 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		032D3D10287D629800A32E57 /* ProjectUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectUseCase.swift; sourceTree = "<group>"; };
+		032D3D10287D629800A32E57 /* DefaultProjectUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultProjectUseCase.swift; sourceTree = "<group>"; };
 		032D3D13287D64EB00A32E57 /* PersistentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentRepository.swift; sourceTree = "<group>"; };
 		033294B1287C713800EE7CBE /* PopOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		033294B3287C717700EE7CBE /* PopOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverView.swift; sourceTree = "<group>"; };
@@ -344,7 +344,7 @@
 		0EA67EC7287529F300E15093 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				032D3D10287D629800A32E57 /* ProjectUseCase.swift */,
+				032D3D10287D629800A32E57 /* DefaultProjectUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -668,7 +668,7 @@
 				0EA67ED228772C0200E15093 /* RegistrationViewModel.swift in Sources */,
 				03D99936289163BE00BAE6CA /* SceneDIContainer.swift in Sources */,
 				03498B73288676B500D8CB3F /* PersistentManager.swift in Sources */,
-				032D3D11287D629800A32E57 /* ProjectUseCase.swift in Sources */,
+				032D3D11287D629800A32E57 /* DefaultProjectUseCase.swift in Sources */,
 				0E8130F22886F8A8003EC6C7 /* NetworkManager.swift in Sources */,
 				03AB73E1287331BB00B0C980 /* ProjectTableView.swift in Sources */,
 				0EA67EBC287476B300E15093 /* RegistrationViewController.swift in Sources */,

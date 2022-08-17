@@ -11,7 +11,7 @@ import RxRelay
 
 class ProjectUsecaseTests: XCTestCase {
     
-    var sut: ProjectUseCase!
+    var sut: ProjectUseCaseProtocol!
     var mockPersistentManager: MockPersistentManager!
     var mockNetworkManager: MockNetworkManager!
     var mockHistory: MockHistoryManager!

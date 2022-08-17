@@ -40,7 +40,7 @@ final class SceneDIContainer {
     
     // MARK: - Use Cases
     
-    private func makeProjectUseCase() -> ProjectUseCase {
+    private func makeProjectUseCase() -> ProjectUseCaseProtocol {
         return DefaultProjectUseCase(
             projectRepository: makeProjectRepository(),
             networkRepository: makeNetworkRepository(),

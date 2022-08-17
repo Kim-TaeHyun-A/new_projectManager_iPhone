@@ -8,10 +8,10 @@
 import Foundation
 
 struct PopOverViewModel {
-    private let projectUseCase: ProjectUseCase
+    private let projectUseCase: ProjectUseCaseProtocol
     let cell: ProjectCell
     
-    init(projectUseCase: ProjectUseCase, cell: ProjectCell) {
+    init(projectUseCase: ProjectUseCaseProtocol, cell: ProjectCell) {
         self.projectUseCase = projectUseCase
         self.cell = cell
     }

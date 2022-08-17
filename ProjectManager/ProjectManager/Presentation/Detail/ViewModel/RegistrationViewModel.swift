@@ -8,9 +8,9 @@
 import Foundation
 
 struct RegistrationViewModel {
-    private let projectUseCase: ProjectUseCase
+    private let projectUseCase: ProjectUseCaseProtocol
     
-    init(projectUseCase: ProjectUseCase) {
+    init(projectUseCase: ProjectUseCaseProtocol) {
         self.projectUseCase = projectUseCase
     }
     

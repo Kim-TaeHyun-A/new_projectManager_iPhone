@@ -9,12 +9,12 @@ import RxCocoa
 import RxRelay
 
 struct HistoryViewModel {
-    private let projectUseCase: ProjectUseCase
+    private let projectUseCase: ProjectUseCaseProtocol
     private lazy var history: BehaviorRelay<[HistoryEntity]> = {
         return projectUseCase.readHistory()
     }()
     
-    init(projectUseCase: ProjectUseCase) {
+    init(projectUseCase: ProjectUseCaseProtocol) {
         self.projectUseCase = projectUseCase
     }
     

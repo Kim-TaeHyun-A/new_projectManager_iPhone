@@ -8,10 +8,10 @@
 import Foundation
 
 struct DetailViewModel {
-    private let projectUseCase: ProjectUseCase
+    private let projectUseCase: ProjectUseCaseProtocol
     private let content: ProjectEntity
     
-    init(projectUseCase: ProjectUseCase, content: ProjectEntity) {
+    init(projectUseCase: ProjectUseCaseProtocol, content: ProjectEntity) {
         self.projectUseCase = projectUseCase
         self.content = content
     }
