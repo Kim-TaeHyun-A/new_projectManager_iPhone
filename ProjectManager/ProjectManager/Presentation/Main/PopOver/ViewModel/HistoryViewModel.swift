@@ -10,7 +10,6 @@ import RxRelay
 
 struct HistoryViewModel {
     private let projectUseCase: ProjectUseCase
-
     private lazy var history: BehaviorRelay<[HistoryEntity]> = {
         return projectUseCase.readHistory()
     }()

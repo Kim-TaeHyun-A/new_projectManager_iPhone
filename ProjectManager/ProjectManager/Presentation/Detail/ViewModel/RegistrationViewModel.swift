@@ -14,6 +14,16 @@ struct RegistrationViewModel {
         self.projectUseCase = projectUseCase
     }
     
+    private func registrateHistory(by content: ProjectEntity) {
+        let historyEntity = HistoryEntity(
+            editedType: .register,
+            title: content.title,
+            date: Date().timeIntervalSince1970
+        )
+        
+        projectUseCase.createHistory(historyEntity: historyEntity)
+    }
+    
     func registrate(title: String, date: Date, body: String) {
         let newProject = ProjectEntity(
             title: title,
@@ -23,15 +33,5 @@ struct RegistrationViewModel {
         
         projectUseCase.create(projectEntity: newProject)
         registrateHistory(by: newProject)
-    }
-    
-    private func registrateHistory(by content: ProjectEntity) {
-        let historyEntity = HistoryEntity(
-            editedType: .register,
-            title: content.title,
-            date: Date().timeIntervalSince1970
-        )
-        
-        projectUseCase.createHistory(historyEntity: historyEntity)
     }
 }

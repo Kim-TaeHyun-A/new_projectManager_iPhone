@@ -11,22 +11,22 @@ import RxGesture
 
 struct MainViewModel {
     private let projectUseCase: ProjectUseCase
+    private lazy var projects: BehaviorRelay<[ProjectEntity]> = {
+        return projectUseCase.read()
+    }()
     
     init(projectUseCase: ProjectUseCase) {
         self.projectUseCase = projectUseCase
     }
     
-    private lazy var projects: BehaviorRelay<[ProjectEntity]> = {
-        return projectUseCase.read()
-    }()
-
-    func deleteProject(_ content: ProjectEntity) {
-        projectUseCase.delete(projectEntityID: content.id)
-        deleteHistory(by: content)
-    }
-    
-    func readProject(_ id: UUID?) -> ProjectEntity? {
-        return projectUseCase.read(projectEntityID: id)
+    private func deleteHistory(by content: ProjectEntity) {
+        let historyEntity = HistoryEntity(
+            editedType: .delete,
+            title: content.title,
+            date: Date().timeIntervalSince1970
+        )
+        
+        projectUseCase.createHistory(historyEntity: historyEntity)
     }
     
     mutating func asTodoProjects() -> Driver<[ProjectEntity]> {
@@ -46,18 +46,17 @@ struct MainViewModel {
             .map { $0.filter { $0.status == .done } }
             .asDriver(onErrorJustReturn: [])
     }
+
+    func deleteProject(_ content: ProjectEntity) {
+        projectUseCase.delete(projectEntityID: content.id)
+        deleteHistory(by: content)
+    }
+    
+    func readProject(_ id: UUID?) -> ProjectEntity? {
+        return projectUseCase.read(projectEntityID: id)
+    }
     
     func loadNetworkData() -> Disposable {
         return projectUseCase.load()
-    }
-    
-    private func deleteHistory(by content: ProjectEntity) {
-        let historyEntity = HistoryEntity(
-            editedType: .delete,
-            title: content.title,
-            date: Date().timeIntervalSince1970
-        )
-        
-        projectUseCase.createHistory(historyEntity: historyEntity)
     }
 }

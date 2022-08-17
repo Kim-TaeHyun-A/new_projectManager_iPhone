@@ -16,13 +16,6 @@ struct PopOverViewModel {
         self.cell = cell
     }
     
-    func moveCell(by text: String?) {
-        guard let status = ProjectStatus.convert(titleText: text) else {
-            return
-        }
-        changeContent(status: status)
-    }
-    
     private func changeContent(status: ProjectStatus) {
         guard let id = cell.contentID,
               var project = projectUseCase.read(projectEntityID: id) else {
@@ -37,7 +30,7 @@ struct PopOverViewModel {
     }
     
     private func createMoved(from oldStatus: ProjectStatus, to newStatus: ProjectStatus, title: String) {
-        let historyTitle = "(from: \(oldStatus.string) to: \(newStatus.string))" + title 
+        let historyTitle = "(from: \(oldStatus.string) to: \(newStatus.string))" + title
         
         let historyEntity = HistoryEntity(
             editedType: .move,
@@ -46,15 +39,6 @@ struct PopOverViewModel {
         )
         
         projectUseCase.createHistory(historyEntity: historyEntity)
-    }
-    
-    func getStatus() -> (first: ProjectStatus, second: ProjectStatus)? {
-        guard let id = cell.contentID,
-              let project = projectUseCase.read(projectEntityID: id) else {
-            return nil
-        }
-        
-        return convertProcess(by: project.status)
     }
     
     private func convertProcess(by status: ProjectStatus) -> (first: ProjectStatus, second: ProjectStatus) {
@@ -66,5 +50,21 @@ struct PopOverViewModel {
         case .done:
             return (ProjectStatus.todo, ProjectStatus.doing)
         }
+    }
+    
+    func moveCell(by text: String?) {
+        guard let status = ProjectStatus.convert(titleText: text) else {
+            return
+        }
+        changeContent(status: status)
+    }
+    
+    func getStatus() -> (first: ProjectStatus, second: ProjectStatus)? {
+        guard let id = cell.contentID,
+              let project = projectUseCase.read(projectEntityID: id) else {
+            return nil
+        }
+        
+        return convertProcess(by: project.status)
     }
 }

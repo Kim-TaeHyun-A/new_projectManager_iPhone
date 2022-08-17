@@ -16,6 +16,16 @@ struct DetailViewModel {
         self.content = content
     }
     
+    private func updateHistory(by content: ProjectEntity) {
+        let historyEntity = HistoryEntity(
+            editedType: .edit,
+            title: content.title,
+            date: Date().timeIntervalSince1970
+        )
+        
+        projectUseCase.createHistory(historyEntity: historyEntity)
+    }
+    
     func read() -> ProjectEntity? {
         return projectUseCase.read(projectEntityID: content.id)
     }
@@ -27,15 +37,5 @@ struct DetailViewModel {
     
     func asContent() -> ProjectEntity {
         return content
-    }
-    
-    private func updateHistory(by content: ProjectEntity) {
-        let historyEntity = HistoryEntity(
-            editedType: .edit,
-            title: content.title,
-            date: Date().timeIntervalSince1970
-        )
-        
-        projectUseCase.createHistory(historyEntity: historyEntity)
     }
 }
