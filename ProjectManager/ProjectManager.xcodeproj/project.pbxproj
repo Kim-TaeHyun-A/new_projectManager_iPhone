@@ -34,6 +34,7 @@
 		0E02C731288975D200522622 /* NetworkCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E02C730288975D200522622 /* NetworkCondition.swift */; };
 		0E02C733288EFB1900522622 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E02C732288EFB1900522622 /* HistoryViewModel.swift */; };
 		0E0AD6E428AD7D2100A5ADBD /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6E328AD7D2100A5ADBD /* MockNetworkManager.swift */; };
+		0E0AD6E628AD7DF400A5ADBD /* MockHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6E528AD7DF400A5ADBD /* MockHistoryManager.swift */; };
 		0E2C683128995889003DE006 /* StubHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2C683028995889003DE006 /* StubHistoryManager.swift */; };
 		0E34F04C287C7C5600438285 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04B287C7C5600438285 /* DateFormatter.swift */; };
 		0E34F04F287C815300438285 /* PopOverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04E287C815300438285 /* PopOverViewModel.swift */; };
@@ -104,6 +105,7 @@
 		0E02C730288975D200522622 /* NetworkCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCondition.swift; sourceTree = "<group>"; };
 		0E02C732288EFB1900522622 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		0E0AD6E328AD7D2100A5ADBD /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		0E0AD6E528AD7DF400A5ADBD /* MockHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHistoryManager.swift; sourceTree = "<group>"; };
 		0E2C683028995889003DE006 /* StubHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubHistoryManager.swift; sourceTree = "<group>"; };
 		0E34F04B287C7C5600438285 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		0E34F04E287C815300438285 /* PopOverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewModel.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 			children = (
 				0EC507DF28AD719000EF9515 /* MockPersistentManager.swift */,
 				0E0AD6E328AD7D2100A5ADBD /* MockNetworkManager.swift */,
+				0E0AD6E528AD7DF400A5ADBD /* MockHistoryManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 			files = (
 				0EC507E028AD719000EF9515 /* MockPersistentManager.swift in Sources */,
 				0EB71CE128937CD00025F66C /* StubNetworkManager.swift in Sources */,
+				0E0AD6E628AD7DF400A5ADBD /* MockHistoryManager.swift in Sources */,
 				0EC507D628AD6A4F00EF9515 /* MockProjectUseCase.swift in Sources */,
 				0EC507DB28AD6F8800EF9515 /* MockNetworkRepository.swift in Sources */,
 				0E0AD6E428AD7D2100A5ADBD /* MockNetworkManager.swift in Sources */,
