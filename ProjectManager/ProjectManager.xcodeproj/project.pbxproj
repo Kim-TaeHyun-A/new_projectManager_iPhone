@@ -20,7 +20,6 @@
 		03AB73D62873043000B0C980 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 03AB73D52873043000B0C980 /* .swiftlint.yml */; };
 		03AB73DB2873290400B0C980 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB73DA2873290400B0C980 /* MainViewController.swift */; };
 		03AB73DD2873292900B0C980 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB73DC2873292900B0C980 /* MainView.swift */; };
-		03AB73E1287331BB00B0C980 /* ProjectTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB73E0287331BB00B0C980 /* ProjectTableView.swift */; };
 		03BECD322892C34500BED881 /* ModalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BECD312892C34500BED881 /* ModalConstant.swift */; };
 		03BECD342892C55000BED881 /* ModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BECD332892C54F00BED881 /* ModalDelegate.swift */; };
 		03D99936289163BE00BAE6CA /* SceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D99935289163BE00BAE6CA /* SceneDIContainer.swift */; };
@@ -90,7 +89,6 @@
 		03AB73D52873043000B0C980 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		03AB73DA2873290400B0C980 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		03AB73DC2873292900B0C980 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		03AB73E0287331BB00B0C980 /* ProjectTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableView.swift; sourceTree = "<group>"; };
 		03BECD312892C34500BED881 /* ModalConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalConstant.swift; sourceTree = "<group>"; };
 		03BECD332892C54F00BED881 /* ModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDelegate.swift; sourceTree = "<group>"; };
 		03D99935289163BE00BAE6CA /* SceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDIContainer.swift; sourceTree = "<group>"; };
@@ -232,7 +230,6 @@
 			children = (
 				03AB73DA2873290400B0C980 /* MainViewController.swift */,
 				03AB73DC2873292900B0C980 /* MainView.swift */,
-				03AB73E0287331BB00B0C980 /* ProjectTableView.swift */,
 				0EA67ECF287674D000E15093 /* ProjectListView.swift */,
 				0EA67EB72873330100E15093 /* ProjectCell.swift */,
 			);
@@ -750,7 +747,6 @@
 				03498B73288676B500D8CB3F /* PersistentManager.swift in Sources */,
 				032D3D11287D629800A32E57 /* DefaultProjectUseCase.swift in Sources */,
 				0E8130F22886F8A8003EC6C7 /* NetworkManager.swift in Sources */,
-				03AB73E1287331BB00B0C980 /* ProjectTableView.swift in Sources */,
 				0EA67EBC287476B300E15093 /* RegistrationViewController.swift in Sources */,
 				0E8130EC2886A1F3003EC6C7 /* Project+CoreDataClass.swift in Sources */,
 			);
