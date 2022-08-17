@@ -7,7 +7,15 @@
 
 import Foundation
 
-struct RegistrationViewModel {
+protocol RegistrationViewModelInputProtocol {
+    func registrate(title: String, date: Date, body: String)
+}
+
+protocol RegistrationViewModelOutputProtocol { }
+
+protocol RegistrationViewModelProtocol: RegistrationViewModelInputProtocol, RegistrationViewModelOutputProtocol { }
+
+final class RegistrationViewModel: RegistrationViewModelProtocol {
     private let projectUseCase: ProjectUseCaseProtocol
     
     init(projectUseCase: ProjectUseCaseProtocol) {
@@ -23,7 +31,11 @@ struct RegistrationViewModel {
         
         projectUseCase.createHistory(historyEntity: historyEntity)
     }
-    
+}
+
+// MARK: - Input
+
+extension RegistrationViewModel {
     func registrate(title: String, date: Date, body: String) {
         let newProject = ProjectEntity(
             title: title,

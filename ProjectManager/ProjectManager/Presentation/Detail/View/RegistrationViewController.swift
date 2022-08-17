@@ -15,11 +15,11 @@ private enum Constant {
 
 final class RegistrationViewController: UIViewController {
     private let modalView = ModalView(frame: .zero)
-    private var viewModel: RegistrationViewModel?
+    private var viewModel: RegistrationViewModelProtocol?
     private let disposeBag = DisposeBag()
     private var topConstraint: NSLayoutConstraint?
     
-    init(with viewModel: RegistrationViewModel) {
+    init(with viewModel: RegistrationViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
