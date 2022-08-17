@@ -17,11 +17,11 @@ private enum ImageConstant {
 
 final class MainViewController: UIViewController {
     private let mainView = MainView(frame: .zero)
-    private var viewModel: MainViewModel?
-    private let disposeBag = DisposeBag()
+    private var viewModel: MainViewModelProtocol?
     private var sceneDIContainer: SceneDIContainer?
+    private let disposeBag = DisposeBag()
     
-    init(with viewModel: MainViewModel,
+    init(with viewModel: MainViewModelProtocol,
          _ sceneDIContainer: SceneDIContainer
     ) {
         super.init(nibName: nil, bundle: nil)
@@ -154,7 +154,7 @@ final class MainViewController: UIViewController {
             }
             
             self.viewModel?.loadNetworkData()
-                .disposed(by: self.disposeBag)
+            self.viewModel?.remoteData?.disposed(by: self.disposeBag)
         }
         
         let next = sceneDIContainer?.makeAlertController(
@@ -199,9 +199,9 @@ final class MainViewController: UIViewController {
     }
     
     private func setUpTableCellData() {
-        bindCell(to: viewModel?.asTodoProjects(), at: mainView.toDoTable.tableView)
-        bindCell(to: viewModel?.asDoingProjects(), at: mainView.doingTable.tableView)
-        bindCell(to: viewModel?.asDoneProjects(), at: mainView.doneTable.tableView)
+        bindCell(to: viewModel?.todoProjects, at: mainView.toDoTable.tableView)
+        bindCell(to: viewModel?.doingProjects, at: mainView.doingTable.tableView)
+        bindCell(to: viewModel?.doneProjects, at: mainView.doneTable.tableView)
     }
     
     private func bindCell(to projects: Driver<[ProjectEntity]>?, at tableView: UITableView) {
@@ -232,9 +232,9 @@ final class MainViewController: UIViewController {
     }
     
     private func setUpTotalCount() {
-        bindCountLabel(of: mainView.toDoTable, to: viewModel?.asTodoProjects())
-        bindCountLabel(of: mainView.doingTable, to: viewModel?.asDoingProjects())
-        bindCountLabel(of: mainView.doneTable, to: viewModel?.asDoneProjects())
+        bindCountLabel(of: mainView.toDoTable, to: viewModel?.todoProjects)
+        bindCountLabel(of: mainView.doingTable, to: viewModel?.doingProjects)
+        bindCountLabel(of: mainView.doneTable, to: viewModel?.doneProjects)
     }
     
     private func bindCountLabel(of tableView: ProjectListView, to projects: Driver<[ProjectEntity]>?) {
@@ -299,7 +299,8 @@ final class MainViewController: UIViewController {
     }
     
     private func presentViewController(status: ProjectStatus, cell: ProjectCell) {
-        guard let content = viewModel?.readProject(cell.contentID),
+        viewModel?.readProject(cell.contentID)
+        guard let content = viewModel?.currnetProjectEntity,
               let next = sceneDIContainer?.makeDetailViewController(with: content)
         else {
             return
