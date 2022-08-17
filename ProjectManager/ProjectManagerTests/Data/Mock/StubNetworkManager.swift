@@ -1,5 +1,5 @@
 //
-//  MockNetworkManager.swift
+//  StubNetworkManager.swift
 //  ProjectManagerTests
 //
 //  Created by Tiana, mmim on 2022/07/29.
@@ -8,7 +8,7 @@
 @testable import ProjectManager
 import RxSwift
 
-struct SampleData {
+struct DummyData {
     static private let deadline = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
 
     static let data = ProjectDTO(
@@ -20,40 +20,40 @@ struct SampleData {
     )
 }
 
-final class MockFirebase {
+final class StubFirebase {
     let error: Error?
-    private let defaultData = SampleData.data
-    var database: [String: [String: String]] = [:]
+    private let dummyData = DummyData.data
+    var stubDatabase: [String: [String: String]] = [:]
     
     init(error: Error?) {
         self.error = error
         
-        database[defaultData.id] = ["id": defaultData.id,
-                                    "status": defaultData.status,
-                                    "title": defaultData.title,
-                                    "deadline": defaultData.deadline,
-                                    "body": defaultData.body]
+        stubDatabase[dummyData.id] = ["id": dummyData.id,
+                                    "status": dummyData.status,
+                                    "title": dummyData.title,
+                                    "deadline": dummyData.deadline,
+                                    "body": dummyData.body]
     }
     
     func getData(completion: @escaping (Error?, [String: [String: String]]?) -> Void) {
-        completion(error, database)
+        completion(error, stubDatabase)
     }
     
     func setValue(_ newData: [String: [String: String]]) {
-        database = newData
+        stubDatabase = newData
     }
 }
 
-final class MockNetworkManager {
-    let mockFirebase = MockFirebase(error: nil)
+final class StubNetworkManager {
+    let stubFirebase = StubFirebase(error: nil)
 }
 
-extension MockNetworkManager: NetworkManagerProtocol {
+extension StubNetworkManager: NetworkManagerProtocol {
     func read() -> Observable<[ProjectDTO]> {
         
         return Observable.create { [weak self] emitter in
             
-            self?.mockFirebase.getData { error, snapshot in
+            self?.stubFirebase.getData { error, snapshot in
                 guard error == nil else {
                     return
                 }
@@ -84,6 +84,6 @@ extension MockNetworkManager: NetworkManagerProtocol {
             ]
         }
         
-        mockFirebase.setValue(newData)
+        stubFirebase.setValue(newData)
     }
 }

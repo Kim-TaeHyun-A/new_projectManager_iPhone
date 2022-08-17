@@ -12,24 +12,24 @@ import RxRelay
 class ProjectUsecaseTests: XCTestCase {
     
     var sut: ProjectUseCaseProtocol!
-    var mockPersistentManager: MockPersistentManager!
-    var mockNetworkManager: MockNetworkManager!
-    var mockHistory: MockHistoryManager!
+    var stubPersistentManager: StubPersistentManager!
+    var stubNetworkManager: StubNetworkManager!
+    var stubHistory: StubHistoryManager!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
-        mockPersistentManager = MockPersistentManager()
-        mockNetworkManager = MockNetworkManager()
-        mockHistory = MockHistoryManager()
+        stubPersistentManager = StubPersistentManager()
+        stubNetworkManager = StubNetworkManager()
+        stubHistory = StubHistoryManager()
         
         sut = DefaultProjectUseCase(
             projectRepository: PersistentRepository(
                 projectEntities: BehaviorRelay<[ProjectEntity]>(value: []),
-                persistentManager: mockPersistentManager
+                persistentManager: stubPersistentManager
             ),
-            networkRepository: NetworkRepository(networkManger: mockNetworkManager),
-            historyRepository: HistoryRepository(historyManager: mockHistory)
+            networkRepository: NetworkRepository(networkManger: stubNetworkManager),
+            historyRepository: HistoryRepository(historyManager: stubHistory)
         )
     }
     
@@ -46,7 +46,7 @@ class ProjectUsecaseTests: XCTestCase {
         sut.create(projectEntity: data)
         
         // then
-        XCTAssertEqual(mockPersistentManager.database.projects.first!.id, data.id.uuidString)
+        XCTAssertEqual(stubPersistentManager.stubCoreData.projects.first!.id, data.id.uuidString)
     }
     
     func test_read_하면_locaolDB의_전체_데이터가_나오는지() {
@@ -84,8 +84,8 @@ class ProjectUsecaseTests: XCTestCase {
         sut.update(projectEntity: dataToUpdate)
         
         // then
-        XCTAssertEqual(mockPersistentManager.database.projects.first!.title, dataToUpdate.title)
-        XCTAssertEqual(mockPersistentManager.database.projects.first!.body, dataToUpdate.body)
+        XCTAssertEqual(stubPersistentManager.stubCoreData.projects.first!.title, dataToUpdate.title)
+        XCTAssertEqual(stubPersistentManager.stubCoreData.projects.first!.body, dataToUpdate.body)
     }
     
     func test_delete_ID넣으면_locaolDB에서_해당_데이터가_제거되는지() {
@@ -99,8 +99,8 @@ class ProjectUsecaseTests: XCTestCase {
         sut.delete(projectEntityID: firstDataToCreate.id)
         
         // then
-        XCTAssertEqual(mockPersistentManager.database.projects.count, 1)
-        XCTAssertEqual(mockPersistentManager.database.projects.first!.id, secondDataToCreate.id.uuidString)
+        XCTAssertEqual(stubPersistentManager.stubCoreData.projects.count, 1)
+        XCTAssertEqual(stubPersistentManager.stubCoreData.projects.first!.id, secondDataToCreate.id.uuidString)
     }
     
     func test_load_하면_remoetDB의_전체_데이터가_localDB에_저장되는지() {
@@ -108,7 +108,7 @@ class ProjectUsecaseTests: XCTestCase {
         _ = sut.load()
         
         // then
-        XCTAssertEqual(mockPersistentManager.database.projects.first!.title, "title111")
+        XCTAssertEqual(stubPersistentManager.stubCoreData.projects.first!.title, "title111")
     }
     
     func test_backUp_하면_localDB의_데이터가_remoteDB에_저장되는지() {
@@ -120,9 +120,9 @@ class ProjectUsecaseTests: XCTestCase {
         sut.backUp()
         
         // then
-        let data = mockNetworkManager.mockFirebase.database[dataToCreate.id.uuidString]
+        let data = stubNetworkManager.stubFirebase.stubDatabase[dataToCreate.id.uuidString]
         
-        XCTAssertEqual(mockNetworkManager.mockFirebase.database.count, 1)
+        XCTAssertEqual(stubNetworkManager.stubFirebase.stubDatabase.count, 1)
         XCTAssertEqual(data!["title"], "test")
     }
     
@@ -151,7 +151,7 @@ class ProjectUsecaseTests: XCTestCase {
         )
         
         // then
-        let history = mockHistory.historyEntities
+        let history = stubHistory.stubHistoryEntities
         XCTAssertEqual(history.value.count, 1)
     }
     
@@ -200,7 +200,7 @@ class ProjectUsecaseTests: XCTestCase {
         _ = sut.readHistory()
         
         // then
-        let history = mockHistory.historyEntities
+        let history = stubHistory.stubHistoryEntities
         XCTAssertEqual(history.value.count, 2)
     }
 }
