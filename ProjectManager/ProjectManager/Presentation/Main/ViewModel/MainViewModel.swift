@@ -23,7 +23,7 @@ protocol MainViewModelOutputProtocol {
     var remoteData: Disposable? { get }
 }
 
-protocol MainViewModelProtocol: MainViewModelInputProtocol,MainViewModelOutputProtocol { }
+protocol MainViewModelProtocol: MainViewModelInputProtocol, MainViewModelOutputProtocol { }
 
 final class MainViewModel: MainViewModelProtocol {
     private let projectUseCase: ProjectUseCaseProtocol
@@ -48,8 +48,8 @@ final class MainViewModel: MainViewModelProtocol {
             .map { $0.filter { $0.status == .done } }
             .asDriver(onErrorJustReturn: [])
     }()
-    var currnetProjectEntity: ProjectEntity? = nil
-    var remoteData: Disposable? = nil
+    var currnetProjectEntity: ProjectEntity?
+    var remoteData: Disposable?
     
     init(projectUseCase: ProjectUseCaseProtocol) {
         self.projectUseCase = projectUseCase
