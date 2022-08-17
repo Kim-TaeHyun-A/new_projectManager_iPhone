@@ -12,24 +12,23 @@ import RxRelay
 class ProjectUsecaseTests: XCTestCase {
     
     var sut: ProjectUseCase!
-    var persistentManager: MockPersistentManager!
-    var networkManager: MockNetworkManager!
+    var mockPersistentManager: MockPersistentManager!
+    var mockNetworkManager: MockNetworkManager!
     var mockHistory: MockHistoryManager!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        persistentManager = MockPersistentManager()
-        networkManager = MockNetworkManager()
+        
+        mockPersistentManager = MockPersistentManager()
+        mockNetworkManager = MockNetworkManager()
         mockHistory = MockHistoryManager()
         
-        let mockPersistentRepository = PersistentRepository(
-            projectEntities: BehaviorRelay<[ProjectEntity]>(value: []),
-            persistentManager: persistentManager
-        )
-        
         sut = DefaultProjectUseCase(
-            projectRepository: mockPersistentRepository,
-            networkRepository: NetworkRepository(networkManger: networkManager),
+            projectRepository: PersistentRepository(
+                projectEntities: BehaviorRelay<[ProjectEntity]>(value: []),
+                persistentManager: mockPersistentManager
+            ),
+            networkRepository: NetworkRepository(networkManger: mockNetworkManager),
             historyRepository: HistoryRepository(historyManager: mockHistory)
         )
     }
@@ -47,7 +46,7 @@ class ProjectUsecaseTests: XCTestCase {
         sut.create(projectEntity: data)
         
         // then
-        XCTAssertEqual(persistentManager.database.projects.first!.id, data.id.uuidString)
+        XCTAssertEqual(mockPersistentManager.database.projects.first!.id, data.id.uuidString)
     }
     
     func test_read_하면_locaolDB의_전체_데이터가_나오는지() {
@@ -85,8 +84,8 @@ class ProjectUsecaseTests: XCTestCase {
         sut.update(projectEntity: dataToUpdate)
         
         // then
-        XCTAssertEqual(persistentManager.database.projects.first!.title, dataToUpdate.title)
-        XCTAssertEqual(persistentManager.database.projects.first!.body, dataToUpdate.body)
+        XCTAssertEqual(mockPersistentManager.database.projects.first!.title, dataToUpdate.title)
+        XCTAssertEqual(mockPersistentManager.database.projects.first!.body, dataToUpdate.body)
     }
     
     func test_delete_ID넣으면_locaolDB에서_해당_데이터가_제거되는지() {
@@ -100,8 +99,8 @@ class ProjectUsecaseTests: XCTestCase {
         sut.delete(projectEntityID: firstDataToCreate.id)
         
         // then
-        XCTAssertEqual(persistentManager.database.projects.count, 1)
-        XCTAssertEqual(persistentManager.database.projects.first!.id, secondDataToCreate.id.uuidString)
+        XCTAssertEqual(mockPersistentManager.database.projects.count, 1)
+        XCTAssertEqual(mockPersistentManager.database.projects.first!.id, secondDataToCreate.id.uuidString)
     }
     
     func test_load_하면_remoetDB의_전체_데이터가_localDB에_저장되는지() {
@@ -109,7 +108,7 @@ class ProjectUsecaseTests: XCTestCase {
         _ = sut.load()
         
         // then
-        XCTAssertEqual(persistentManager.database.projects.first!.title, "title111")
+        XCTAssertEqual(mockPersistentManager.database.projects.first!.title, "title111")
     }
     
     func test_backUp_하면_localDB의_데이터가_remoteDB에_저장되는지() {
@@ -121,9 +120,9 @@ class ProjectUsecaseTests: XCTestCase {
         sut.backUp()
         
         // then
-        let data = networkManager.mockFirebase.database[dataToCreate.id.uuidString]
+        let data = mockNetworkManager.mockFirebase.database[dataToCreate.id.uuidString]
         
-        XCTAssertEqual(networkManager.mockFirebase.database.count, 1)
+        XCTAssertEqual(mockNetworkManager.mockFirebase.database.count, 1)
         XCTAssertEqual(data!["title"], "test")
     }
     
