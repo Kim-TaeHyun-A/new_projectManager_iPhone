@@ -36,7 +36,7 @@
 		0E2C683128995889003DE006 /* MockHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2C683028995889003DE006 /* MockHistoryManager.swift */; };
 		0E34F04C287C7C5600438285 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04B287C7C5600438285 /* DateFormatter.swift */; };
 		0E34F04F287C815300438285 /* PopOverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04E287C815300438285 /* PopOverViewModel.swift */; };
-		0E5B6C0128936E6A00A5FE48 /* ProjectManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5B6C0028936E6A00A5FE48 /* ProjectManagerTests.swift */; };
+		0E5B6C0128936E6A00A5FE48 /* ProjectUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5B6C0028936E6A00A5FE48 /* ProjectUsecaseTests.swift */; };
 		0E5B6C0828936F5800A5FE48 /* MockPersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334E70528770E3D00222EB7 /* MockPersistentManager.swift */; };
 		0E8130EC2886A1F3003EC6C7 /* Project+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8130EA2886A1F3003EC6C7 /* Project+CoreDataClass.swift */; };
 		0E8130ED2886A1F3003EC6C7 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8130EB2886A1F3003EC6C7 /* Project+CoreDataProperties.swift */; };
@@ -100,7 +100,7 @@
 		0E34F04B287C7C5600438285 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		0E34F04E287C815300438285 /* PopOverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewModel.swift; sourceTree = "<group>"; };
 		0E5B6BFE28936E6A00A5FE48 /* ProjectManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0E5B6C0028936E6A00A5FE48 /* ProjectManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectManagerTests.swift; sourceTree = "<group>"; };
+		0E5B6C0028936E6A00A5FE48 /* ProjectUsecaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectUsecaseTests.swift; sourceTree = "<group>"; };
 		0E8130EA2886A1F3003EC6C7 /* Project+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0E8130EB2886A1F3003EC6C7 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0E8130F12886F8A8003EC6C7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -261,7 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				0E5B6C0928936F7B00A5FE48 /* Data */,
-				0E5B6C0028936E6A00A5FE48 /* ProjectManagerTests.swift */,
+				0E5B6C0028936E6A00A5FE48 /* ProjectUsecaseTests.swift */,
 			);
 			path = ProjectManagerTests;
 			sourceTree = "<group>";
@@ -625,7 +625,7 @@
 				0EB71CE128937CD00025F66C /* MockNetworkManager.swift in Sources */,
 				0E5B6C0828936F5800A5FE48 /* MockPersistentManager.swift in Sources */,
 				0E2C683128995889003DE006 /* MockHistoryManager.swift in Sources */,
-				0E5B6C0128936E6A00A5FE48 /* ProjectManagerTests.swift in Sources */,
+				0E5B6C0128936E6A00A5FE48 /* ProjectUsecaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

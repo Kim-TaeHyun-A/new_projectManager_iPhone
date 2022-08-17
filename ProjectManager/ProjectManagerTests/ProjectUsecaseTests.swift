@@ -1,5 +1,5 @@
 //
-//  ProjectManagerTests.swift
+//  ProjectUsecaseTests.swift
 //  ProjectManagerTests
 //
 //  Created by Tiana, mmim on 2022/07/29.
@@ -9,7 +9,7 @@ import XCTest
 @testable import ProjectManager
 import RxRelay
 
-class ProjectManagerTests: XCTestCase {
+class ProjectUsecaseTests: XCTestCase {
     
     var sut: ProjectUseCase!
     var persistentManager: MockPersistentManager!
