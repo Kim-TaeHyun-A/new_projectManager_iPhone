@@ -108,7 +108,7 @@ class ProjectUsecaseTestsWithStub: XCTestCase {
         _ = sut.load()
         
         // then
-        XCTAssertEqual(stubPersistentManager.stubCoreData.projects.first!.title, "title111")
+        XCTAssertEqual(stubPersistentManager.stubCoreData.projects.first!.title, "title")
     }
     
     func test_backUp_하면_localDB의_데이터가_remoteDB에_저장되는지() {

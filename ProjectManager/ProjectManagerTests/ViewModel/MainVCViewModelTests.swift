@@ -1,0 +1,44 @@
+//
+//  MainVCViewModelTests.swift
+//  ProjectManagerTests
+//
+//  Created by Tiana on 2022/08/19.
+//
+
+@testable import ProjectManager
+import XCTest
+import RxRelay
+
+// behavior verification with Mock
+final class MainVCViewModelTests: XCTestCase {
+    var sut: MainVCViewModelProtocol!
+    var mockProjectUseCase: MockProjectUseCase!
+    
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        
+        mockProjectUseCase = MockProjectUseCase()
+        sut = MainVCViewModel(projectUseCase: mockProjectUseCase)
+    }
+    
+    override func tearDownWithError() throws {
+        try super.tearDownWithError()
+        sut = nil
+    }
+    
+    func test_didTapCell_id넣으면_modalView_띄우는지() {
+        // when
+        sut.didTapCell(UUID())
+        
+        // then
+        XCTAssertEqual(mockProjectUseCase.readWithProjectEntityIDCallCount, 1)
+    }
+    
+    func test_didTapLoadButton_하면_alert_띄우는지() {
+        // when
+        sut.didTapLoadButton()
+        
+        // then
+        XCTAssertEqual(mockProjectUseCase.loadCallCount, 1)
+    }
+}
