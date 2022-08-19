@@ -25,7 +25,7 @@ final class NetworkRepositoryTests: XCTestCase {
         sut = nil
     }
     
-    func test_update_호출하면_mockNetworkManager_mockNetworkManager_1증가하는지() {
+    func test_update_호출하면_mockNetworkManager_updateCallCount_1증가하는지() {
         // given
         let mockPersistentRepository = MockPersistentRepository()
         
@@ -36,7 +36,7 @@ final class NetworkRepositoryTests: XCTestCase {
         XCTAssertEqual(mockNetworkManager.updateCallCount, 1)
     }
     
-    func test_update_호출하면_mockNetworkManager_readCallCount_1증가하는지() {
+    func test_read_호출하면_mockNetworkManager_readCallCount_1증가하는지() {
         // given
         let mockPersistentRepository = MockPersistentRepository()
         
