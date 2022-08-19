@@ -40,6 +40,7 @@
 		0E0AD6F028AF26DC00A5ADBD /* HistoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6EF28AF26DC00A5ADBD /* HistoryRepositoryTests.swift */; };
 		0E0AD6F328AF4F3700A5ADBD /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6F228AF4F3700A5ADBD /* MainViewModelTests.swift */; };
 		0E0AD6F528AF855700A5ADBD /* ProjectListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6F428AF855700A5ADBD /* ProjectListViewModel.swift */; };
+		0E0AD6F928B00E2300A5ADBD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6F828B00E2300A5ADBD /* HeaderView.swift */; };
 		0E2C683128995889003DE006 /* StubHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2C683028995889003DE006 /* StubHistoryManager.swift */; };
 		0E34F04C287C7C5600438285 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04B287C7C5600438285 /* DateFormatter.swift */; };
 		0E34F04F287C815300438285 /* PopOverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04E287C815300438285 /* PopOverViewModel.swift */; };
@@ -115,6 +116,7 @@
 		0E0AD6EF28AF26DC00A5ADBD /* HistoryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepositoryTests.swift; sourceTree = "<group>"; };
 		0E0AD6F228AF4F3700A5ADBD /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		0E0AD6F428AF855700A5ADBD /* ProjectListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewModel.swift; sourceTree = "<group>"; };
+		0E0AD6F828B00E2300A5ADBD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		0E2C683028995889003DE006 /* StubHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubHistoryManager.swift; sourceTree = "<group>"; };
 		0E34F04B287C7C5600438285 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		0E34F04E287C815300438285 /* PopOverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewModel.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				03AB73DA2873290400B0C980 /* MainViewController.swift */,
 				03AB73DC2873292900B0C980 /* MainView.swift */,
 				0EA67ECF287674D000E15093 /* ProjectListView.swift */,
+				0E0AD6F828B00E2300A5ADBD /* HeaderView.swift */,
 				0EA67EB72873330100E15093 /* ProjectCell.swift */,
 			);
 			path = View;
@@ -778,6 +781,7 @@
 				0E34F04F287C815300438285 /* PopOverViewModel.swift in Sources */,
 				0E02C731288975D200522622 /* NetworkCondition.swift in Sources */,
 				03F0EF93288EDCC200FBC7EB /* HistoryCell.swift in Sources */,
+				0E0AD6F928B00E2300A5ADBD /* HeaderView.swift in Sources */,
 				0EA67ED228772C0200E15093 /* RegistrationViewModel.swift in Sources */,
 				03D99936289163BE00BAE6CA /* SceneDIContainer.swift in Sources */,
 				03498B73288676B500D8CB3F /* PersistentManager.swift in Sources */,
