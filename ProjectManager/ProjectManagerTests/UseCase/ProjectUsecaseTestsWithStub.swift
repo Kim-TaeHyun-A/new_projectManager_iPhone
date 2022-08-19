@@ -1,5 +1,5 @@
 //
-//  ProjectUsecaseTests.swift
+//  ProjectUsecaseTestsWithStub.swift
 //  ProjectManagerTests
 //
 //  Created by Tiana, mmim on 2022/07/29.
@@ -9,19 +9,19 @@
 import XCTest
 import RxRelay
 
-class ProjectUsecaseTests: XCTestCase {
-    
+// state verification with Stub
+class ProjectUsecaseTestsWithStub: XCTestCase {
     var sut: ProjectUseCaseProtocol!
     var stubPersistentManager: StubPersistentManager!
     var stubNetworkManager: StubNetworkManager!
-    var stubHistory: StubHistoryManager!
+    var stubHistoryManager: StubHistoryManager!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
         stubPersistentManager = StubPersistentManager()
         stubNetworkManager = StubNetworkManager()
-        stubHistory = StubHistoryManager()
+        stubHistoryManager = StubHistoryManager()
         
         sut = DefaultProjectUseCase(
             projectRepository: PersistentRepository(
@@ -29,7 +29,7 @@ class ProjectUsecaseTests: XCTestCase {
                 persistentManager: stubPersistentManager
             ),
             networkRepository: NetworkRepository(networkManger: stubNetworkManager),
-            historyRepository: HistoryRepository(historyManager: stubHistory)
+            historyRepository: HistoryRepository(historyManager: stubHistoryManager)
         )
     }
     
@@ -151,7 +151,7 @@ class ProjectUsecaseTests: XCTestCase {
         )
         
         // then
-        let history = stubHistory.stubHistoryEntities
+        let history = stubHistoryManager.stubHistoryEntities
         XCTAssertEqual(history.value.count, 1)
     }
     
@@ -200,7 +200,7 @@ class ProjectUsecaseTests: XCTestCase {
         _ = sut.readHistory()
         
         // then
-        let history = stubHistory.stubHistoryEntities
+        let history = stubHistoryManager.stubHistoryEntities
         XCTAssertEqual(history.value.count, 2)
     }
 }
