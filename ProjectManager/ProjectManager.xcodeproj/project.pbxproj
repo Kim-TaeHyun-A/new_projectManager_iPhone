@@ -57,7 +57,7 @@
 		0EB71CDE289377DB0025F66C /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F0EF94288EE15B00FBC7EB /* HistoryManager.swift */; };
 		0EB71CE128937CD00025F66C /* StubNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB71CE028937CD00025F66C /* StubNetworkManager.swift */; };
 		0EC507D128AD4B5800EF9515 /* MockMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507D028AD4B5800EF9515 /* MockMainViewModel.swift */; };
-		0EC507D628AD6A4F00EF9515 /* MockProjectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507D528AD6A4F00EF9515 /* MockProjectUseCase.swift */; };
+		0EC507D628AD6A4F00EF9515 /* StubProjectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507D528AD6A4F00EF9515 /* StubProjectUseCase.swift */; };
 		0EC507D928AD6E2A00EF9515 /* MockPersistentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507D828AD6E2A00EF9515 /* MockPersistentRepository.swift */; };
 		0EC507DB28AD6F8800EF9515 /* MockNetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507DA28AD6F8800EF9515 /* MockNetworkRepository.swift */; };
 		0EC507DD28AD709E00EF9515 /* MockHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507DC28AD709E00EF9515 /* MockHistoryRepository.swift */; };
@@ -130,7 +130,7 @@
 		0EA67ED128772C0200E15093 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		0EB71CE028937CD00025F66C /* StubNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkManager.swift; sourceTree = "<group>"; };
 		0EC507D028AD4B5800EF9515 /* MockMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainViewModel.swift; sourceTree = "<group>"; };
-		0EC507D528AD6A4F00EF9515 /* MockProjectUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProjectUseCase.swift; sourceTree = "<group>"; };
+		0EC507D528AD6A4F00EF9515 /* StubProjectUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubProjectUseCase.swift; sourceTree = "<group>"; };
 		0EC507D828AD6E2A00EF9515 /* MockPersistentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPersistentRepository.swift; sourceTree = "<group>"; };
 		0EC507DA28AD6F8800EF9515 /* MockNetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRepository.swift; sourceTree = "<group>"; };
 		0EC507DC28AD709E00EF9515 /* MockHistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHistoryRepository.swift; sourceTree = "<group>"; };
@@ -257,7 +257,6 @@
 			children = (
 				0EC507DE28AD717F00EF9515 /* Manager */,
 				0EC507D728AD6DF600EF9515 /* Repository */,
-				0EC507D428AD6A1B00EF9515 /* UseCase */,
 				0EC507CF28AD4B2C00EF9515 /* ViewModel */,
 			);
 			path = Mock;
@@ -332,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0AD6E228AD7C9A00A5ADBD /* Manager */,
+				0EC507D428AD6A1B00EF9515 /* UseCase */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -421,7 +421,7 @@
 		0EC507D428AD6A1B00EF9515 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				0EC507D528AD6A4F00EF9515 /* MockProjectUseCase.swift */,
+				0EC507D528AD6A4F00EF9515 /* StubProjectUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -722,7 +722,7 @@
 				0EC507E028AD719000EF9515 /* MockPersistentManager.swift in Sources */,
 				0EB71CE128937CD00025F66C /* StubNetworkManager.swift in Sources */,
 				0E0AD6E628AD7DF400A5ADBD /* MockHistoryManager.swift in Sources */,
-				0EC507D628AD6A4F00EF9515 /* MockProjectUseCase.swift in Sources */,
+				0EC507D628AD6A4F00EF9515 /* StubProjectUseCase.swift in Sources */,
 				0E0AD6EB28AF1D3600A5ADBD /* PersistentRepositoryTests.swift in Sources */,
 				0EC507DB28AD6F8800EF9515 /* MockNetworkRepository.swift in Sources */,
 				0E0AD6E428AD7D2100A5ADBD /* MockNetworkManager.swift in Sources */,
