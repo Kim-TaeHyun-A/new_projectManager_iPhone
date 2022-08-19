@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import RxCocoa
 
 final class MainView: UIView {
-    let toDoTable = ProjectListView(title: ProjectStatus.todo.string)
-    let doingTable = ProjectListView(title: ProjectStatus.doing.string)
-    let doneTable = ProjectListView(title: ProjectStatus.done.string)
+    var toDoTable: ProjectListView?
+    var doingTable: ProjectListView?
+    var doneTable: ProjectListView?
     
     private let baseStackView: UIStackView = {
         let stackView = UIStackView()
@@ -22,9 +23,18 @@ final class MainView: UIView {
         return stackView
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(projectListViewModels: [ProjectListViewModelProtocol]) {
+        super.init(frame: CGRect.zero)
 
+        guard let todoViewModel = projectListViewModels.first(where: { $0.status == .todo }),
+              let doingViewModel = projectListViewModels.first(where: { $0.status == .doing }),
+              let doneViewModel = projectListViewModels.first(where: { $0.status == .done }) else {
+            return
+        }
+        
+        toDoTable = ProjectListView(with: todoViewModel)
+        doingTable = ProjectListView(with: doingViewModel)
+        doneTable = ProjectListView(with: doneViewModel)
         setUpBackgroundColor()
         setUpTableViews()
         setUpLayout()
@@ -39,6 +49,12 @@ final class MainView: UIView {
     }
     
     private func setUpTableViews() {
+        guard let toDoTable = toDoTable,
+              let doingTable = doingTable,
+              let doneTable = doneTable else {
+            return
+        }
+
         addSubview(baseStackView)
         
         baseStackView.addArrangedSubview(toDoTable)

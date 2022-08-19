@@ -38,6 +38,8 @@
 		0E0AD6EB28AF1D3600A5ADBD /* PersistentRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6EA28AF1D3500A5ADBD /* PersistentRepositoryTests.swift */; };
 		0E0AD6EE28AF246000A5ADBD /* NetworkRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6ED28AF246000A5ADBD /* NetworkRepositoryTests.swift */; };
 		0E0AD6F028AF26DC00A5ADBD /* HistoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6EF28AF26DC00A5ADBD /* HistoryRepositoryTests.swift */; };
+		0E0AD6F328AF4F3700A5ADBD /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6F228AF4F3700A5ADBD /* MainViewModelTests.swift */; };
+		0E0AD6F528AF855700A5ADBD /* ProjectListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6F428AF855700A5ADBD /* ProjectListViewModel.swift */; };
 		0E2C683128995889003DE006 /* StubHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2C683028995889003DE006 /* StubHistoryManager.swift */; };
 		0E34F04C287C7C5600438285 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04B287C7C5600438285 /* DateFormatter.swift */; };
 		0E34F04F287C815300438285 /* PopOverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04E287C815300438285 /* PopOverViewModel.swift */; };
@@ -50,13 +52,12 @@
 		0EA67EB82873330100E15093 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EB72873330100E15093 /* ProjectCell.swift */; };
 		0EA67EBC287476B300E15093 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBB287476B300E15093 /* RegistrationViewController.swift */; };
 		0EA67EBE2874789700E15093 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBD2874789700E15093 /* ModalView.swift */; };
-		0EA67EC628751ECC00E15093 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EC528751ECC00E15093 /* MainViewModel.swift */; };
+		0EA67EC628751ECC00E15093 /* MainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EC528751ECC00E15093 /* MainVCViewModel.swift */; };
 		0EA67EC928752A0F00E15093 /* ProjectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EC828752A0F00E15093 /* ProjectEntity.swift */; };
 		0EA67ED0287674D000E15093 /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67ECF287674D000E15093 /* ProjectListView.swift */; };
 		0EA67ED228772C0200E15093 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67ED128772C0200E15093 /* RegistrationViewModel.swift */; };
 		0EB71CDE289377DB0025F66C /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F0EF94288EE15B00FBC7EB /* HistoryManager.swift */; };
 		0EB71CE128937CD00025F66C /* StubNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB71CE028937CD00025F66C /* StubNetworkManager.swift */; };
-		0EC507D128AD4B5800EF9515 /* MockMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507D028AD4B5800EF9515 /* MockMainViewModel.swift */; };
 		0EC507D628AD6A4F00EF9515 /* StubProjectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507D528AD6A4F00EF9515 /* StubProjectUseCase.swift */; };
 		0EC507D928AD6E2A00EF9515 /* MockPersistentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507D828AD6E2A00EF9515 /* MockPersistentRepository.swift */; };
 		0EC507DB28AD6F8800EF9515 /* MockNetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC507DA28AD6F8800EF9515 /* MockNetworkRepository.swift */; };
@@ -112,6 +113,8 @@
 		0E0AD6EA28AF1D3500A5ADBD /* PersistentRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentRepositoryTests.swift; sourceTree = "<group>"; };
 		0E0AD6ED28AF246000A5ADBD /* NetworkRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryTests.swift; sourceTree = "<group>"; };
 		0E0AD6EF28AF26DC00A5ADBD /* HistoryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepositoryTests.swift; sourceTree = "<group>"; };
+		0E0AD6F228AF4F3700A5ADBD /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
+		0E0AD6F428AF855700A5ADBD /* ProjectListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewModel.swift; sourceTree = "<group>"; };
 		0E2C683028995889003DE006 /* StubHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubHistoryManager.swift; sourceTree = "<group>"; };
 		0E34F04B287C7C5600438285 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		0E34F04E287C815300438285 /* PopOverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewModel.swift; sourceTree = "<group>"; };
@@ -124,12 +127,11 @@
 		0EA67EB72873330100E15093 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		0EA67EBB287476B300E15093 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		0EA67EBD2874789700E15093 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
-		0EA67EC528751ECC00E15093 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		0EA67EC528751ECC00E15093 /* MainVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCViewModel.swift; sourceTree = "<group>"; };
 		0EA67EC828752A0F00E15093 /* ProjectEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEntity.swift; sourceTree = "<group>"; };
 		0EA67ECF287674D000E15093 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
 		0EA67ED128772C0200E15093 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		0EB71CE028937CD00025F66C /* StubNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkManager.swift; sourceTree = "<group>"; };
-		0EC507D028AD4B5800EF9515 /* MockMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainViewModel.swift; sourceTree = "<group>"; };
 		0EC507D528AD6A4F00EF9515 /* StubProjectUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubProjectUseCase.swift; sourceTree = "<group>"; };
 		0EC507D828AD6E2A00EF9515 /* MockPersistentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPersistentRepository.swift; sourceTree = "<group>"; };
 		0EC507DA28AD6F8800EF9515 /* MockNetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRepository.swift; sourceTree = "<group>"; };
@@ -257,7 +259,6 @@
 			children = (
 				0EC507DE28AD717F00EF9515 /* Manager */,
 				0EC507D728AD6DF600EF9515 /* Repository */,
-				0EC507CF28AD4B2C00EF9515 /* ViewModel */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -289,6 +290,14 @@
 				0E0AD6EF28AF26DC00A5ADBD /* HistoryRepositoryTests.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		0E0AD6F128AF4F1900A5ADBD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0E0AD6F228AF4F3700A5ADBD /* MainViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0E34F047287C7C0800438285 /* Common */ = {
@@ -323,6 +332,7 @@
 				0EC507CE28AD4B0800EF9515 /* TestDouble */,
 				0E0AD6EC28AF1D3E00A5ADBD /* Repository */,
 				0E0AD6E928AF1C6C00A5ADBD /* UseCase */,
+				0E0AD6F128AF4F1900A5ADBD /* ViewModel */,
 			);
 			path = ProjectManagerTests;
 			sourceTree = "<group>";
@@ -369,7 +379,8 @@
 		0EA67EBF28751D5B00E15093 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				0EA67EC528751ECC00E15093 /* MainViewModel.swift */,
+				0EA67EC528751ECC00E15093 /* MainVCViewModel.swift */,
+				0E0AD6F428AF855700A5ADBD /* ProjectListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -408,14 +419,6 @@
 				0E0AD6E128AD7C1100A5ADBD /* Mock */,
 			);
 			path = TestDouble;
-			sourceTree = "<group>";
-		};
-		0EC507CF28AD4B2C00EF9515 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0EC507D028AD4B5800EF9515 /* MockMainViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0EC507D428AD6A1B00EF9515 /* UseCase */ = {
@@ -725,10 +728,10 @@
 				0EC507D628AD6A4F00EF9515 /* StubProjectUseCase.swift in Sources */,
 				0E0AD6EB28AF1D3600A5ADBD /* PersistentRepositoryTests.swift in Sources */,
 				0EC507DB28AD6F8800EF9515 /* MockNetworkRepository.swift in Sources */,
+				0E0AD6F328AF4F3700A5ADBD /* MainViewModelTests.swift in Sources */,
 				0E0AD6E428AD7D2100A5ADBD /* MockNetworkManager.swift in Sources */,
 				0EC507DD28AD709E00EF9515 /* MockHistoryRepository.swift in Sources */,
 				0E0AD6EE28AF246000A5ADBD /* NetworkRepositoryTests.swift in Sources */,
-				0EC507D128AD4B5800EF9515 /* MockMainViewModel.swift in Sources */,
 				0E5B6C0828936F5800A5FE48 /* StubPersistentManager.swift in Sources */,
 				0EC507D928AD6E2A00EF9515 /* MockPersistentRepository.swift in Sources */,
 				0E0AD6F028AF26DC00A5ADBD /* HistoryRepositoryTests.swift in Sources */,
@@ -746,6 +749,7 @@
 				03498B682886737300D8CB3F /* Project.xcdatamodeld in Sources */,
 				0E8130ED2886A1F3003EC6C7 /* Project+CoreDataProperties.swift in Sources */,
 				C7431F0625F51E1D0094C4CF /* AppDelegate.swift in Sources */,
+				0E0AD6F528AF855700A5ADBD /* ProjectListViewModel.swift in Sources */,
 				0EA67EBE2874789700E15093 /* ModalView.swift in Sources */,
 				0E02C733288EFB1900522622 /* HistoryViewModel.swift in Sources */,
 				03BECD342892C55000BED881 /* ModalDelegate.swift in Sources */,
@@ -768,7 +772,7 @@
 				03AB73DB2873290400B0C980 /* MainViewController.swift in Sources */,
 				03BECD322892C34500BED881 /* ModalConstant.swift in Sources */,
 				03498B762886DF3A00D8CB3F /* ProjectDTO.swift in Sources */,
-				0EA67EC628751ECC00E15093 /* MainViewModel.swift in Sources */,
+				0EA67EC628751ECC00E15093 /* MainVCViewModel.swift in Sources */,
 				032D3D14287D64EB00A32E57 /* PersistentRepository.swift in Sources */,
 				033294B4287C717700EE7CBE /* PopOverView.swift in Sources */,
 				0E34F04F287C815300438285 /* PopOverViewModel.swift in Sources */,

@@ -2,7 +2,7 @@
 //  SceneDIContainer.swift
 //  ProjectManager
 //
-//  Created by 조성훈 on 2022/07/27.
+//  Created by Tiana, mmim on 2022/07/27.
 //
 
 import UIKit
@@ -50,12 +50,18 @@ final class SceneDIContainer {
     
     // MARK: - Main
     
-    private func makeMainViewModel() -> MainViewModel {
-        return MainViewModel(projectUseCase: projectUseCase)
+    private func makeMainVCViewModel() -> MainVCViewModel {
+        return MainVCViewModel(projectUseCase: projectUseCase)
+    }
+    
+    private func makeMainViewModel() -> [ProjectListViewModel] {
+        return [ProjectListViewModel(projectUseCase: projectUseCase, status: .todo),
+                ProjectListViewModel(projectUseCase: projectUseCase, status: .doing),
+                ProjectListViewModel(projectUseCase: projectUseCase, status: .done)]
     }
     
     func makeMainViewController(with sceneDIContainer: SceneDIContainer) -> MainViewController {
-        return MainViewController(with: makeMainViewModel(), sceneDIContainer)
+        return MainViewController(with: makeMainVCViewModel(), viewModel: makeMainViewModel(), sceneDIContainer)
     }
     
     // MARK: - PopOver
