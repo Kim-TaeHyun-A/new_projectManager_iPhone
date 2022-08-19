@@ -37,6 +37,7 @@
 		0E0AD6E828AF148600A5ADBD /* ProjectUsecaseTestsWithMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6E728AF148600A5ADBD /* ProjectUsecaseTestsWithMock.swift */; };
 		0E0AD6EB28AF1D3600A5ADBD /* PersistentRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6EA28AF1D3500A5ADBD /* PersistentRepositoryTests.swift */; };
 		0E0AD6EE28AF246000A5ADBD /* NetworkRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6ED28AF246000A5ADBD /* NetworkRepositoryTests.swift */; };
+		0E0AD6F028AF26DC00A5ADBD /* HistoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6EF28AF26DC00A5ADBD /* HistoryRepositoryTests.swift */; };
 		0E2C683128995889003DE006 /* StubHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2C683028995889003DE006 /* StubHistoryManager.swift */; };
 		0E34F04C287C7C5600438285 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04B287C7C5600438285 /* DateFormatter.swift */; };
 		0E34F04F287C815300438285 /* PopOverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04E287C815300438285 /* PopOverViewModel.swift */; };
@@ -110,6 +111,7 @@
 		0E0AD6E728AF148600A5ADBD /* ProjectUsecaseTestsWithMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectUsecaseTestsWithMock.swift; sourceTree = "<group>"; };
 		0E0AD6EA28AF1D3500A5ADBD /* PersistentRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentRepositoryTests.swift; sourceTree = "<group>"; };
 		0E0AD6ED28AF246000A5ADBD /* NetworkRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryTests.swift; sourceTree = "<group>"; };
+		0E0AD6EF28AF26DC00A5ADBD /* HistoryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepositoryTests.swift; sourceTree = "<group>"; };
 		0E2C683028995889003DE006 /* StubHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubHistoryManager.swift; sourceTree = "<group>"; };
 		0E34F04B287C7C5600438285 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		0E34F04E287C815300438285 /* PopOverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewModel.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			children = (
 				0E0AD6EA28AF1D3500A5ADBD /* PersistentRepositoryTests.swift */,
 				0E0AD6ED28AF246000A5ADBD /* NetworkRepositoryTests.swift */,
+				0E0AD6EF28AF26DC00A5ADBD /* HistoryRepositoryTests.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				0EC507D128AD4B5800EF9515 /* MockMainViewModel.swift in Sources */,
 				0E5B6C0828936F5800A5FE48 /* StubPersistentManager.swift in Sources */,
 				0EC507D928AD6E2A00EF9515 /* MockPersistentRepository.swift in Sources */,
+				0E0AD6F028AF26DC00A5ADBD /* HistoryRepositoryTests.swift in Sources */,
 				0E0AD6E828AF148600A5ADBD /* ProjectUsecaseTestsWithMock.swift in Sources */,
 				0E2C683128995889003DE006 /* StubHistoryManager.swift in Sources */,
 				0E5B6C0128936E6A00A5FE48 /* ProjectUsecaseTestsWithStub.swift in Sources */,
