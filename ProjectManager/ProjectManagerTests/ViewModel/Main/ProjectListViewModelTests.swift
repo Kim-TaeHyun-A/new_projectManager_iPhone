@@ -7,7 +7,6 @@
 
 @testable import ProjectManager
 import XCTest
-import RxRelay
 
 // behavior verification with Mock
 final class ProjectListViewModelTests: XCTestCase {

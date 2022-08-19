@@ -23,11 +23,9 @@ final class RegistrationViewModel: RegistrationViewModelProtocol {
     }
     
     private func registrateHistory(by content: ProjectEntity) {
-        let historyEntity = HistoryEntity(
-            editedType: .register,
-            title: content.title,
-            date: Date().timeIntervalSince1970
-        )
+        let historyEntity = HistoryEntity(editedType: .register,
+                                          title: content.title,
+                                          date: Date().timeIntervalSince1970)
         
         projectUseCase.createHistory(historyEntity: historyEntity)
     }
