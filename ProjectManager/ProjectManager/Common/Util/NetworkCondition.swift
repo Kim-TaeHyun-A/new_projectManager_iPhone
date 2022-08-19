@@ -16,21 +16,15 @@ final class NetworkCondition {
     static let sharedInstance: NetworkCondition = {
         return NetworkCondition()
     }()
-    
-    weak var delegate: NetworkConditionDelegate?
-    
     private let reachability: Reachability?
+    weak var delegate: NetworkConditionDelegate?
     
     private init() {
         self.reachability = try? Reachability()
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(networkStatusChanged(_:)),
-            name: .reachabilityChanged,
-            object: reachability
-        )
-        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(networkStatusChanged(_:)),
+                                               name: .reachabilityChanged,
+                                               object: reachability)
         try? reachability?.startNotifier()
     }
 }
@@ -40,6 +34,7 @@ extension NetworkCondition {
         guard let reachability = notification.object as? Reachability else {
             return
         }
+        
         switch reachability.connection {
         case .wifi, .cellular:
             delegate?.applyNetworkEnable()

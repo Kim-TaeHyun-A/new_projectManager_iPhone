@@ -160,41 +160,29 @@ class ProjectUsecaseTestsWithStub: XCTestCase {
         _ = sut.load()
         let data = sut.read().value.first
         
-        sut.update(
-            projectEntity: ProjectEntity(
-                id: data!.id,
-                status: ProjectStatus.doing,
-                title: data!.title,
-                deadline: DateFormatter().formatted(string: data!.deadline)!,
-                body: data!.body
-            )
-        )
+        sut.update(projectEntity: ProjectEntity(
+            id: data!.id,
+            status: ProjectStatus.doing,
+            title: data!.title,
+            deadline: DateFormatter().formatted(string: data!.deadline)!,
+            body: data!.body))
         
-        sut.createHistory(
-            historyEntity: HistoryEntity(
-                editedType: EditedType.move,
-                title: data!.title,
-                date: DateFormatter().formatted(string: data!.deadline)!.timeIntervalSince1970
-            )
-        )
+        sut.createHistory(historyEntity: HistoryEntity(
+            editedType: EditedType.move,
+            title: data!.title,
+            date: DateFormatter().formatted(string: data!.deadline)!.timeIntervalSince1970))
         
-        sut.update(
-            projectEntity: ProjectEntity(
-                id: data!.id,
-                status: ProjectStatus.doing,
-                title: "changed",
-                deadline: DateFormatter().formatted(string: data!.deadline)!,
-                body: data!.body
-            )
-        )
+        sut.update(projectEntity: ProjectEntity(
+            id: data!.id,
+            status: ProjectStatus.doing,
+            title: "changed",
+            deadline: DateFormatter().formatted(string: data!.deadline)!,
+            body: data!.body))
         
-        sut.createHistory(
-            historyEntity: HistoryEntity(
-                editedType: EditedType.edit,
-                title: data!.title,
-                date: DateFormatter().formatted(string: data!.deadline)!.timeIntervalSince1970
-            )
-        )
+        sut.createHistory(historyEntity: HistoryEntity(
+            editedType: EditedType.edit,
+            title: data!.title,
+            date: DateFormatter().formatted(string: data!.deadline)!.timeIntervalSince1970))
         
         // when
         _ = sut.readHistory()

@@ -14,12 +14,11 @@ final class PopOverViewController: UIViewController {
     
     init(with viewModel: PopOverViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
-        
         self.viewModel = viewModel
         
         setUpAttribute()
-        setUpButtonAction()
         setUpButtonTitle()
+        bindButtonAction()
     }
     
     required init?(coder: NSCoder) {
@@ -39,13 +38,10 @@ final class PopOverViewController: UIViewController {
         popoverPresentationController?.sourceView = viewModel.cell
         preferredContentSize = CGSize(width: 300, height: 100)
         popoverPresentationController?.permittedArrowDirections = .up
-        
-        popoverPresentationController?.sourceRect = CGRect(
-            x: viewModel.cell.bounds.width * 0.5,
-            y: viewModel.cell.bounds.minY,
-            width: 30,
-            height: 50
-        )
+        popoverPresentationController?.sourceRect = CGRect(x: viewModel.cell.bounds.width * 0.5,
+                                                           y: viewModel.cell.bounds.minY,
+                                                           width: 30,
+                                                           height: 50)
     }
     
     private func setUpButtonTitle() {
@@ -56,7 +52,7 @@ final class PopOverViewController: UIViewController {
         popOverView.setUpButtonTitle(first: first, second: second)
     }
     
-    private func setUpButtonAction() {
+    private func bindButtonAction() {
         let firstButton = popOverView.firstButton
         let secondButton = popOverView.secondButton
         

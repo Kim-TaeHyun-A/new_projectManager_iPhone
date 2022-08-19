@@ -45,20 +45,15 @@ final class PopOverViewModel: PopOverViewModelProtocol {
         }
         
         createMoved(from: project.status, to: status, title: project.title)
-        
         project.status = status
-        
         projectUseCase.update(projectEntity: project)
     }
     
     private func createMoved(from oldStatus: ProjectStatus, to newStatus: ProjectStatus, title: String) {
         let historyTitle = "(from: \(oldStatus.string) to: \(newStatus.string))" + title
-        
-        let historyEntity = HistoryEntity(
-            editedType: .move,
-            title: historyTitle,
-            date: Date().timeIntervalSince1970
-        )
+        let historyEntity = HistoryEntity(editedType: .move,
+                                          title: historyTitle,
+                                          date: Date().timeIntervalSince1970)
         
         projectUseCase.createHistory(historyEntity: historyEntity)
     }
@@ -82,6 +77,7 @@ extension PopOverViewModel {
         guard let status = ProjectStatus.convert(titleText: text) else {
             return
         }
+        
         changeContent(status: status)
     }
 }

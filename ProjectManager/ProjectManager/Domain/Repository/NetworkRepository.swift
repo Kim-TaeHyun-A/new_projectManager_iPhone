@@ -24,14 +24,7 @@ extension NetworkRepositoryProtocol {
         let deadline = Date(timeIntervalSince1970: unixTime)
         let title = project.title
         let body = project.body
-        
-        return ProjectEntity(
-            id: id,
-            status: status,
-            title: title,
-            deadline: deadline,
-            body: body
-        )
+        return ProjectEntity(id: id, status: status, title: title, deadline: deadline, body: body)
     }
     
     func parse(from projectEntity: ProjectEntity) -> ProjectDTO? {
@@ -40,14 +33,11 @@ extension NetworkRepositoryProtocol {
         }
         
         let timeInterval = "\(date.timeIntervalSince1970)"
-        
-        return ProjectDTO(
-            id: projectEntity.id.uuidString,
-            status: projectEntity.status.string,
-            title: projectEntity.title,
-            deadline: timeInterval,
-            body: projectEntity.body
-        )
+        return ProjectDTO(id: projectEntity.id.uuidString,
+                          status: projectEntity.status.string,
+                          title: projectEntity.title,
+                          deadline: timeInterval,
+                          body: projectEntity.body)
     }
 }
 
@@ -75,10 +65,7 @@ extension NetworkRepository {
             })
     }
     
-    private func synchronize(
-        with projects: [ProjectDTO],
-        to repository: PersistentRepositoryProtocol
-    ) {
+    private func synchronize(with projects: [ProjectDTO], to repository: PersistentRepositoryProtocol) {
         let formattedProjects = projects.compactMap {
             parse(from: $0)
         }

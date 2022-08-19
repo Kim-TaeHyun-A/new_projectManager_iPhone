@@ -62,10 +62,8 @@ final class DetailViewController: UIViewController {
         
         modalView.translatesAutoresizingMaskIntoConstraints = false
         
-        topConstraint = modalView.topAnchor.constraint(
-            equalTo: view.topAnchor,
-            constant: modalView.defaultTopConstant
-        )
+        topConstraint = modalView.topAnchor.constraint(equalTo: view.topAnchor,
+                                                       constant: modalView.defaultTopConstant)
         
         NSLayoutConstraint.activate([
             modalView.widthAnchor.constraint(equalToConstant: ModalConstant.modalFrameWidth),
@@ -82,7 +80,6 @@ final class DetailViewController: UIViewController {
     
     private func bind() {
         setUpDefaultUI()
-        
         setUpLeftButton()
         setUpRightButton()
     }

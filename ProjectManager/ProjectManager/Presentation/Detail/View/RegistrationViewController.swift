@@ -54,10 +54,8 @@ final class RegistrationViewController: UIViewController {
         
         modalView.translatesAutoresizingMaskIntoConstraints = false
         
-        topConstraint = modalView.topAnchor.constraint(
-            equalTo: view.topAnchor,
-            constant: modalView.defaultTopConstant
-        )
+        topConstraint = modalView.topAnchor.constraint(equalTo: view.topAnchor,
+                                                       constant: modalView.defaultTopConstant)
         
         NSLayoutConstraint.activate([
             modalView.widthAnchor.constraint(equalToConstant: ModalConstant.modalFrameWidth),

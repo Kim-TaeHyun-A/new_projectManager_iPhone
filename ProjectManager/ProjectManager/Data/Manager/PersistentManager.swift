@@ -28,15 +28,9 @@ extension PersistentManagerProtocol {
               let body = project.body else {
             return nil
         }
-        let formattedDeadline = DateFormatter().formatted(date: deadline)
         
-        return ProjectDTO(
-            id: id,
-            status: status,
-            title: title,
-            deadline: formattedDeadline,
-            body: body
-        )
+        let formattedDeadline = DateFormatter().formatted(date: deadline)
+        return ProjectDTO(id: id, status: status, title: title, deadline: formattedDeadline, body: body)
     }
 }
 
@@ -61,9 +55,7 @@ extension PersistentManager: PersistentManagerProtocol {
     }
     
     func create(projects: [ProjectDTO]) {
-        projects.forEach {
-            saveToContext($0)
-        }
+        projects.forEach { saveToContext($0) }
     }
     
     func read() -> [ProjectDTO] {
@@ -104,27 +96,18 @@ extension PersistentManager: PersistentManagerProtocol {
             return
         }
         
-        projects.forEach {
-            context.delete($0)
-        }
+        projects.forEach { context.delete($0) }
     }
 }
 
 extension PersistentManager {
     private func saveToContext(_ project: ProjectDTO) {
-        guard let entity = NSEntityDescription.entity(forEntityName: "Project", in: context) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: "Project", in: context),
+              let id = UUID(uuidString: project.id),
+              let formattedDeadline = DateFormatter().formatted(string: project.deadline) else {
             return
         }
-        
         let managedObject = NSManagedObject(entity: entity, insertInto: context)
-        
-        guard let formattedDeadline = DateFormatter().formatted(string: project.deadline) else {
-            return
-        }
-        
-        guard let id = UUID(uuidString: project.id) else {
-            return
-        }
         
         managedObject.setValue(id, forKey: "id")
         managedObject.setValue(project.title, forKey: "title")
@@ -158,7 +141,6 @@ extension PersistentManager {
             let predicate = NSPredicate(format: "id == %@", id)
             request.predicate = predicate
         }
-        
         return request
     }
 }

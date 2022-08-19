@@ -25,16 +25,10 @@ final class AlertController: UIAlertController {
         if let confirmButton = confirmButton {
             addAction(confirmButton)
         }
-        addAction(cancelButton)
         
-        setValue(
-            NSAttributedString(
-                string: alertTitle,
-                attributes: [
-                    .font: UIFont.systemFont(ofSize: 20)
-                ]
-            ), forKey: "attributedTitle"
-        )
+        addAction(cancelButton)
+        setValue(NSAttributedString(string: alertTitle, attributes: [.font: UIFont.systemFont(ofSize: 20)]),
+                 forKey: "attributedTitle")
     }
     
     private func setUpAttribute(over source: UIViewController) {

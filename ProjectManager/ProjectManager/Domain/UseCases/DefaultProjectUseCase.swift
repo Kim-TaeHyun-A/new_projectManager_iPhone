@@ -24,11 +24,8 @@ struct DefaultProjectUseCase: ProjectUseCaseProtocol {
     private let projectRepository: PersistentRepositoryProtocol
     private let networkRepository: NetworkRepositoryProtocol
     private let historyRepository: HistoryRepositoryProtocol
-
-    init(projectRepository: PersistentRepositoryProtocol,
-         networkRepository: NetworkRepositoryProtocol,
-         historyRepository: HistoryRepositoryProtocol
-    ) {
+    
+    init(projectRepository: PersistentRepositoryProtocol, networkRepository: NetworkRepositoryProtocol, historyRepository: HistoryRepositoryProtocol) {
         self.projectRepository = projectRepository
         self.networkRepository = networkRepository
         self.historyRepository = historyRepository

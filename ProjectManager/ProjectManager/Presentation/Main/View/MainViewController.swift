@@ -9,9 +9,9 @@ import RxSwift
 import RxCocoa
 
 private enum ImageConstant {
-    static let connectedNetwork = "wifi"
-    static let unconnectedNetwork = "wifi.slash"
-    static let fetchingNetworkData = "icloud.and.arrow.down"
+    static let connected = "wifi"
+    static let disconnected = "wifi.slash"
+    static let load = "icloud.and.arrow.down"
 }
 
 final class MainViewController: UIViewController {
@@ -20,9 +20,7 @@ final class MainViewController: UIViewController {
     private var sceneDIContainer: SceneDIContainer?
     private let disposeBag = DisposeBag()
     
-    init(with viewVCModel: MainVCViewModelProtocol, viewModel: [ProjectListViewModelProtocol],
-         _ sceneDIContainer: SceneDIContainer
-    ) {
+    init(with viewVCModel: MainVCViewModelProtocol, viewModel: [ProjectListViewModelProtocol], _ sceneDIContainer: SceneDIContainer) {
         self.viewModel = viewVCModel
         self.mainView = MainView(projectListViewModels: viewModel)
         self.sceneDIContainer = sceneDIContainer
@@ -40,59 +38,31 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainView.toDoTable?.delegate = self
-        mainView.doingTable?.delegate = self
-        mainView.doneTable?.delegate = self
-        bind()
-    }
-    
-    private func bind() {
+        setUpTableDelegate()
         setUpNavigationItem()
     }
     
+    private func setUpTableDelegate() {
+        mainView.toDoTable?.delegate = self
+        mainView.doingTable?.delegate = self
+        mainView.doneTable?.delegate = self
+    }
+    
     private func setUpNavigationItem() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+        let loadButton = UIBarButtonItem(image: UIImage(systemName: ImageConstant.load), style: .done, target: nil, action: nil)
+        let networkImage = UIImage(systemName: ImageConstant.connected)?
+            .withTintColor(.systemBlue, renderingMode: .alwaysOriginal)
+        let networkConditionSign = UIBarButtonItem(image: networkImage, style: .plain, target: nil, action: nil)
+        
         navigationItem.title = "Project Manager"
-        let addButton = UIBarButtonItem(
-            barButtonSystemItem: .add,
-            target: nil,
-            action: nil
-        )
-        
-        let networkConditionImage = UIImage(
-            systemName: ImageConstant.connectedNetwork
-        )?.withTintColor(
-            .systemBlue,
-            renderingMode: .alwaysOriginal
-        )
-        
-        let networkConditionItem = UIBarButtonItem(
-            image: networkConditionImage,
-            style: .plain,
-            target: nil,
-            action: nil
-        )
-        networkConditionItem.isEnabled = false
-        
-        let loadButton = UIBarButtonItem(
-            image: UIImage(systemName: ImageConstant.fetchingNetworkData),
-            style: .done,
-            target: nil,
-            action: nil
-        )
-        
-        navigationItem.rightBarButtonItems = [addButton, loadButton, networkConditionItem]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItems = [addButton, loadButton, networkConditionSign]
+        didTapHistoryButton()
         didTapAddButton()
         didTapLoadButton()
-        
+        networkConditionSign.isEnabled = false
         NetworkCondition.sharedInstance.delegate = self
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: "History",
-            style: .plain,
-            target: nil,
-            action: nil
-        )
-        didTapHistoryButton()
     }
     
     private func didTapHistoryButton() {
@@ -106,14 +76,6 @@ final class MainViewController: UIViewController {
                 self?.presentHistoryPopOver(source: historyButton)
             })
             .disposed(by: disposeBag)
-    }
-    
-    private func presentHistoryPopOver(source: UIBarButtonItem) {
-        guard let historyViewController = sceneDIContainer?.makeHistoryViewController(with: source) else {
-            return
-        }
-        
-        present(historyViewController, animated: true)
     }
     
     private func didTapAddButton() {
@@ -136,18 +98,21 @@ final class MainViewController: UIViewController {
         
         loadButton.rx.tap
             .asObservable()
-            .withUnretained(self)
-            .subscribe(onNext: { (self, _) in
-                guard let alertController = self.presentAlert() else {
-                    return
-                }
-                
-                self.present(alertController, animated: true, completion: nil)
+            .subscribe(onNext: { [weak self] in
+                self?.presentAlert()
             })
             .disposed(by: disposeBag)
     }
     
-    private func presentAlert() -> UIAlertController? {
+    private func presentHistoryPopOver(source: UIBarButtonItem) {
+        guard let historyViewController = sceneDIContainer?.makeHistoryViewController(with: source) else {
+            return
+        }
+        
+        present(historyViewController, animated: true)
+    }
+    
+    private func presentAlert() {
         let alertAction = UIAlertAction(title: "확인", style: .destructive) { [weak self]_ in
             guard let self = self else {
                 return
@@ -157,13 +122,12 @@ final class MainViewController: UIViewController {
             self.viewModel?.remoteData?.disposed(by: self.disposeBag)
         }
         
-        let next = sceneDIContainer?.makeAlertController(
-            over: self,
-            title: "서버 데이터를 사용자 기기로 동기화할까요?",
-            confirmButton: alertAction
-        )
+        guard let next = sceneDIContainer?
+            .makeAlertController(over: self, title: "서버 데이터를 사용자 기기로 동기화할까요?", confirmButton: alertAction) else {
+            return
+        }
         
-        return next
+        present(next, animated: true)
     }
     
     private func presentRegistrationView() {
@@ -173,7 +137,6 @@ final class MainViewController: UIViewController {
         
         next.modalPresentationStyle = .overCurrentContext
         next.modalTransitionStyle = .crossDissolve
-        
         present(next, animated: true)
     }
     
@@ -181,22 +144,19 @@ final class MainViewController: UIViewController {
         guard let popOverViewController = sceneDIContainer?.makePopOverViewController(with: cell) else {
             return
         }
-        
         present(popOverViewController, animated: true)
     }
     
     private func presentViewController(cell: ProjectCell) {
         viewModel?.didTap(cell.contentID)
         guard let content = viewModel?.currnetProjectEntity,
-              let next = sceneDIContainer?.makeDetailViewController(with: content)
-        else {
+              let next = sceneDIContainer?.makeDetailViewController(with: content) else {
             return
         }
         
         next.modalPresentationStyle = .overCurrentContext
         next.modalTransitionStyle = .crossDissolve
-        
-        self.present(next, animated: true)
+        present(next, animated: true)
     }
 }
 
@@ -212,20 +172,12 @@ extension MainViewController: ProjectListViewDelegate {
 
 extension MainViewController: NetworkConditionDelegate {
     func applyNetworkEnable() {
-        navigationItem.rightBarButtonItems?[2].image = UIImage(
-            systemName: ImageConstant.connectedNetwork
-        )?.withTintColor(
-            .systemBlue,
-            renderingMode: .alwaysOriginal
-        )
+        navigationItem.rightBarButtonItems?[2].image = UIImage(systemName: ImageConstant.connected)?
+            .withTintColor(.systemBlue, renderingMode: .alwaysOriginal)
     }
     
     func applyNetworkUnable() {
-        navigationItem.rightBarButtonItems?[2].image = UIImage(
-            systemName: ImageConstant.unconnectedNetwork
-        )?.withTintColor(
-            .systemRed,
-            renderingMode: .alwaysOriginal
-        )
+        navigationItem.rightBarButtonItems?[2].image = UIImage(systemName: ImageConstant.disconnected)?
+            .withTintColor(.systemRed, renderingMode: .alwaysOriginal)
     }
 }

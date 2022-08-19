@@ -26,23 +26,15 @@ extension PersistentRepositoryProtocol {
             return nil
         }
         
-        return ProjectEntity(
-            id: id,
-            status: status,
-            title: project.title,
-            deadline: deadline,
-            body: project.body
-        )
+        return ProjectEntity(id: id, status: status, title: project.title, deadline: deadline, body: project.body)
     }
     
     func parse(from projectEntity: ProjectEntity) -> ProjectDTO? {
-        return ProjectDTO(
-            id: projectEntity.id.uuidString,
-            status: projectEntity.status.string,
-            title: projectEntity.title,
-            deadline: projectEntity.deadline,
-            body: projectEntity.body
-        )
+        return ProjectDTO(id: projectEntity.id.uuidString,
+                          status: projectEntity.status.string,
+                          title: projectEntity.title,
+                          deadline: projectEntity.deadline,
+                          body: projectEntity.body)
     }
 }
 

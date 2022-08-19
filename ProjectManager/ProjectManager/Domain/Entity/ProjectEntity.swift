@@ -12,28 +12,6 @@ enum ProjectStatus {
     case doing
     case done
     
-    var string: String {
-        switch self {
-        case .todo:
-            return "TODO"
-        case .doing:
-            return "DOING"
-        case .done:
-            return "DONE"
-        }
-    }
-    
-    var buttonTitle: String {
-        switch self {
-        case .todo:
-            return "Move to TODO"
-        case .doing:
-            return "Move to DOING"
-        case .done:
-            return "Move to DONE"
-        }
-    }
-    
     static func convert(titleText: String?) -> ProjectStatus? {
         switch titleText {
         case ProjectStatus.todo.buttonTitle:
@@ -59,6 +37,28 @@ enum ProjectStatus {
             return nil
         }
     }
+    
+    var string: String {
+        switch self {
+        case .todo:
+            return "TODO"
+        case .doing:
+            return "DOING"
+        case .done:
+            return "DONE"
+        }
+    }
+    
+    var buttonTitle: String {
+        switch self {
+        case .todo:
+            return "Move to TODO"
+        case .doing:
+            return "Move to DOING"
+        case .done:
+            return "Move to DONE"
+        }
+    }
 }
 
 struct ProjectEntity {
@@ -76,10 +76,7 @@ struct ProjectEntity {
         self.body = body
     }
     
-    mutating func editContent(title: String? = nil,
-                              deadline: Date? = nil,
-                              body: String? = nil
-    ) {
+    mutating func editContent(title: String? = nil, deadline: Date? = nil, body: String? = nil) {
         if let title = title {
             self.title = title
         }

@@ -43,10 +43,6 @@ final class HistoryViewController: UIViewController {
     }
     
     private func bind() {
-        setUpTable()
-    }
-    
-    private func setUpTable() {
         viewModel?.read()
         viewModel?.currentHistory?.drive(
             historyView.tableView.rx.items(

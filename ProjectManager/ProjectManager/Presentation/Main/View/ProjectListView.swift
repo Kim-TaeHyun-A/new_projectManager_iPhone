@@ -28,7 +28,7 @@ final class ProjectListView: UIStackView {
         super.init(frame: .zero)
         
         layout()
-        registerCell()
+        setUpTableView()
         bind()
     }
     
@@ -42,19 +42,18 @@ final class ProjectListView: UIStackView {
         addArrangedSubview(tableView)
     }
     
-    private func registerCell() {
+    private func setUpTableView() {
         tableView.register(ProjectCell.self, forCellReuseIdentifier: "\(ProjectCell.self)")
-        
         tableView.backgroundColor = .systemGray6
         tableView.tableFooterView = UIView()
     }
     
     private func bind() {
-        setUpTable()
+        bindTableView()
         bindCountLabel()
     }
     
-    private func setUpTable() {
+    private func bindTableView() {
         bindItemSelected()
         bindModelDeleted()
         bindCell()
@@ -91,15 +90,6 @@ final class ProjectListView: UIStackView {
             .disposed(by: disposeBag)
     }
     
-    private func bindCountLabel() {
-        viewModel?.statusProject
-            .map { "\($0.count)" }
-            .drive { [weak self] count in
-                self?.headerView.composeCountLabel(with: count)
-            }
-            .disposed(by: disposeBag)
-    }
-    
     private func bindGesture() {
         let gesture = tableView.rx
             .anyGesture(
@@ -123,6 +113,15 @@ final class ProjectListView: UIStackView {
             }
             .bind { [weak self] in
                 self?.delegate?.didLongPress(cell: $0)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindCountLabel() {
+        viewModel?.statusProject
+            .map { "\($0.count)" }
+            .drive { [weak self] count in
+                self?.headerView.composeCountLabel(with: count)
             }
             .disposed(by: disposeBag)
     }

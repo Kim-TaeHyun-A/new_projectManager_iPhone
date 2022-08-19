@@ -13,19 +13,13 @@ protocol NetworkManagerProtocol {
     func update(projects: [ProjectDTO])
 }
 
-enum NetworkError: Error {
-    case loadFailure
-}
-
 final class NetworkManager {
     private let projectsReference = Database.database().reference(withPath: "user")
 }
 
 extension NetworkManager: NetworkManagerProtocol {
     func read() -> Observable<[ProjectDTO]> {
-        
         return Observable.create { emitter in
-            
             Database.database().reference(withPath: "user").getData { error, snapshot in
                 guard error == nil else {
                     return
@@ -39,7 +33,6 @@ extension NetworkManager: NetworkManagerProtocol {
                 
                 emitter.onNext(projects)
             }
-            
             return Disposables.create()
         }
     }
@@ -47,15 +40,10 @@ extension NetworkManager: NetworkManagerProtocol {
     func update(projects: [ProjectDTO]) {
         var dic: [String: [String: String]] = [:]
         
-        projects.forEach {
-            dic[$0.id] = [
-                "id": $0.id,
-                "status": $0.status,
-                "title": $0.title,
-                "deadline": $0.deadline,
-                "body": $0.body
-            ]
-        }
+        projects.forEach { dic[$0.id] = ["id": $0.id, "status": $0.status,
+                                         "title": $0.title,
+                                         "deadline": $0.deadline,
+                                         "body": $0.body] }
         
         Database.database().reference().child("user").setValue(dic)
     }
