@@ -303,8 +303,7 @@
 		0E0AD6F128AF4F1900A5ADBD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				0E0AD6F228AF4F3700A5ADBD /* MainVCViewModelTests.swift */,
-				0E0AD6FD28B0144B00A5ADBD /* ProjectListViewModelTests.swift */,
+				0E0AD6FF28B017F500A5ADBD /* Main */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -315,6 +314,15 @@
 				0E0AD6FB28B0137300A5ADBD /* MockUseCase.swift */,
 			);
 			path = UseCase;
+			sourceTree = "<group>";
+		};
+		0E0AD6FF28B017F500A5ADBD /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0E0AD6F228AF4F3700A5ADBD /* MainVCViewModelTests.swift */,
+				0E0AD6FD28B0144B00A5ADBD /* ProjectListViewModelTests.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		0E34F047287C7C0800438285 /* Common */ = {
