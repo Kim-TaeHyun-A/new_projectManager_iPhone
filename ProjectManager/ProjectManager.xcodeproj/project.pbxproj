@@ -43,6 +43,7 @@
 		0E0AD6F928B00E2300A5ADBD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6F828B00E2300A5ADBD /* HeaderView.swift */; };
 		0E0AD6FC28B0137300A5ADBD /* MockUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6FB28B0137300A5ADBD /* MockUseCase.swift */; };
 		0E0AD6FE28B0144B00A5ADBD /* ProjectListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD6FD28B0144B00A5ADBD /* ProjectListViewModelTests.swift */; };
+		0E0AD70228B0185500A5ADBD /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AD70128B0185500A5ADBD /* RegistrationViewModelTests.swift */; };
 		0E2C683128995889003DE006 /* StubHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2C683028995889003DE006 /* StubHistoryManager.swift */; };
 		0E34F04C287C7C5600438285 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04B287C7C5600438285 /* DateFormatter.swift */; };
 		0E34F04F287C815300438285 /* PopOverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34F04E287C815300438285 /* PopOverViewModel.swift */; };
@@ -121,6 +122,7 @@
 		0E0AD6F828B00E2300A5ADBD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		0E0AD6FB28B0137300A5ADBD /* MockUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUseCase.swift; sourceTree = "<group>"; };
 		0E0AD6FD28B0144B00A5ADBD /* ProjectListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewModelTests.swift; sourceTree = "<group>"; };
+		0E0AD70128B0185500A5ADBD /* RegistrationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelTests.swift; sourceTree = "<group>"; };
 		0E2C683028995889003DE006 /* StubHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubHistoryManager.swift; sourceTree = "<group>"; };
 		0E34F04B287C7C5600438285 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		0E34F04E287C815300438285 /* PopOverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewModel.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0AD6FF28B017F500A5ADBD /* Main */,
+				0E0AD70028B0183500A5ADBD /* Detail */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -323,6 +326,14 @@
 				0E0AD6FD28B0144B00A5ADBD /* ProjectListViewModelTests.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		0E0AD70028B0183500A5ADBD /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0E0AD70128B0185500A5ADBD /* RegistrationViewModelTests.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		0E34F047287C7C0800438285 /* Common */ = {
@@ -759,6 +770,7 @@
 				0E0AD6E428AD7D2100A5ADBD /* MockNetworkManager.swift in Sources */,
 				0EC507DD28AD709E00EF9515 /* MockHistoryRepository.swift in Sources */,
 				0E0AD6EE28AF246000A5ADBD /* NetworkRepositoryTests.swift in Sources */,
+				0E0AD70228B0185500A5ADBD /* RegistrationViewModelTests.swift in Sources */,
 				0E5B6C0828936F5800A5FE48 /* StubPersistentManager.swift in Sources */,
 				0EC507D928AD6E2A00EF9515 /* MockPersistentRepository.swift in Sources */,
 				0E0AD6F028AF26DC00A5ADBD /* HistoryRepositoryTests.swift in Sources */,
