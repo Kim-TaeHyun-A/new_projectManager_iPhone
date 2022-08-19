@@ -37,11 +37,7 @@ final class RegistrationViewModel: RegistrationViewModelProtocol {
 
 extension RegistrationViewModel {
     func registrate(title: String, date: Date, body: String) {
-        let newProject = ProjectEntity(
-            title: title,
-            deadline: date,
-            body: body
-        )
+        let newProject = ProjectEntity(title: title, deadline: date, body: body)
         
         projectUseCase.create(projectEntity: newProject)
         registrateHistory(by: newProject)

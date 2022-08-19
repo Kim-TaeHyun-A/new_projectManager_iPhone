@@ -50,13 +50,22 @@ final class MainViewController: UIViewController {
     
     private func setUpNavigationItem() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-        let loadButton = UIBarButtonItem(image: UIImage(systemName: ImageConstant.load), style: .done, target: nil, action: nil)
+        let loadButton = UIBarButtonItem(image: UIImage(systemName: ImageConstant.load),
+                                         style: .done,
+                                         target: nil,
+                                         action: nil)
         let networkImage = UIImage(systemName: ImageConstant.connected)?
             .withTintColor(.systemBlue, renderingMode: .alwaysOriginal)
-        let networkConditionSign = UIBarButtonItem(image: networkImage, style: .plain, target: nil, action: nil)
+        let networkConditionSign = UIBarButtonItem(image: networkImage,
+                                                   style: .plain,
+                                                   target: nil,
+                                                   action: nil)
         
         navigationItem.title = "Project Manager"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "History",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
         navigationItem.rightBarButtonItems = [addButton, loadButton, networkConditionSign]
         didTapHistoryButton()
         didTapAddButton()
@@ -122,8 +131,9 @@ final class MainViewController: UIViewController {
             self.viewModel?.remoteData?.disposed(by: self.disposeBag)
         }
         
-        guard let next = sceneDIContainer?
-            .makeAlertController(over: self, title: "서버 데이터를 사용자 기기로 동기화할까요?", confirmButton: alertAction) else {
+        guard let next = sceneDIContainer?.makeAlertController(over: self,
+                                                               title: "서버 데이터를 사용자 기기로 동기화할까요?",
+                                                               confirmButton: alertAction) else {
             return
         }
         

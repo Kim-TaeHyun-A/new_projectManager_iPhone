@@ -33,11 +33,9 @@ final class DetailViewModel: DetailViewModelProtocol {
     }
     
     private func updateHistory(by content: ProjectEntity) {
-        let historyEntity = HistoryEntity(
-            editedType: .edit,
-            title: content.title,
-            date: Date().timeIntervalSince1970
-        )
+        let historyEntity = HistoryEntity(editedType: .edit,
+                                          title: content.title,
+                                          date: Date().timeIntervalSince1970)
         
         projectUseCase.createHistory(historyEntity: historyEntity)
     }
