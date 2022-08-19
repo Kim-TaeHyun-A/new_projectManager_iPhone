@@ -26,7 +26,7 @@ final class MainVCViewModelTests: XCTestCase {
         sut = nil
     }
     
-    func test_didTapCell_id넣으면_modalView_띄우는지() {
+    func test_didTapCell_id넣으면_mockProjectUseCase_readWithProjectEntityIDCallCount_1증가하는지() {
         // when
         sut.didTapCell(UUID())
         
@@ -34,7 +34,7 @@ final class MainVCViewModelTests: XCTestCase {
         XCTAssertEqual(mockProjectUseCase.readWithProjectEntityIDCallCount, 1)
     }
     
-    func test_didTapLoadButton_하면_alert_띄우는지() {
+    func test_didTapLoadButton_하면_mockProjectUseCase_loadCallCount_1증가하는지() {
         // when
         sut.didTapLoadButton()
         
