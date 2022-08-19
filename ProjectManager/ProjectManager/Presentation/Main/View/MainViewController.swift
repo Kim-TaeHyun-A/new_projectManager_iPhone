@@ -131,9 +131,10 @@ final class MainViewController: UIViewController {
             self.viewModel?.remoteData?.disposed(by: self.disposeBag)
         }
         
-        guard let next = sceneDIContainer?.makeAlertController(over: self,
-                                                               title: "서버 데이터를 사용자 기기로 동기화할까요?",
-                                                               confirmButton: alertAction) else {
+        guard let next = sceneDIContainer?
+            .makeAlertController(over: self,
+                                 title: "서버 데이터를 사용자 기기로 동기화할까요?",
+                                 confirmButton: alertAction) else {
             return
         }
         
@@ -142,25 +143,6 @@ final class MainViewController: UIViewController {
     
     private func presentRegistrationView() {
         guard let next = sceneDIContainer?.makeRegistrationViewController() else {
-            return
-        }
-        
-        next.modalPresentationStyle = .overCurrentContext
-        next.modalTransitionStyle = .crossDissolve
-        present(next, animated: true)
-    }
-    
-    private func presentPopOver(_ cell: ProjectCell) {
-        guard let popOverViewController = sceneDIContainer?.makePopOverViewController(with: cell) else {
-            return
-        }
-        present(popOverViewController, animated: true)
-    }
-    
-    private func presentViewController(cell: ProjectCell) {
-        viewModel?.didTap(cell.contentID)
-        guard let content = viewModel?.currnetProjectEntity,
-              let next = sceneDIContainer?.makeDetailViewController(with: content) else {
             return
         }
         
@@ -177,6 +159,26 @@ extension MainViewController: ProjectListViewDelegate {
     
     func didLongPress(cell: ProjectCell) {
         presentPopOver(cell)
+    }
+    
+    private func presentViewController(cell: ProjectCell) {
+        viewModel?.didTapCell(cell.contentID)
+        guard let content = viewModel?.currnetProjectEntity,
+              let next = sceneDIContainer?.makeDetailViewController(with: content) else {
+            return
+        }
+        
+        next.modalPresentationStyle = .overCurrentContext
+        next.modalTransitionStyle = .crossDissolve
+        present(next, animated: true)
+    }
+    
+    private func presentPopOver(_ cell: ProjectCell) {
+        guard let popOverViewController = sceneDIContainer?.makePopOverViewController(with: cell) else {
+            return
+        }
+        
+        present(popOverViewController, animated: true)
     }
 }
 

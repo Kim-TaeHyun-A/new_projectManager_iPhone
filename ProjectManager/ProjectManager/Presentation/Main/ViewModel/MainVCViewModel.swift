@@ -10,7 +10,7 @@ import RxCocoa
 import RxGesture
 
 protocol MainVCViewModelInputProtocol {
-    func didTap(_ id: UUID?)
+    func didTapCell(_ id: UUID?)
     func didTapLoadButton()
 }
 
@@ -40,7 +40,7 @@ final class MainVCViewModel: MainVCViewModelProtocol {
 // MARK: - Input
 
 extension MainVCViewModel {
-    func didTap(_ id: UUID?) {
+    func didTapCell(_ id: UUID?) {
         currnetProjectEntity = projectUseCase.read(projectEntityID: id)
     }
     
