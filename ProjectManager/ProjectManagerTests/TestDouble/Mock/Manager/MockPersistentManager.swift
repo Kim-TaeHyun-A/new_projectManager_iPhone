@@ -13,7 +13,6 @@ final class MockPersistentManager: PersistentManagerProtocol {
     var createProjectsCallCount = 0
     var createReadCallCount = 0
     var readAllCallCount = 0
-    var readWithProjectEntityIDCallCount = 0
     var updateCallCount = 0
     var deleteCallCount = 0
     var deleteAllCallCount = 0
@@ -29,11 +28,6 @@ final class MockPersistentManager: PersistentManagerProtocol {
     func read() -> [ProjectDTO] {
         readAllCallCount += 1
         return []
-    }
-    
-    func read(projectEntityID: UUID?) -> ProjectDTO? {
-        readWithProjectEntityIDCallCount += 1
-        return nil
     }
     
     func update(project: ProjectDTO) {

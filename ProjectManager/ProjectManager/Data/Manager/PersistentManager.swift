@@ -14,7 +14,6 @@ protocol PersistentManagerProtocol {
     func create(project: ProjectDTO)
     func create(projects: [ProjectDTO])
     func read() -> [ProjectDTO]
-    func read(projectEntityID: UUID?) -> ProjectDTO?
     func update(project: ProjectDTO)
     func delete(projectEntityID: UUID?)
     func deleteAll()
@@ -75,13 +74,6 @@ extension PersistentManager: PersistentManagerProtocol {
         return projects.compactMap { parse(from: $0) }
     }
     
-    func read(projectEntityID: UUID?) -> ProjectDTO? {
-        guard let project = fetchProject(id: projectEntityID?.uuidString) else {
-            return nil
-        }
-        return parse(from: project)
-    }
-
     func update(project: ProjectDTO) {
         let oldProject = fetchProject(id: project.id)
         
