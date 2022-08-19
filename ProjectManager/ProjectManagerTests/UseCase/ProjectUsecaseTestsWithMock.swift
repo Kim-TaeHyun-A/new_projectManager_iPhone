@@ -36,10 +36,10 @@ final class ProjectUsecaseTestsWithMock: XCTestCase {
     
     func test_create_호출하면_PersistentRepository_createProjectEntityCallCount_1증가하는지() {
         // given
-        let data = ProjectEntity(title: "test", deadline: Date(), body: "test_body")
+        let dataToCreate = ProjectEntity(title: "test", deadline: Date(), body: "test_body")
         
         // when
-        sut.create(projectEntity: data)
+        sut.create(projectEntity: dataToCreate)
         
         // then
         XCTAssertEqual(mockPersistentRepository.createProjectEntityCallCount, 1)
@@ -55,10 +55,10 @@ final class ProjectUsecaseTestsWithMock: XCTestCase {
     
     func test_read_호출하면_PersistentRepository_readWithProjectEntityIDCallCount_1증가하는지() {
         // given
-        let dataToCreate = ProjectEntity(title: "test", deadline: Date(), body: "test_body")
+        let dataToRead = ProjectEntity(title: "test", deadline: Date(), body: "test_body")
         
         // when
-        _ = sut.read(projectEntityID: dataToCreate.id)
+        _ = sut.read(projectEntityID: dataToRead.id)
         
         // then
         XCTAssertEqual(mockPersistentRepository.readWithProjectEntityIDCallCount, 1)
