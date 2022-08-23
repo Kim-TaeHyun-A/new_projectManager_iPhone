@@ -27,12 +27,12 @@ final class DetailViewModelTests: XCTestCase {
         sut = nil
     }
     
-    func test_read_하면_mockProjectUseCase_readCallCount_1증가하는지() {
+    func test_read_하면_mockProjectUseCase_readWithProjectEntityIDCallCount_1증가하는지() {
         // when
         sut.read()
         
         // then
-        XCTAssertEqual(mockProjectUseCase.readCallCount, 1)
+        XCTAssertEqual(mockProjectUseCase.readWithProjectEntityIDCallCount, 1)
     }
     
     func test_registrate_하면_mockProjectUseCase_updateCallCount_1증가하는지() {
