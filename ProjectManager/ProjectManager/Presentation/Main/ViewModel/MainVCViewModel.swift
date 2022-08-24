@@ -16,7 +16,6 @@ protocol MainVCViewModelInputProtocol {
 
 protocol MainVCViewModelOutputProtocol {
     var currnetProjectEntity: ProjectEntity? { get }
-    var remoteData: Disposable? { get }
 }
 
 protocol MainVCViewModelProtocol: MainVCViewModelInputProtocol, MainVCViewModelOutputProtocol { }
@@ -26,11 +25,11 @@ final class MainVCViewModel: MainVCViewModelProtocol {
     private lazy var projects: BehaviorRelay<[ProjectEntity]> = {
         return projectUseCase.read()
     }()
+    private let disposeBag = DisposeBag()
     
     // MARK: - Output
     
     var currnetProjectEntity: ProjectEntity?
-    var remoteData: Disposable?
     
     init(projectUseCase: ProjectUseCaseProtocol) {
         self.projectUseCase = projectUseCase
@@ -45,6 +44,6 @@ extension MainVCViewModel {
     }
     
     func didTapLoadButton() {
-        remoteData = projectUseCase.load()
+        projectUseCase.load().disposed(by: disposeBag)
     }
 }

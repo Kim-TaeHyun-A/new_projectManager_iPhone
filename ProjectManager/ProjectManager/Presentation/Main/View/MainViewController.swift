@@ -128,7 +128,6 @@ final class MainViewController: UIViewController {
             }
             
             self.viewModel?.didTapLoadButton()
-            self.viewModel?.remoteData?.disposed(by: self.disposeBag)
         }
         
         guard let next = sceneDIContainer?
@@ -154,6 +153,7 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: ProjectListViewDelegate {
     func didTap(cell: ProjectCell) {
+        viewModel?.didTapCell(cell.contentID)
         presentViewController(cell: cell)
     }
     
@@ -162,7 +162,6 @@ extension MainViewController: ProjectListViewDelegate {
     }
     
     private func presentViewController(cell: ProjectCell) {
-        viewModel?.didTapCell(cell.contentID)
         guard let content = viewModel?.currnetProjectEntity,
               let next = sceneDIContainer?.makeDetailViewController(with: content) else {
             return
