@@ -12,57 +12,6 @@ private enum Constant {
     static let selectedColor: UIColor = .red
 }
 
-final class SegmentedButton: UIControl {
-    private let button: UIView
-    private var textColor: UIColor = Constant.deselectedColor
-    
-    private lazy var selectedLine: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: 2))
-        view.backgroundColor = Constant.deselectedColor
-        view.isHidden = true
-        return view
-    }()
-    
-    init(button: UIView) {
-        self.button = button
-        super.init(frame: .zero)
-        setUpButton(with: button)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setUpButton(with button: UIView) {
-        isUserInteractionEnabled = true
-        setUpLayout(with: button)
-    }
-    
-    private func setUpLayout(with button: UIView) {
-        addSubview(button)
-        addSubview(selectedLine)
-        
-        NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: topAnchor),
-            button.leadingAnchor.constraint(equalTo: leadingAnchor),
-            button.trailingAnchor.constraint(equalTo: trailingAnchor),
-            button.bottomAnchor.constraint(equalTo: selectedLine.topAnchor)
-        ])
-    }
-    
-    func changeLineColor(to color: UIColor) {
-        selectedLine.backgroundColor = color
-    }
-    
-    func changeTextColor(to color: UIColor) {
-        textColor = color
-    }
-    
-    func toggleSelectedLine() {
-        selectedLine.isHidden = !selectedLine.isHidden
-    }
-}
-
 final class SegmentedView: UIView {
     private var buttons: [SegmentedButton]
     private var selectedViews: [UIView]
@@ -138,6 +87,57 @@ final class SegmentedView: UIView {
         UIView.animate(withDuration: 0.3) {
             self.setUpSelectedViewLayout(of: index)
         }
+    }
+}
+
+private final class SegmentedButton: UIControl {
+    private let button: UIView
+    private var textColor: UIColor = Constant.deselectedColor
+    
+    private lazy var selectedLine: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: 2))
+        view.backgroundColor = Constant.deselectedColor
+        view.isHidden = true
+        return view
+    }()
+    
+    init(button: UIView) {
+        self.button = button
+        super.init(frame: .zero)
+        setUpButton(with: button)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setUpButton(with button: UIView) {
+        isUserInteractionEnabled = true
+        setUpLayout(with: button)
+    }
+    
+    private func setUpLayout(with button: UIView) {
+        addSubview(button)
+        addSubview(selectedLine)
+        
+        NSLayoutConstraint.activate([
+            button.topAnchor.constraint(equalTo: topAnchor),
+            button.leadingAnchor.constraint(equalTo: leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor),
+            button.bottomAnchor.constraint(equalTo: selectedLine.topAnchor)
+        ])
+    }
+    
+    func changeLineColor(to color: UIColor) {
+        selectedLine.backgroundColor = color
+    }
+    
+    func changeTextColor(to color: UIColor) {
+        textColor = color
+    }
+    
+    func toggleSelectedLine() {
+        selectedLine.isHidden = !selectedLine.isHidden
     }
 }
 
