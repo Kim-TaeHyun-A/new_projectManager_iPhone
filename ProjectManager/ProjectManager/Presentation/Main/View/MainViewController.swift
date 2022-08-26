@@ -161,7 +161,12 @@ extension MainViewController: ProjectListViewDelegate {
     }
     
     func didLongPress(cell: ProjectCell) {
-        presentPopOver(cell)
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            presentPopOverVC(cell)
+        default:
+            presentPopOverAlert(cell)
+        }
     }
     
     private func presentViewController(cell: ProjectCell) {
@@ -175,12 +180,20 @@ extension MainViewController: ProjectListViewDelegate {
         present(next, animated: true)
     }
     
-    private func presentPopOver(_ cell: ProjectCell) {
+    private func presentPopOverVC(_ cell: ProjectCell) {
         guard let popOverViewController = sceneDIContainer?.makePopOverViewController(with: cell) else {
             return
         }
         
         present(popOverViewController, animated: true)
+    }
+    
+    private func presentPopOverAlert(_ cell: ProjectCell) {
+        guard let next = sceneDIContainer?.makerPopOverAlertController(with: cell) else {
+            return
+        }
+        
+        present(next, animated: true)
     }
 }
 

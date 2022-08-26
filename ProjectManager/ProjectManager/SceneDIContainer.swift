@@ -72,6 +72,10 @@ final class SceneDIContainer {
         return PopOverViewController(with: makePopOverViewModel(with: cell))
     }
     
+    func makerPopOverAlertController(with cell: ProjectCell) -> PopOverAlertController {
+        return PopOverAlertController(viewModel: makePopOverViewModel(with: cell))
+    }
+    
     // MARK: - History
     
     private func makeHistoryViewModel() -> HistoryViewModel {

@@ -62,6 +62,7 @@
 		0EA304C128B9500500156BD4 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C028B9500500156BD4 /* ListView.swift */; };
 		0EA304C328B951CA00156BD4 /* MainViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C228B951CA00156BD4 /* MainViewProtocol.swift */; };
 		0EA304C528B951FD00156BD4 /* ProjectListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C428B951FD00156BD4 /* ProjectListViewProtocol.swift */; };
+		0EA304C728B9648500156BD4 /* PopOverAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C628B9648500156BD4 /* PopOverAlertController.swift */; };
 		0EA67EB82873330100E15093 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EB72873330100E15093 /* ProjectCell.swift */; };
 		0EA67EBC287476B300E15093 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBB287476B300E15093 /* RegistrationViewController.swift */; };
 		0EA67EBE2874789700E15093 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBD2874789700E15093 /* ModalView.swift */; };
@@ -150,6 +151,7 @@
 		0EA304C028B9500500156BD4 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		0EA304C228B951CA00156BD4 /* MainViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
 		0EA304C428B951FD00156BD4 /* ProjectListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewProtocol.swift; sourceTree = "<group>"; };
+		0EA304C628B9648500156BD4 /* PopOverAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverAlertController.swift; sourceTree = "<group>"; };
 		0EA67EB72873330100E15093 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		0EA67EBB287476B300E15093 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		0EA67EBD2874789700E15093 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		033294B7287C721500EE7CBE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0EA304C628B9648500156BD4 /* PopOverAlertController.swift */,
 				033294B1287C713800EE7CBE /* PopOverViewController.swift */,
 				033294B3287C717700EE7CBE /* PopOverView.swift */,
 				03F0EF8E288EDAF300FBC7EB /* HistoryViewController.swift */,
@@ -824,6 +827,7 @@
 				C7431F0825F51E1D0094C4CF /* SceneDelegate.swift in Sources */,
 				03F0EF8F288EDAF300FBC7EB /* HistoryViewController.swift in Sources */,
 				0EA304C128B9500500156BD4 /* ListView.swift in Sources */,
+				0EA304C728B9648500156BD4 /* PopOverAlertController.swift in Sources */,
 				0E34F04C287C7C5600438285 /* DateFormatter.swift in Sources */,
 				0EA304BB28B8EE8800156BD4 /* ProjectTableView.swift in Sources */,
 				03F0EF9D288F7C0C00FBC7EB /* ModalNavigationBar.swift in Sources */,
