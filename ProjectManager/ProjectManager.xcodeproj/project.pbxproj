@@ -57,6 +57,9 @@
 		0EA304B728B7BD6F00156BD4 /* SegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304B628B7BD6F00156BD4 /* SegmentedView.swift */; };
 		0EA304B928B7DC0100156BD4 /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304B828B7DC0100156BD4 /* Array+extension.swift */; };
 		0EA304BB28B8EE8800156BD4 /* ProjectTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304BA28B8EE8800156BD4 /* ProjectTableView.swift */; };
+		0EA304BD28B94F8600156BD4 /* BaseStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304BC28B94F8600156BD4 /* BaseStackView.swift */; };
+		0EA304BF28B94FC700156BD4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304BE28B94FC700156BD4 /* BaseView.swift */; };
+		0EA304C128B9500500156BD4 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C028B9500500156BD4 /* ListView.swift */; };
 		0EA67EB82873330100E15093 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EB72873330100E15093 /* ProjectCell.swift */; };
 		0EA67EBC287476B300E15093 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBB287476B300E15093 /* RegistrationViewController.swift */; };
 		0EA67EBE2874789700E15093 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBD2874789700E15093 /* ModalView.swift */; };
@@ -140,6 +143,9 @@
 		0EA304B628B7BD6F00156BD4 /* SegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedView.swift; sourceTree = "<group>"; };
 		0EA304B828B7DC0100156BD4 /* Array+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extension.swift"; sourceTree = "<group>"; };
 		0EA304BA28B8EE8800156BD4 /* ProjectTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableView.swift; sourceTree = "<group>"; };
+		0EA304BC28B94F8600156BD4 /* BaseStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStackView.swift; sourceTree = "<group>"; };
+		0EA304BE28B94FC700156BD4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		0EA304C028B9500500156BD4 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		0EA67EB72873330100E15093 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		0EA67EBB287476B300E15093 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		0EA67EBD2874789700E15093 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -256,8 +262,11 @@
 			children = (
 				03AB73DA2873290400B0C980 /* MainViewController.swift */,
 				03AB73DC2873292900B0C980 /* MainView.swift */,
+				0EA304BE28B94FC700156BD4 /* BaseView.swift */,
+				0EA304BC28B94F8600156BD4 /* BaseStackView.swift */,
 				0EA304B628B7BD6F00156BD4 /* SegmentedView.swift */,
 				0EA67ECF287674D000E15093 /* ProjectStackView.swift */,
+				0EA304C028B9500500156BD4 /* ListView.swift */,
 				0E0AD6F828B00E2300A5ADBD /* HeaderView.swift */,
 				0EA304BA28B8EE8800156BD4 /* ProjectTableView.swift */,
 				0EA67EB72873330100E15093 /* ProjectCell.swift */,
@@ -807,6 +816,7 @@
 				03BECD342892C55000BED881 /* ModalDelegate.swift in Sources */,
 				C7431F0825F51E1D0094C4CF /* SceneDelegate.swift in Sources */,
 				03F0EF8F288EDAF300FBC7EB /* HistoryViewController.swift in Sources */,
+				0EA304C128B9500500156BD4 /* ListView.swift in Sources */,
 				0E34F04C287C7C5600438285 /* DateFormatter.swift in Sources */,
 				0EA304BB28B8EE8800156BD4 /* ProjectTableView.swift in Sources */,
 				03F0EF9D288F7C0C00FBC7EB /* ModalNavigationBar.swift in Sources */,
@@ -816,6 +826,7 @@
 				03AB73DD2873292900B0C980 /* MainView.swift in Sources */,
 				0EA304B928B7DC0100156BD4 /* Array+extension.swift in Sources */,
 				0EB71CDE289377DB0025F66C /* HistoryManager.swift in Sources */,
+				0EA304BF28B94FC700156BD4 /* BaseView.swift in Sources */,
 				0EA67EC928752A0F00E15093 /* ProjectEntity.swift in Sources */,
 				0EA67ED0287674D000E15093 /* ProjectStackView.swift in Sources */,
 				033294B2287C713800EE7CBE /* PopOverViewController.swift in Sources */,
@@ -824,6 +835,7 @@
 				0334E70228767EBB00222EB7 /* DetailViewModel.swift in Sources */,
 				03F0EF99288EEFD900FBC7EB /* HistoryEntity.swift in Sources */,
 				03AB73DB2873290400B0C980 /* MainViewController.swift in Sources */,
+				0EA304BD28B94F8600156BD4 /* BaseStackView.swift in Sources */,
 				03BECD322892C34500BED881 /* ModalConstant.swift in Sources */,
 				03498B762886DF3A00D8CB3F /* ProjectDTO.swift in Sources */,
 				0EA67EC628751ECC00E15093 /* MainVCViewModel.swift in Sources */,
