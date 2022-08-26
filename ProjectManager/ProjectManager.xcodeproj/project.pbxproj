@@ -61,7 +61,7 @@
 		0EA67EBE2874789700E15093 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBD2874789700E15093 /* ModalView.swift */; };
 		0EA67EC628751ECC00E15093 /* MainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EC528751ECC00E15093 /* MainVCViewModel.swift */; };
 		0EA67EC928752A0F00E15093 /* ProjectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EC828752A0F00E15093 /* ProjectEntity.swift */; };
-		0EA67ED0287674D000E15093 /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67ECF287674D000E15093 /* ProjectListView.swift */; };
+		0EA67ED0287674D000E15093 /* ProjectStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67ECF287674D000E15093 /* ProjectStackView.swift */; };
 		0EA67ED228772C0200E15093 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67ED128772C0200E15093 /* RegistrationViewModel.swift */; };
 		0EB71CDE289377DB0025F66C /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F0EF94288EE15B00FBC7EB /* HistoryManager.swift */; };
 		0EB71CE128937CD00025F66C /* StubNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB71CE028937CD00025F66C /* StubNetworkManager.swift */; };
@@ -143,7 +143,7 @@
 		0EA67EBD2874789700E15093 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		0EA67EC528751ECC00E15093 /* MainVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCViewModel.swift; sourceTree = "<group>"; };
 		0EA67EC828752A0F00E15093 /* ProjectEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEntity.swift; sourceTree = "<group>"; };
-		0EA67ECF287674D000E15093 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
+		0EA67ECF287674D000E15093 /* ProjectStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStackView.swift; sourceTree = "<group>"; };
 		0EA67ED128772C0200E15093 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		0EB71CE028937CD00025F66C /* StubNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkManager.swift; sourceTree = "<group>"; };
 		0EC507D528AD6A4F00EF9515 /* StubProjectUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubProjectUseCase.swift; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 				03AB73DA2873290400B0C980 /* MainViewController.swift */,
 				03AB73DC2873292900B0C980 /* MainView.swift */,
 				0EA304B628B7BD6F00156BD4 /* SegmentedView.swift */,
-				0EA67ECF287674D000E15093 /* ProjectListView.swift */,
+				0EA67ECF287674D000E15093 /* ProjectStackView.swift */,
 				0E0AD6F828B00E2300A5ADBD /* HeaderView.swift */,
 				0EA67EB72873330100E15093 /* ProjectCell.swift */,
 			);
@@ -813,7 +813,7 @@
 				0EA304B928B7DC0100156BD4 /* Array+extension.swift in Sources */,
 				0EB71CDE289377DB0025F66C /* HistoryManager.swift in Sources */,
 				0EA67EC928752A0F00E15093 /* ProjectEntity.swift in Sources */,
-				0EA67ED0287674D000E15093 /* ProjectListView.swift in Sources */,
+				0EA67ED0287674D000E15093 /* ProjectStackView.swift in Sources */,
 				033294B2287C713800EE7CBE /* PopOverViewController.swift in Sources */,
 				03F0EF97288EEB7B00FBC7EB /* HistoryRepository.swift in Sources */,
 				03F0EF91288EDB5200FBC7EB /* HistoryView.swift in Sources */,

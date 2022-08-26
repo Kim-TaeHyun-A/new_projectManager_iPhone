@@ -9,9 +9,9 @@ import UIKit
 import RxCocoa
 
 final class MainView: UIView {
-    var toDoTable: ProjectListView?
-    var doingTable: ProjectListView?
-    var doneTable: ProjectListView?
+    var toDoStackView: ProjectStackView?
+    var doingStackView: ProjectStackView?
+    var doneStackView: ProjectStackView?
     
     private let baseStackView: UIStackView = {
         let stackView = UIStackView()
@@ -25,6 +25,8 @@ final class MainView: UIView {
     
     init(projectListViewModels: [ProjectListViewModelProtocol]) {
         super.init(frame: CGRect.zero)
+        
+        setUpBackgroundColor()
 
         guard let todoViewModel = projectListViewModels.first(where: { $0.status == .todo }),
               let doingViewModel = projectListViewModels.first(where: { $0.status == .doing }),
@@ -32,12 +34,14 @@ final class MainView: UIView {
             return
         }
         
-        toDoTable = ProjectListView(with: todoViewModel)
-        doingTable = ProjectListView(with: doingViewModel)
-        doneTable = ProjectListView(with: doneViewModel)
-        setUpBackgroundColor()
-        setUpTableViews()
-        setUpLayout()
+        toDoStackView = ProjectStackView(with: todoViewModel)
+        doingStackView = ProjectStackView(with: doingViewModel)
+        doneStackView = ProjectStackView(with: doneViewModel)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            setUpTableViews()
+            setUpLayout()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -49,9 +53,9 @@ final class MainView: UIView {
     }
     
     private func setUpTableViews() {
-        guard let toDoTable = toDoTable,
-              let doingTable = doingTable,
-              let doneTable = doneTable else {
+        guard let toDoTable = toDoStackView,
+              let doingTable = doingStackView,
+              let doneTable = doneStackView else {
             return
         }
 

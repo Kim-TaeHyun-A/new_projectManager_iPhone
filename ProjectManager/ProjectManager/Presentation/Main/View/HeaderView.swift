@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 final class HeaderView: UIView {
+    private var viewModel: ProjectListViewModelProtocol?
+    private let disposeBag = DisposeBag()
+    
     private let listTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -18,32 +22,24 @@ final class HeaderView: UIView {
     
     let countLabel: UILabel = {
         let label = UILabel()
-        
-        func round() {
-            label.layer.masksToBounds = true
-            label.layer.cornerRadius = 20
-        }
-        
-        func text() {
-            label.textColor = .white
-            label.text = "0"
-            label.textAlignment = .center
-            label.font = .preferredFont(forTextStyle: .body)
-        }
-        
-        round()
-        text()
-        
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 20
+        label.textColor = .white
+        label.text = "0"
+        label.textAlignment = .center
+        label.font = .preferredFont(forTextStyle: .body)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .black
-        
         return label
     }()
     
-    init(status: ProjectStatus) {
+    init(viewModel: ProjectListViewModelProtocol, status: ProjectStatus) {
+        self.viewModel = viewModel
+        
         super.init(frame: .zero)
         
         setUpLayout()
+        bind()
         setUpTitle(title: status.string)
         setUpBackground()
     }
@@ -70,6 +66,15 @@ final class HeaderView: UIView {
         ])
     }
     
+    private func bind() {
+        viewModel?.statusProject
+            .map { "\($0.count)" }
+            .drive { [weak self] count in
+                self?.composeCountLabel(with: count)
+            }
+            .disposed(by: disposeBag)
+    }
+    
     private func setUpTitle(title: String) {
         listTitleLabel.text = title
     }
@@ -78,7 +83,7 @@ final class HeaderView: UIView {
         backgroundColor = .systemGray6
     }
     
-    func composeCountLabel(with text: String) {
+    private func composeCountLabel(with text: String) {
         countLabel.text = text
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ProjectListView.swift
+//  ProjectStackView.swift
 //  ProjectManager
 //
 //  Created by Tiana, mmim on 2022/07/07.
@@ -15,45 +15,29 @@ protocol ProjectListViewDelegate: AnyObject {
     func didLongPress(cell: ProjectCell)
 }
 
-final class ProjectListView: UIStackView {
+final class ProjectTableView: UITableView {
     private var viewModel: ProjectListViewModelProtocol?
     private let disposeBag = DisposeBag()
-    let headerView: HeaderView
-    let tableView = UITableView()
-    weak var delegate: ProjectListViewDelegate?
+    weak var projectDelegate: ProjectListViewDelegate?
     
-    init(with viewModel: ProjectListViewModelProtocol) {
+    init(viewModel: ProjectListViewModelProtocol) {
         self.viewModel = viewModel
-        self.headerView = HeaderView(status: viewModel.status)
-        super.init(frame: .zero)
-        
-        layout()
+        super.init(frame: .zero, style: .plain)
         setUpTableView()
         bind()
     }
     
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func layout() {
-        axis = .vertical
-        addArrangedSubview(headerView)
-        addArrangedSubview(tableView)
-    }
-    
     private func setUpTableView() {
-        tableView.register(ProjectCell.self, forCellReuseIdentifier: "\(ProjectCell.self)")
-        tableView.backgroundColor = .systemGray6
-        tableView.tableFooterView = UIView()
+        register(ProjectCell.self, forCellReuseIdentifier: "\(ProjectCell.self)")
+        backgroundColor = .systemGray6
+        tableFooterView = UIView()
     }
     
     private func bind() {
-        bindTableView()
-        bindCountLabel()
-    }
-    
-    private func bindTableView() {
         bindItemSelected()
         bindModelDeleted()
         bindCell()
@@ -61,17 +45,15 @@ final class ProjectListView: UIStackView {
     }
     
     private func bindItemSelected() {
-        tableView.rx
-            .itemSelected
+        rx.itemSelected
             .bind { [weak self] indexPath in
-                self?.tableView.deselectRow(at: indexPath, animated: true)
+                self?.deselectRow(at: indexPath, animated: true)
             }
             .disposed(by: disposeBag)
     }
     
     private func bindModelDeleted() {
-        tableView.rx
-            .modelDeleted(ProjectEntity.self)
+        rx.modelDeleted(ProjectEntity.self)
             .asDriver()
             .drive { [weak self] project in
                 self?.viewModel?.didDeleteCell(content: project)
@@ -81,7 +63,7 @@ final class ProjectListView: UIStackView {
     
     private func bindCell() {
         viewModel?.statusProject
-            .drive(tableView.rx.items(
+            .drive(rx.items(
                 cellIdentifier: "\(ProjectCell.self)",
                 cellType: ProjectCell.self)
             ) { _, item, cell in
@@ -91,7 +73,7 @@ final class ProjectListView: UIStackView {
     }
     
     private func bindGesture() {
-        let gesture = tableView.rx
+        let gesture = rx
             .anyGesture(
                 (.tap(), when: .recognized),
                 (.longPress(), when: .began)
@@ -103,7 +85,7 @@ final class ProjectListView: UIStackView {
                 guard let cell = self?.findCell(by: $0) else {
                     return
                 }
-                self?.delegate?.didTap(cell: cell)
+                self?.projectDelegate?.didTap(cell: cell)
             }
             .disposed(by: disposeBag)
         
@@ -112,28 +94,41 @@ final class ProjectListView: UIStackView {
                 self?.findCell(by: $0)
             }
             .bind { [weak self] in
-                self?.delegate?.didLongPress(cell: $0)
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    private func bindCountLabel() {
-        viewModel?.statusProject
-            .map { "\($0.count)" }
-            .drive { [weak self] count in
-                self?.headerView.composeCountLabel(with: count)
+                self?.projectDelegate?.didLongPress(cell: $0)
             }
             .disposed(by: disposeBag)
     }
     
     private func findCell(by event: RxGestureRecognizer) -> ProjectCell? {
-        let point = event.location(in: tableView)
+        let point = event.location(in: self)
         
-        guard let indexPath = tableView.indexPathForRow(at: point),
-              let cell = tableView.cellForRow(at: indexPath) as? ProjectCell else {
+        guard let indexPath = indexPathForRow(at: point),
+              let cell = cellForRow(at: indexPath) as? ProjectCell else {
             return nil
         }
         
         return cell
+    }
+}
+
+final class ProjectStackView: UIStackView {
+    let headerView: HeaderView
+    let tableView: ProjectTableView
+    
+    init(with viewModel: ProjectListViewModelProtocol) {
+        self.headerView = HeaderView(viewModel: viewModel, status: viewModel.status)
+        self.tableView = ProjectTableView(viewModel: viewModel)
+        super.init(frame: .zero)
+        layout()
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func layout() {
+        axis = .vertical
+        addArrangedSubview(headerView)
+        addArrangedSubview(tableView)
     }
 }
