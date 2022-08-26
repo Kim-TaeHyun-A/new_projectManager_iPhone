@@ -7,6 +7,8 @@
 
 import Foundation
 
+extension ProjectStatus: CaseIterable { }
+
 enum ProjectStatus {
     case todo
     case doing
