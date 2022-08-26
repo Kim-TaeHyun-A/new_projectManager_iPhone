@@ -7,10 +7,6 @@
 
 import RxCocoa
 
-protocol MainViewProtocol: UIView {
-    var projects: [ProjectListViewProtocol] { get set }
-}
-
 final class MainView: UIView {
     let baseView: MainViewProtocol
     

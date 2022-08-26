@@ -60,6 +60,8 @@
 		0EA304BD28B94F8600156BD4 /* BaseStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304BC28B94F8600156BD4 /* BaseStackView.swift */; };
 		0EA304BF28B94FC700156BD4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304BE28B94FC700156BD4 /* BaseView.swift */; };
 		0EA304C128B9500500156BD4 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C028B9500500156BD4 /* ListView.swift */; };
+		0EA304C328B951CA00156BD4 /* MainViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C228B951CA00156BD4 /* MainViewProtocol.swift */; };
+		0EA304C528B951FD00156BD4 /* ProjectListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C428B951FD00156BD4 /* ProjectListViewProtocol.swift */; };
 		0EA67EB82873330100E15093 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EB72873330100E15093 /* ProjectCell.swift */; };
 		0EA67EBC287476B300E15093 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBB287476B300E15093 /* RegistrationViewController.swift */; };
 		0EA67EBE2874789700E15093 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBD2874789700E15093 /* ModalView.swift */; };
@@ -146,6 +148,8 @@
 		0EA304BC28B94F8600156BD4 /* BaseStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStackView.swift; sourceTree = "<group>"; };
 		0EA304BE28B94FC700156BD4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		0EA304C028B9500500156BD4 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		0EA304C228B951CA00156BD4 /* MainViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
+		0EA304C428B951FD00156BD4 /* ProjectListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewProtocol.swift; sourceTree = "<group>"; };
 		0EA67EB72873330100E15093 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		0EA67EBB287476B300E15093 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		0EA67EBD2874789700E15093 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -261,10 +265,12 @@
 			isa = PBXGroup;
 			children = (
 				03AB73DA2873290400B0C980 /* MainViewController.swift */,
+				0EA304C228B951CA00156BD4 /* MainViewProtocol.swift */,
 				03AB73DC2873292900B0C980 /* MainView.swift */,
 				0EA304BE28B94FC700156BD4 /* BaseView.swift */,
 				0EA304BC28B94F8600156BD4 /* BaseStackView.swift */,
 				0EA304B628B7BD6F00156BD4 /* SegmentedView.swift */,
+				0EA304C428B951FD00156BD4 /* ProjectListViewProtocol.swift */,
 				0EA67ECF287674D000E15093 /* ProjectStackView.swift */,
 				0EA304C028B9500500156BD4 /* ListView.swift */,
 				0E0AD6F828B00E2300A5ADBD /* HeaderView.swift */,
@@ -809,6 +815,7 @@
 				0334E70028767E7100222EB7 /* DetailViewController.swift in Sources */,
 				03498B682886737300D8CB3F /* Project.xcdatamodeld in Sources */,
 				0E8130ED2886A1F3003EC6C7 /* Project+CoreDataProperties.swift in Sources */,
+				0EA304C328B951CA00156BD4 /* MainViewProtocol.swift in Sources */,
 				C7431F0625F51E1D0094C4CF /* AppDelegate.swift in Sources */,
 				0E0AD6F528AF855700A5ADBD /* ProjectListViewModel.swift in Sources */,
 				0EA67EBE2874789700E15093 /* ModalView.swift in Sources */,
@@ -842,6 +849,7 @@
 				032D3D14287D64EB00A32E57 /* PersistentRepository.swift in Sources */,
 				033294B4287C717700EE7CBE /* PopOverView.swift in Sources */,
 				0E34F04F287C815300438285 /* PopOverViewModel.swift in Sources */,
+				0EA304C528B951FD00156BD4 /* ProjectListViewProtocol.swift in Sources */,
 				0E02C731288975D200522622 /* NetworkCondition.swift in Sources */,
 				03F0EF93288EDCC200FBC7EB /* HistoryCell.swift in Sources */,
 				0E0AD6F928B00E2300A5ADBD /* HeaderView.swift in Sources */,

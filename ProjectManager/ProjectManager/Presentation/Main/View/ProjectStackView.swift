@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol ProjectListViewProtocol {
-    var headerView: HeaderView { get}
-    var tableView: ProjectTableView { get }
-}
-
 final class ProjectStackView: UIStackView, ProjectListViewProtocol {
     let headerView: HeaderView
     let tableView: ProjectTableView
