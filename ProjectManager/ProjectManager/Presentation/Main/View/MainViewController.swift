@@ -143,9 +143,14 @@ final class MainViewController: UIViewController {
             return
         }
         
-        next.modalPresentationStyle = .overCurrentContext
-        next.modalTransitionStyle = .crossDissolve
-        present(next, animated: true)
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            next.modalPresentationStyle = .overCurrentContext
+            next.modalTransitionStyle = .crossDissolve
+            present(next, animated: true)
+        default: // .phone
+            present(next, animated: true)
+        }
     }
 }
 

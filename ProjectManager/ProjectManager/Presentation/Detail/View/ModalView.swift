@@ -9,7 +9,14 @@ import UIKit
 
 final class ModalView: UIView {
     let navigationBar = ModalNavigationBar()
-    let defaultTopConstant = (UIScreen.main.bounds.height - ModalConstant.modalFrameHeight) / 2
+    let defaultTopConstant: CGFloat = {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            return (UIScreen.main.bounds.height - ModalConstant.modalFrameHeight) / 2
+        default:
+            return 0
+        }
+    }()
     weak var delegate: ModalDelegate?
     
     lazy var titleTextField: UITextField = {

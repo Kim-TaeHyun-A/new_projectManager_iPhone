@@ -59,18 +59,29 @@ final class DetailViewController: UIViewController {
     
     private func setUpLayout() {
         view.addSubview(modalView)
-        
         modalView.translatesAutoresizingMaskIntoConstraints = false
         
-        topConstraint = modalView.topAnchor.constraint(equalTo: view.topAnchor,
-                                                       constant: modalView.defaultTopConstant)
-        
-        NSLayoutConstraint.activate([
-            modalView.widthAnchor.constraint(equalToConstant: ModalConstant.modalFrameWidth),
-            modalView.heightAnchor.constraint(equalToConstant: ModalConstant.modalFrameHeight),
-            modalView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            topConstraint
-        ].compactMap { $0 })
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            topConstraint = modalView.topAnchor.constraint(equalTo: view.topAnchor,
+                                                           constant: modalView.defaultTopConstant)
+            
+            NSLayoutConstraint.activate([
+                modalView.widthAnchor.constraint(equalToConstant: ModalConstant.modalFrameWidth),
+                modalView.heightAnchor.constraint(equalToConstant: ModalConstant.modalFrameHeight),
+                modalView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                topConstraint
+            ].compactMap { $0 })
+        default: // .phone
+            topConstraint = modalView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
+            
+            NSLayoutConstraint.activate([
+                modalView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                modalView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                modalView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                topConstraint
+            ].compactMap { $0 })
+        }
     }
     
     private func setUpModalView() {
