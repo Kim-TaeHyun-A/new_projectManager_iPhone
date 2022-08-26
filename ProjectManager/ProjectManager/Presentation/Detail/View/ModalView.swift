@@ -16,14 +16,7 @@ final class ModalView: UIView {
         let textField = UITextField()
         drawBorder(view: textField, color: .systemGray6)
         textField.font = .preferredFont(forTextStyle: .title3)
-        textField.leftView = UIView(
-            frame: CGRect(
-                x: 0,
-                y: 0,
-                width: 10,
-                height: 0
-            )
-        )
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textField.leftViewMode = .always
         textField.placeholder = "title"
         return textField
@@ -40,12 +33,7 @@ final class ModalView: UIView {
         let textView = UITextView()
         drawBorder(view: textView, color: .systemGray6)
         textView.font = .preferredFont(forTextStyle: .title3)
-        textView.textContainerInset = UIEdgeInsets(
-            top: 5,
-            left: 5,
-            bottom: 5,
-            right: 0
-        )
+        textView.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 0)
         textView.isScrollEnabled = false
         return textView
     }()
@@ -160,12 +148,7 @@ final class ModalView: UIView {
     }
     
     private func adjustConstraint(by keyboardHeight: CGFloat) {
-        scrollView.contentInset = UIEdgeInsets(
-            top: 0,
-            left: 0,
-            bottom: keyboardHeight,
-            right: 0
-        )
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
     }
     
     private func changeColor(_ isEnable: Bool) {
