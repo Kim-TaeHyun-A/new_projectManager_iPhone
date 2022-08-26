@@ -7,40 +7,118 @@
 
 import RxCocoa
 
-final class MainView: UIView {
-    var toDoStackView: ProjectStackView?
-    var doingStackView: ProjectStackView?
-    var doneStackView: ProjectStackView?
-    
-    private let baseStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = 10
-        stackView.backgroundColor = .systemGray4
-        return stackView
+protocol ProjectListViewProtocol {
+    var headerView: HeaderView { get}
+    var tableView: ProjectTableView { get }
+}
+
+protocol MainViewProtocol: UIView {
+    var projects: [ProjectListViewProtocol] { get set }
+}
+
+final class BaseStackView: UIStackView, MainViewProtocol {
+    private var viewModels: [ProjectListViewModelProtocol]
+    lazy var projects: [ProjectListViewProtocol] = {
+        return viewModels.map {
+            ProjectStackView(with: $0)
+        }
     }()
     
+    init(viewModels: [ProjectListViewModelProtocol]) {
+        self.viewModels = viewModels
+        super.init(frame: .zero)
+        
+        setUpAttribute()
+        layout()
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setUpAttribute() {
+        translatesAutoresizingMaskIntoConstraints = false
+        axis = .horizontal
+        distribution = .fillEqually
+        spacing = 10
+        backgroundColor = .systemGray4
+    }
+    
+    private func layout() {
+        projects.forEach {
+            guard let view = $0 as? UIView else {
+                return
+            }
+            addArrangedSubview(view)
+        }
+    }
+}
+
+final class ListView: ProjectListViewProtocol {
+    let headerView: HeaderView
+    let tableView: ProjectTableView
+    
+    init(with viewModel: ProjectListViewModelProtocol) {
+        self.headerView = HeaderView(viewModel: viewModel, status: viewModel.status)
+        self.tableView = ProjectTableView(viewModel: viewModel)
+    }
+}
+
+final class BaseView: UIView, MainViewProtocol {
+    var projects: [ProjectListViewProtocol]
+    lazy var segmentedView: SegmentedView = {
+        let buttons = projects.map { $0.headerView}
+        let views = projects.map { $0.tableView }
+        return SegmentedView(buttons: buttons, views: views)
+    }()
+    
+    init(viewModels: [ProjectListViewModelProtocol]) {
+        self.projects = viewModels.map { ListView(with: $0) }
+        super.init(frame: .zero)
+        layout()
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func layout() {
+        addSubview(segmentedView)
+        segmentedView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            segmentedView.topAnchor.constraint(equalTo: topAnchor),
+            segmentedView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            segmentedView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            segmentedView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+}
+
+final class MainView: UIView {
+    let baseView: MainViewProtocol
+    
     init(projectListViewModels: [ProjectListViewModelProtocol]) {
-        super.init(frame: CGRect.zero)
+        let viewModels: [ProjectListViewModelProtocol] = ProjectStatus.allCases
+            .compactMap { status in
+                guard let viewModel = projectListViewModels.first(where: { $0.status == status }) else {
+                    return nil
+                }
+                
+                return viewModel
+            }
+        
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            baseView = BaseStackView(viewModels: viewModels)
+        default: // .phone
+            baseView = BaseView(viewModels: viewModels)
+        }
+        
+        super.init(frame: .zero)
         
         setUpBackgroundColor()
-
-        guard let todoViewModel = projectListViewModels.first(where: { $0.status == .todo }),
-              let doingViewModel = projectListViewModels.first(where: { $0.status == .doing }),
-              let doneViewModel = projectListViewModels.first(where: { $0.status == .done }) else {
-            return
-        }
-        
-        toDoStackView = ProjectStackView(with: todoViewModel)
-        doingStackView = ProjectStackView(with: doingViewModel)
-        doneStackView = ProjectStackView(with: doneViewModel)
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            setUpTableViews()
-            setUpLayout()
-        }
+        setUpLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -51,26 +129,15 @@ final class MainView: UIView {
         backgroundColor = .systemBackground
     }
     
-    private func setUpTableViews() {
-        guard let toDoTable = toDoStackView,
-              let doingTable = doingStackView,
-              let doneTable = doneStackView else {
-            return
-        }
-
-        addSubview(baseStackView)
-        
-        baseStackView.addArrangedSubview(toDoTable)
-        baseStackView.addArrangedSubview(doingTable)
-        baseStackView.addArrangedSubview(doneTable)
-    }
-    
     private func setUpLayout() {
+        addSubview(baseView)
+        baseView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            baseStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            baseStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            baseStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            baseStackView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            baseView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            baseView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            baseView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            baseView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
 }

@@ -43,9 +43,7 @@ final class MainViewController: UIViewController {
     }
     
     private func setUpTableDelegate() {
-        mainView.toDoStackView?.tableView.projectDelegate = self
-        mainView.doingStackView?.tableView.projectDelegate = self
-        mainView.doneStackView?.tableView.projectDelegate = self
+        mainView.baseView.projects.forEach { $0.tableView.projectDelegate = self }
     }
     
     private func setUpNavigationItem() {

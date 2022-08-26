@@ -13,10 +13,12 @@ private enum Constant {
 }
 
 final class SegmentedView: UIView {
-    private var buttons: [SegmentedButton]
-    private var selectedViews: [UIView]
+    private(set) var buttons: [SegmentedButton]
+    private(set) var selectedViews: [UIView]
     var selectedTextColor: UIColor = Constant.selectedColor
     var selectedLineColor: UIColor = Constant.selectedColor
+    
+    var lineXPosition: NSLayoutConstraint?
     
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: buttons)
@@ -27,11 +29,19 @@ final class SegmentedView: UIView {
         return stackView
     }()
     
+    private lazy var selectedLine: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = Constant.deselectedColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     init(buttons: [UIView], views: [UIView]) {
-        self.buttons = buttons.map { SegmentedButton(button: $0) }
+        self.buttons = buttons.map { SegmentedButton(label: $0) }
         self.selectedViews = views
         super.init(frame: .zero)
         setUpButtons()
+        setUpGesture()
         setUpButtonStackViewLayout()
         setUpSelectedViewLayout()
     }
@@ -50,21 +60,41 @@ final class SegmentedView: UIView {
                 color = Constant.deselectedColor
             }
             
-            button.toggleSelectedLine()
-            button.changeTextColor(to: color)
-            button.changeLineColor(to: color)
+            button.setTextColor(to: color)
+        }
+    }
+    
+    private func setUpGesture() {
+        buttons.forEach {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            $0.addGestureRecognizer(tapGesture)
+        }
+    }
+    
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        buttons.enumerated().forEach {
+            if sender.view == $1 {
+                slideView(of: $0)
+            }
         }
     }
     
     private func setUpButtonStackViewLayout() {
         addSubview(buttonStackView)
-        
+        addSubview(selectedLine)
+        lineXPosition = selectedLine.leadingAnchor.constraint(equalTo: buttonStackView.leadingAnchor)
+
         NSLayoutConstraint.activate([
             buttonStackView.topAnchor.constraint(equalTo: topAnchor),
             buttonStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             buttonStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            buttonStackView.heightAnchor.constraint(equalToConstant: 30)
-        ])
+            buttonStackView.heightAnchor.constraint(equalToConstant: 50),
+            selectedLine.heightAnchor.constraint(equalToConstant: 2),
+            selectedLine.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor),
+            selectedLine.widthAnchor.constraint(equalToConstant: 100),
+            lineXPosition
+        ].compactMap { $0 })
+        updateLineLayout()
     }
     
     private func setUpSelectedViewLayout(of index: Int = 0) {
@@ -73,70 +103,57 @@ final class SegmentedView: UIView {
         }
         
         addSubview(selectedView)
-        
+        selectedView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            selectedView.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor),
+            selectedView.topAnchor.constraint(equalTo: selectedLine.bottomAnchor),
             selectedView.leadingAnchor.constraint(equalTo: leadingAnchor),
             selectedView.trailingAnchor.constraint(equalTo: trailingAnchor),
             selectedView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
+    private func updateLineLayout(of index: Int = 0) {
+        let newPosition = Int(frame.width) / buttons.count * index
+        lineXPosition?.constant = CGFloat(newPosition)
+    }
+    
     func slideView(of index: Int) {
         setUpButtons(of: index)
+        setUpSelectedViewLayout(of: index)
         UIView.animate(withDuration: 0.3) {
-            self.setUpSelectedViewLayout(of: index)
+            self.updateLineLayout(of: index)
+            self.layoutIfNeeded()
         }
     }
 }
 
-private final class SegmentedButton: UIControl {
-    private let button: UIView
+final class SegmentedButton: UIControl {
+    private let label: UIView
     private var textColor: UIColor = Constant.deselectedColor
     
-    private lazy var selectedLine: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: 2))
-        view.backgroundColor = Constant.deselectedColor
-        view.isHidden = true
-        return view
-    }()
-    
-    init(button: UIView) {
-        self.button = button
+    init(label: UIView) {
+        self.label = label
         super.init(frame: .zero)
-        setUpButton(with: button)
+        setUpLayout(with: label)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpButton(with button: UIView) {
-        isUserInteractionEnabled = true
-        setUpLayout(with: button)
-    }
-    
     private func setUpLayout(with button: UIView) {
         addSubview(button)
-        addSubview(selectedLine)
         
+        button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: topAnchor),
             button.leadingAnchor.constraint(equalTo: leadingAnchor),
             button.trailingAnchor.constraint(equalTo: trailingAnchor),
-            button.bottomAnchor.constraint(equalTo: selectedLine.topAnchor)
+            button.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
-    func changeLineColor(to color: UIColor) {
-        selectedLine.backgroundColor = color
-    }
-    
-    func changeTextColor(to color: UIColor) {
+    func setTextColor(to color: UIColor) {
         textColor = color
-    }
-    
-    func toggleSelectedLine() {
-        selectedLine.isHidden = !selectedLine.isHidden
     }
 }
