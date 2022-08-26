@@ -13,8 +13,8 @@ private enum Constant {
 }
 
 final class SegmentedView: UIView {
-    private(set) var buttons: [SegmentedButton]
-    private(set) var selectedViews: [UIView]
+    private var buttons: [SegmentedButton]
+    private var selectedViews: [UIView]
     var selectedTextColor: UIColor = Constant.selectedColor
     var selectedLineColor: UIColor = Constant.selectedColor
     
@@ -127,7 +127,7 @@ final class SegmentedView: UIView {
     }
 }
 
-final class SegmentedButton: UIControl {
+private final class SegmentedButton: UIControl {
     private let label: UIView
     private var textColor: UIColor = Constant.deselectedColor
     
