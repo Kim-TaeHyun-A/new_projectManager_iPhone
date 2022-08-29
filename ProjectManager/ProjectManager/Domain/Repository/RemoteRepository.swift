@@ -42,10 +42,10 @@ extension RemoteRepositoryProtocol {
 }
 
 final class RemoteRepository: RemoteRepositoryProtocol {
-    private let networkManger: RemoteManagerProtocol
+    private let remoteManger: RemoteManagerProtocol
     
-    init(networkManger: RemoteManagerProtocol) {
-        self.networkManger = networkManger
+    init(remoteManger: RemoteManagerProtocol) {
+        self.remoteManger = remoteManger
     }
 }
 
@@ -55,11 +55,11 @@ extension RemoteRepository {
             parse(from: $0)
         }
         
-        networkManger.update(projects: projects)
+        remoteManger.update(projects: projects)
     }
     
     func read(repository: PersistentRepositoryProtocol) -> Disposable {
-        return networkManger.read()
+        return remoteManger.read()
             .subscribe(onNext: {[weak self] data in
                 self?.synchronize(with: data, to: repository)
             })

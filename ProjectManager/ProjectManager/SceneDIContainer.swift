@@ -42,7 +42,7 @@ final class SceneDIContainer {
     }
     
     private func makeRemoteRepository() -> RemoteRepository {
-        return RemoteRepository(networkManger: makeRemoteManager())
+        return RemoteRepository(remoteManger: makeRemoteManager())
     }
     
     private func makeHistoryRepository() -> HistoryRepository {
