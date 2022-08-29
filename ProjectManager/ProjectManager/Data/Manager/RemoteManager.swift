@@ -41,18 +41,9 @@ extension RemoteManager: RemoteManagerProtocol {
     }
     
     func update(projects: [ProjectDTO]) {
-        var dic: [String: [String: String]] = [:]
-        projects.forEach { dic[$0.id] = ["id": $0.id, "status": $0.status,
-                                         "title": $0.title,
-                                         "deadline": $0.deadline,
-                                         "body": $0.body] }
-        
-        guard let data = try? JSONEncoder().encode(dic) else {
-            NetworkError.encodeError.printIfDebug()
-            return
-        }
-        
+        let data = parse(from: projects)
         let request = RequestMethod.put(data: data).urlRequest
+        
         NetworkService.shared.request(with: request) {
             switch $0 {
             case .failure(let error):
@@ -61,5 +52,22 @@ extension RemoteManager: RemoteManagerProtocol {
                 break
             }
         }
+    }
+}
+
+extension RemoteManager {
+    private func parse(from projects: [ProjectDTO]) -> Data? {
+        var value: [String: [String: String]] = [:]
+        projects.forEach { value[$0.id] = ["id": $0.id,
+                                           "status": $0.status,
+                                           "title": $0.title,
+                                           "deadline": $0.deadline,
+                                           "body": $0.body] }
+        
+        guard let data = try? JSONEncoder().encode(value) else {
+            NetworkError.encodeError.printIfDebug()
+            return nil
+        }
+        return data
     }
 }

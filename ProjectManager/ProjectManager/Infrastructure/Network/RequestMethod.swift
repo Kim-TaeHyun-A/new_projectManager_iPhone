@@ -9,7 +9,7 @@ import Foundation
 
 enum RequestMethod {
     case get
-    case put(data: Data)
+    case put(data: Data?)
     
     static var url: URL?
 }
