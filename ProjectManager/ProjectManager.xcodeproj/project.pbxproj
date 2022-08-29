@@ -294,7 +294,6 @@
 		0E02C72F2889756B00522622 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				0E02C730288975D200522622 /* NetworkCondition.swift */,
 				0EA304D028BD57FC00156BD4 /* LogProtocol.swift */,
 			);
 			path = Util;
@@ -440,6 +439,7 @@
 		0EA304C928BD241900156BD4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0E02C730288975D200522622 /* NetworkCondition.swift */,
 				0EA304CA28BD277900156BD4 /* NetworkService.swift */,
 				0EA304CC28BD287500156BD4 /* EntryPoint.swift */,
 				0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */,
