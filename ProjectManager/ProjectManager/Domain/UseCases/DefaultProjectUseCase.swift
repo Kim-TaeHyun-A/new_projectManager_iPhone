@@ -22,12 +22,12 @@ protocol ProjectUseCaseProtocol {
 
 struct DefaultProjectUseCase: ProjectUseCaseProtocol {
     private let projectRepository: PersistentRepositoryProtocol
-    private let networkRepository: NetworkRepositoryProtocol
+    private let remoteRepository: RemoteRepositoryProtocol
     private let historyRepository: HistoryRepositoryProtocol
     
-    init(projectRepository: PersistentRepositoryProtocol, networkRepository: NetworkRepositoryProtocol, historyRepository: HistoryRepositoryProtocol) {
+    init(projectRepository: PersistentRepositoryProtocol, remoteRepository: RemoteRepositoryProtocol, historyRepository: HistoryRepositoryProtocol) {
         self.projectRepository = projectRepository
-        self.networkRepository = networkRepository
+        self.remoteRepository = remoteRepository
         self.historyRepository = historyRepository
     }
     
@@ -52,11 +52,11 @@ struct DefaultProjectUseCase: ProjectUseCaseProtocol {
     }
     
     func load() -> Disposable {
-        return networkRepository.read(repository: projectRepository)
+        return remoteRepository.read(repository: projectRepository)
     }
     
     func backUp() {
-        networkRepository.update(repository: projectRepository)
+        remoteRepository.update(repository: projectRepository)
     }
     
     func createHistory(historyEntity: HistoryEntity) {

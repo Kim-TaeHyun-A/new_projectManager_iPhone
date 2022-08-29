@@ -1,5 +1,5 @@
 //
-//  MockNetworkRepository.swift
+//  MockRemoteRepository.swift
 //  ProjectManagerTests
 //
 //  Created by Tiana on 2022/08/18.
@@ -8,7 +8,7 @@
 @testable import ProjectManager
 import RxSwift
 
-final class MockNetworkRepository: NetworkRepositoryProtocol {
+final class MockRemoteRepository: RemoteRepositoryProtocol {
     var updateCallCount = 0
     var readCallCount = 0
 

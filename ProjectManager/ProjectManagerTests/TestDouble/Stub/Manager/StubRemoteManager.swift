@@ -1,5 +1,5 @@
 //
-//  StubNetworkManager.swift
+//  StubRemoteManager.swift
 //  ProjectManagerTests
 //
 //  Created by Tiana, mmim on 2022/07/29.
@@ -42,11 +42,11 @@ final class StubFirebase {
     }
 }
 
-final class StubNetworkManager {
+final class StubRemoteManager {
     let stubFirebase = StubFirebase(error: nil)
 }
 
-extension StubNetworkManager: NetworkManagerProtocol {
+extension StubRemoteManager: RemoteManagerProtocol {
     func read() -> Observable<[ProjectDTO]> {
         return Observable.create { [weak self] emitter in
             self?.stubFirebase.getData { error, snapshot in

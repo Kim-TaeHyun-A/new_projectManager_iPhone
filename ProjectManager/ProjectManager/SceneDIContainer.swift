@@ -16,8 +16,8 @@ final class SceneDIContainer {
         return PersistentManager()
     }
     
-    private func makeNetworkManager() -> NetworkManager {
-        return NetworkManager()
+    private func makeRemoteManager() -> RemoteManager {
+        return RemoteManager()
     }
     
     private func makeHistoryManager() -> HistoryManager {
@@ -30,8 +30,8 @@ final class SceneDIContainer {
         return PersistentRepository(persistentManager: makePersistentManager())
     }
     
-    private func makeNetworkRepository() -> NetworkRepository {
-        return NetworkRepository(networkManger: makeNetworkManager())
+    private func makeRemoteRepository() -> RemoteRepository {
+        return RemoteRepository(networkManger: makeRemoteManager())
     }
     
     private func makeHistoryRepository() -> HistoryRepository {
@@ -42,7 +42,7 @@ final class SceneDIContainer {
     
     private func makeProjectUseCase() -> ProjectUseCaseProtocol {
         return DefaultProjectUseCase(projectRepository: makeProjectRepository(),
-                                     networkRepository: makeNetworkRepository(),
+                                     remoteRepository: makeRemoteRepository(),
                                      historyRepository: makeHistoryRepository())
     }
     

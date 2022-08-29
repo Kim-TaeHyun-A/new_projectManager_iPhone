@@ -1,5 +1,5 @@
 //
-//  NetworkManager.swift
+//  RemoteManager.swift
 //  ProjectManager
 //
 //  Created by Tiana, mmim on 2022/07/19.
@@ -8,16 +8,16 @@
 import FirebaseDatabase
 import RxSwift
 
-protocol NetworkManagerProtocol {
+protocol RemoteManagerProtocol {
     func read() -> Observable<[ProjectDTO]>
     func update(projects: [ProjectDTO])
 }
 
-final class NetworkManager {
+final class RemoteManager {
     private let projectsReference = Database.database().reference(withPath: "user")
 }
 
-extension NetworkManager: NetworkManagerProtocol {
+extension RemoteManager: RemoteManagerProtocol {
     func read() -> Observable<[ProjectDTO]> {
         return Observable.create { emitter in
             Database.database().reference(withPath: "user").getData { error, snapshot in
@@ -48,3 +48,4 @@ extension NetworkManager: NetworkManagerProtocol {
         Database.database().reference().child("user").setValue(dic)
     }
 }
+

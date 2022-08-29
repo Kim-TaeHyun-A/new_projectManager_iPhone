@@ -13,14 +13,14 @@ import RxRelay
 class ProjectUsecaseTestsWithStub: XCTestCase {
     var sut: ProjectUseCaseProtocol!
     var stubPersistentManager: StubPersistentManager!
-    var stubNetworkManager: StubNetworkManager!
+    var stubNetworkManager: StubRemoteManager!
     var stubHistoryManager: StubHistoryManager!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
         stubPersistentManager = StubPersistentManager()
-        stubNetworkManager = StubNetworkManager()
+        stubNetworkManager = StubRemoteManager()
         stubHistoryManager = StubHistoryManager()
         
         sut = DefaultProjectUseCase(
@@ -28,7 +28,7 @@ class ProjectUsecaseTestsWithStub: XCTestCase {
                 projectEntities: BehaviorRelay<[ProjectEntity]>(value: []),
                 persistentManager: stubPersistentManager
             ),
-            networkRepository: NetworkRepository(networkManger: stubNetworkManager),
+            remoteRepository: RemoteRepository(networkManger: stubNetworkManager),
             historyRepository: HistoryRepository(historyManager: stubHistoryManager)
         )
     }

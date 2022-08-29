@@ -12,19 +12,19 @@ import XCTest
 final class ProjectUsecaseTestsWithMock: XCTestCase {
     var sut: ProjectUseCaseProtocol!
     var mockPersistentRepository: MockPersistentRepository!
-    var mockNetworkRepository: MockNetworkRepository!
+    var mockRemoteRepository: MockRemoteRepository!
     var mockHistoryRepository: MockHistoryRepository!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
         mockPersistentRepository = MockPersistentRepository()
-        mockNetworkRepository = MockNetworkRepository()
+        mockRemoteRepository = MockRemoteRepository()
         mockHistoryRepository = MockHistoryRepository()
         
         sut = DefaultProjectUseCase(
             projectRepository: mockPersistentRepository,
-            networkRepository: mockNetworkRepository,
+            remoteRepository: mockRemoteRepository,
             historyRepository: mockHistoryRepository
         )
     }
@@ -91,7 +91,7 @@ final class ProjectUsecaseTestsWithMock: XCTestCase {
         _ = sut.load()
         
         // then
-        XCTAssertEqual(mockNetworkRepository.readCallCount, 1)
+        XCTAssertEqual(mockRemoteRepository.readCallCount, 1)
     }
     
     func test_backUp_호출하면_mockNetworkRepository_updateCallCount_1증가하는지() {
@@ -99,7 +99,7 @@ final class ProjectUsecaseTestsWithMock: XCTestCase {
         sut.backUp()
         
         // then
-        XCTAssertEqual(mockNetworkRepository.updateCallCount, 1)
+        XCTAssertEqual(mockRemoteRepository.updateCallCount, 1)
     }
     
     func test_createHistory_호출하면_mockHistoryRepository_createCallCount_1증가하는지() {

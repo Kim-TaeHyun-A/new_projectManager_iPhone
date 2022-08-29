@@ -1,5 +1,5 @@
 //
-//  NetworkRepository.swift
+//  RemoteRepository.swift
 //  ProjectManager
 //
 //  Created by Tiana, mmim on 2022/07/21.
@@ -8,12 +8,12 @@
 import Foundation
 import RxSwift
 
-protocol NetworkRepositoryProtocol {
+protocol RemoteRepositoryProtocol {
     func update(repository: PersistentRepositoryProtocol)
     func read(repository: PersistentRepositoryProtocol) -> Disposable
 }
 
-extension NetworkRepositoryProtocol {
+extension RemoteRepositoryProtocol {
     func parse(from project: ProjectDTO) -> ProjectEntity? {
         guard let status = ProjectStatus.convert(statusString: project.status),
               let id = UUID(uuidString: project.id),
@@ -41,15 +41,15 @@ extension NetworkRepositoryProtocol {
     }
 }
 
-final class NetworkRepository: NetworkRepositoryProtocol {
-    private let networkManger: NetworkManagerProtocol
+final class RemoteRepository: RemoteRepositoryProtocol {
+    private let networkManger: RemoteManagerProtocol
     
-    init(networkManger: NetworkManagerProtocol) {
+    init(networkManger: RemoteManagerProtocol) {
         self.networkManger = networkManger
     }
 }
 
-extension NetworkRepository {
+extension RemoteRepository {
     func update(repository: PersistentRepositoryProtocol) {
         let projects = repository.read().value.compactMap {
             parse(from: $0)

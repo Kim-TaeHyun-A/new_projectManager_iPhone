@@ -1,5 +1,5 @@
 //
-//  NetworkRepositoryTests.swift
+//  RemoteRepositoryTests.swift
 //  ProjectManagerTests
 //
 //  Created by Tiana on 2022/08/19.
@@ -9,15 +9,15 @@
 import XCTest
 
 // behavior verification with Mock
-final class NetworkRepositoryTests: XCTestCase {
-    var sut: NetworkRepository!
-    var mockNetworkManager: MockNetworkManager!
+final class RemoteRepositoryTests: XCTestCase {
+    var sut: RemoteRepository!
+    var mockRemoteManager: MockRemoteManager!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
-        mockNetworkManager = MockNetworkManager()
-        sut = NetworkRepository(networkManger: mockNetworkManager)
+        mockRemoteManager = MockRemoteManager()
+        sut = RemoteRepository(networkManger: mockRemoteManager)
     }
     
     override func tearDownWithError() throws {
@@ -25,7 +25,7 @@ final class NetworkRepositoryTests: XCTestCase {
         sut = nil
     }
     
-    func test_update_호출하면_mockNetworkManager_updateCallCount_1증가하는지() {
+    func test_update_호출하면_mockRemoteManager_updateCallCount_1증가하는지() {
         // given
         let mockPersistentRepository = MockPersistentRepository()
         
@@ -33,10 +33,10 @@ final class NetworkRepositoryTests: XCTestCase {
         sut.update(repository: mockPersistentRepository)
         
         // then
-        XCTAssertEqual(mockNetworkManager.updateCallCount, 1)
+        XCTAssertEqual(mockRemoteManager.updateCallCount, 1)
     }
     
-    func test_read_호출하면_mockNetworkManager_readCallCount_1증가하는지() {
+    func test_read_호출하면_mockRemoteManager_readCallCount_1증가하는지() {
         // given
         let mockPersistentRepository = MockPersistentRepository()
         
@@ -44,6 +44,6 @@ final class NetworkRepositoryTests: XCTestCase {
         _ = sut.read(repository: mockPersistentRepository)
         
         // then
-        XCTAssertEqual(mockNetworkManager.readCallCount, 1)
+        XCTAssertEqual(mockRemoteManager.readCallCount, 1)
     }
 }
