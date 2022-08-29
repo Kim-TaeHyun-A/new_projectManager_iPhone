@@ -42,12 +42,4 @@ extension NetworkCondition {
             delegate?.applyNetworkUnable()
         }
     }
-    
-    static func stopNotifier() {
-        guard let reachability = NetworkCondition.sharedInstance.reachability else {
-            return
-        }
-        
-        try? reachability.startNotifier()
-    }
 }
