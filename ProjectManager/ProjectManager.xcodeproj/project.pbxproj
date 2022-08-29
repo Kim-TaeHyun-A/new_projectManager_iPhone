@@ -67,6 +67,7 @@
 		0EA304CD28BD287500156BD4 /* EntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304CC28BD287500156BD4 /* EntryPoint.swift */; };
 		0EA304CF28BD3DDD00156BD4 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */; };
 		0EA304D128BD57FC00156BD4 /* LogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D028BD57FC00156BD4 /* LogProtocol.swift */; };
+		0EA304D328BD592D00156BD4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D228BD592D00156BD4 /* NetworkError.swift */; };
 		0EA67EB82873330100E15093 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EB72873330100E15093 /* ProjectCell.swift */; };
 		0EA67EBC287476B300E15093 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBB287476B300E15093 /* RegistrationViewController.swift */; };
 		0EA67EBE2874789700E15093 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBD2874789700E15093 /* ModalView.swift */; };
@@ -160,6 +161,7 @@
 		0EA304CC28BD287500156BD4 /* EntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPoint.swift; sourceTree = "<group>"; };
 		0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 		0EA304D028BD57FC00156BD4 /* LogProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogProtocol.swift; sourceTree = "<group>"; };
+		0EA304D228BD592D00156BD4 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0EA67EB72873330100E15093 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		0EA67EBB287476B300E15093 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		0EA67EBD2874789700E15093 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				0EA304CA28BD277900156BD4 /* NetworkService.swift */,
 				0EA304CC28BD287500156BD4 /* EntryPoint.swift */,
 				0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */,
+				0EA304D228BD592D00156BD4 /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 				0EA67EBE2874789700E15093 /* ModalView.swift in Sources */,
 				0EA304CD28BD287500156BD4 /* EntryPoint.swift in Sources */,
 				0E02C733288EFB1900522622 /* HistoryViewModel.swift in Sources */,
+				0EA304D328BD592D00156BD4 /* NetworkError.swift in Sources */,
 				03BECD342892C55000BED881 /* ModalDelegate.swift in Sources */,
 				0EA304D128BD57FC00156BD4 /* LogProtocol.swift in Sources */,
 				C7431F0825F51E1D0094C4CF /* SceneDelegate.swift in Sources */,
