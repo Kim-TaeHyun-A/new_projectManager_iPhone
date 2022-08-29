@@ -9,9 +9,11 @@ import Foundation
 
 enum NetworkError: Error {
     case invalidURL
-    case invalidStatusCode(statusCode: Int?)
+    case invalidStatusCode(statusCode: Int)
     case emptyData
     case responseError(error: Error)
+    case decodeError
+    case encodeError
 }
 
 extension NetworkError: LocalizedError {
@@ -25,25 +27,22 @@ extension NetworkError: LocalizedError {
             return "emptyData"
         case .responseError(let error):
             return "respondError: \(String(describing: error))"
+        case .decodeError:
+            return "decodeError"
+        case .encodeError:
+            return "encodeError"
         }
     }
+}
+
+extension NetworkError: LogProtocol {
+    typealias ErrorType = Self
 }
 
 final class NetworkService {
     static let shared = NetworkService()
     
     private init() { }
-    
-    func setUpURLRequest(with url: URL?, data: Data? = nil) -> URLRequest? {
-        guard let url = url else {
-            return nil
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "PUT"
-        request.httpBody = data
-        return request
-    }
     
     func request(with request: URLRequest?, completion: @escaping (Result<Data, NetworkError>) -> Void) -> URLSessionDataTask? {
         guard let request = request else {

@@ -65,6 +65,8 @@
 		0EA304C728B9648500156BD4 /* PopOverAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C628B9648500156BD4 /* PopOverAlertController.swift */; };
 		0EA304CB28BD277900156BD4 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304CA28BD277900156BD4 /* NetworkService.swift */; };
 		0EA304CD28BD287500156BD4 /* EntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304CC28BD287500156BD4 /* EntryPoint.swift */; };
+		0EA304CF28BD3DDD00156BD4 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */; };
+		0EA304D128BD57FC00156BD4 /* LogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D028BD57FC00156BD4 /* LogProtocol.swift */; };
 		0EA67EB82873330100E15093 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EB72873330100E15093 /* ProjectCell.swift */; };
 		0EA67EBC287476B300E15093 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBB287476B300E15093 /* RegistrationViewController.swift */; };
 		0EA67EBE2874789700E15093 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBD2874789700E15093 /* ModalView.swift */; };
@@ -156,6 +158,8 @@
 		0EA304C628B9648500156BD4 /* PopOverAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverAlertController.swift; sourceTree = "<group>"; };
 		0EA304CA28BD277900156BD4 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		0EA304CC28BD287500156BD4 /* EntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPoint.swift; sourceTree = "<group>"; };
+		0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
+		0EA304D028BD57FC00156BD4 /* LogProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogProtocol.swift; sourceTree = "<group>"; };
 		0EA67EB72873330100E15093 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		0EA67EBB287476B300E15093 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		0EA67EBD2874789700E15093 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				0E02C730288975D200522622 /* NetworkCondition.swift */,
+				0EA304D028BD57FC00156BD4 /* LogProtocol.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 			children = (
 				0EA304CA28BD277900156BD4 /* NetworkService.swift */,
 				0EA304CC28BD287500156BD4 /* EntryPoint.swift */,
+				0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -847,6 +853,7 @@
 				0EA304CD28BD287500156BD4 /* EntryPoint.swift in Sources */,
 				0E02C733288EFB1900522622 /* HistoryViewModel.swift in Sources */,
 				03BECD342892C55000BED881 /* ModalDelegate.swift in Sources */,
+				0EA304D128BD57FC00156BD4 /* LogProtocol.swift in Sources */,
 				C7431F0825F51E1D0094C4CF /* SceneDelegate.swift in Sources */,
 				03F0EF8F288EDAF300FBC7EB /* HistoryViewController.swift in Sources */,
 				0EA304C128B9500500156BD4 /* ListView.swift in Sources */,
@@ -855,6 +862,7 @@
 				0EA304BB28B8EE8800156BD4 /* ProjectTableView.swift in Sources */,
 				03F0EF9D288F7C0C00FBC7EB /* ModalNavigationBar.swift in Sources */,
 				0E02C72E28896C0600522622 /* RemoteRepository.swift in Sources */,
+				0EA304CF28BD3DDD00156BD4 /* RequestMethod.swift in Sources */,
 				0384DA6B288996DE00C30AC9 /* AlertController.swift in Sources */,
 				0EA67EB82873330100E15093 /* ProjectCell.swift in Sources */,
 				03AB73DD2873292900B0C980 /* MainView.swift in Sources */,

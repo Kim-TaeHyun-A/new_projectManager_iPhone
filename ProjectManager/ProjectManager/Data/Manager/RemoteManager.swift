@@ -14,24 +14,27 @@ protocol RemoteManagerProtocol {
 }
 
 final class RemoteManager {
-    private let projectsReference = Database.database().reference(withPath: "user")
+    init() {
+        RequestMethod.url = EntryPoint.database(child: "user").url
+    }
 }
 
 extension RemoteManager: RemoteManagerProtocol {
     func read() -> Observable<[ProjectDTO]> {
         return Observable.create { emitter in
-            Database.database().reference(withPath: "user").getData { error, snapshot in
-                guard error == nil else {
-                    return
+            
+            let request = RequestMethod.get.urlRequest
+            NetworkService.shared.request(with: request) {
+                switch $0 {
+                case .success(let data):
+                    guard let projects = try? JSONDecoder().decode([String: ProjectDTO].self, from: data) else {
+                        NetworkError.decodeError.printIfDebug()
+                        return
+                    }
+                    emitter.onNext(Array(projects.values))
+                case .failure(let error):
+                    error.printIfDebug()
                 }
-
-                guard let value = snapshot?.value as? [String: Any],
-                      let data = try? JSONSerialization.data(withJSONObject: value.map { $1 }),
-                      let projects = try? JSONDecoder().decode([ProjectDTO].self, from: data) else {
-                    return
-                }
-                
-                emitter.onNext(projects)
             }
             return Disposables.create()
         }
@@ -39,13 +42,24 @@ extension RemoteManager: RemoteManagerProtocol {
     
     func update(projects: [ProjectDTO]) {
         var dic: [String: [String: String]] = [:]
-        
         projects.forEach { dic[$0.id] = ["id": $0.id, "status": $0.status,
                                          "title": $0.title,
                                          "deadline": $0.deadline,
                                          "body": $0.body] }
         
-        Database.database().reference().child("user").setValue(dic)
+        guard let data = try? JSONEncoder().encode(dic) else {
+            NetworkError.encodeError.printIfDebug()
+            return
+        }
+        
+        let request = RequestMethod.put(data: data).urlRequest
+        NetworkService.shared.request(with: request) {
+            switch $0 {
+            case .failure(let error):
+                error.printIfDebug()
+            default:
+                break
+            }
+        }
     }
 }
-
