@@ -7,7 +7,9 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    private let sceneDIContainer = SceneDIContainer()
+    private let dependencies = SceneDIContainer.Dependencies(networkService: NetworkService(),
+                                                                    networkCondition: NetworkCondition())
+    private lazy var sceneDIContainer = SceneDIContainer(dependencies: dependencies)
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

@@ -13,13 +13,10 @@ protocol NetworkConditionDelegate: AnyObject {
 }
 
 final class NetworkCondition {
-    static let sharedInstance: NetworkCondition = {
-        return NetworkCondition()
-    }()
     private let reachability: Reachability?
     weak var delegate: NetworkConditionDelegate?
     
-    private init() {
+    init() {
         self.reachability = try? Reachability()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(networkStatusChanged(_:)),

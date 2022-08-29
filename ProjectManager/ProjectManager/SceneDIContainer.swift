@@ -8,7 +8,18 @@
 import UIKit
 
 final class SceneDIContainer {
+    struct Dependencies {
+        let networkService: NetworkServiceProtocol
+        let networkCondition: NetworkCondition
+    }
+    
+    private let dependencies: Dependencies
+
     lazy var projectUseCase = makeProjectUseCase()
+    
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+    }
     
     // MARK: - Manager
     
@@ -17,7 +28,7 @@ final class SceneDIContainer {
     }
     
     private func makeRemoteManager() -> RemoteManager {
-        return RemoteManager()
+        return RemoteManager(networkServie: dependencies.networkService)
     }
     
     private func makeHistoryManager() -> HistoryManager {
@@ -49,7 +60,8 @@ final class SceneDIContainer {
     // MARK: - Main
     
     private func makeMainVCViewModel() -> MainVCViewModel {
-        return MainVCViewModel(projectUseCase: projectUseCase)
+        return MainVCViewModel(projectUseCase: projectUseCase,
+                               networkCondition: dependencies.networkCondition)
     }
     
     private func makeMainViewModel() -> [ProjectListViewModel] {

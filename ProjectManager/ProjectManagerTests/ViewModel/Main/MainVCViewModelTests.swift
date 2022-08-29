@@ -18,7 +18,8 @@ final class MainVCViewModelTests: XCTestCase {
         try super.setUpWithError()
         
         mockProjectUseCase = MockProjectUseCase()
-        sut = MainVCViewModel(projectUseCase: mockProjectUseCase)
+        sut = MainVCViewModel(projectUseCase: mockProjectUseCase,
+                              networkCondition: NetworkCondition())
     }
     
     override func tearDownWithError() throws {

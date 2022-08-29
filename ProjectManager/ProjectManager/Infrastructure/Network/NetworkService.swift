@@ -7,10 +7,14 @@
 
 import Foundation
 
-final class NetworkService {
-    static let shared = NetworkService()
-    
-    private init() { }
+protocol NetworkServiceProtocol {
+    func request(with request: URLRequest?, completion: @escaping (Result<Data, NetworkError>) -> Void) -> URLSessionDataTask?
+}
+
+final class NetworkService: NetworkServiceProtocol {
+    init() {
+        RequestMethod.url = EntryPoint.database(child: "user").url
+    }
     
     func request(with request: URLRequest?, completion: @escaping (Result<Data, NetworkError>) -> Void) -> URLSessionDataTask? {
         guard let request = request else {

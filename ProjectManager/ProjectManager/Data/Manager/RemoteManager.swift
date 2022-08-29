@@ -14,17 +14,19 @@ protocol RemoteManagerProtocol {
 }
 
 final class RemoteManager {
-    init() {
-        RequestMethod.url = EntryPoint.database(child: "user").url
+    private let networkServie: NetworkServiceProtocol
+    
+    init(networkServie: NetworkServiceProtocol) {
+        self.networkServie = networkServie
     }
 }
 
 extension RemoteManager: RemoteManagerProtocol {
     func read() -> Observable<[ProjectDTO]> {
-        return Observable.create { emitter in
+        return Observable.create { [weak self] emitter in
             
             let request = RequestMethod.get.urlRequest
-            NetworkService.shared.request(with: request) {
+            self?.networkServie.request(with: request) {
                 switch $0 {
                 case .success(let data):
                     guard let projects = try? JSONDecoder().decode([String: ProjectDTO].self, from: data) else {
@@ -44,7 +46,7 @@ extension RemoteManager: RemoteManagerProtocol {
         let data = parse(from: projects)
         let request = RequestMethod.put(data: data).urlRequest
         
-        NetworkService.shared.request(with: request) {
+        networkServie.request(with: request) {
             switch $0 {
             case .failure(let error):
                 error.printIfDebug()

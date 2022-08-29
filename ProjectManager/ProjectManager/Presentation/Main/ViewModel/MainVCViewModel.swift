@@ -12,6 +12,7 @@ import RxGesture
 protocol MainVCViewModelInputProtocol {
     func didTapCell(_ id: UUID?)
     func didTapLoadButton()
+    func viewDidLoad(_ viewController: NetworkConditionDelegate)
 }
 
 protocol MainVCViewModelOutputProtocol {
@@ -22,6 +23,7 @@ protocol MainVCViewModelProtocol: MainVCViewModelInputProtocol, MainVCViewModelO
 
 final class MainVCViewModel: MainVCViewModelProtocol {
     private let projectUseCase: ProjectUseCaseProtocol
+    private let networkCondition: NetworkCondition
     private lazy var projects: BehaviorRelay<[ProjectEntity]> = {
         return projectUseCase.read()
     }()
@@ -31,8 +33,9 @@ final class MainVCViewModel: MainVCViewModelProtocol {
     
     var currnetProjectEntity: ProjectEntity?
     
-    init(projectUseCase: ProjectUseCaseProtocol) {
+    init(projectUseCase: ProjectUseCaseProtocol, networkCondition: NetworkCondition) {
         self.projectUseCase = projectUseCase
+        self.networkCondition = networkCondition
     }
 }
 
@@ -45,5 +48,9 @@ extension MainVCViewModel {
     
     func didTapLoadButton() {
         projectUseCase.load().disposed(by: disposeBag)
+    }
+    
+    func viewDidLoad(_ viewController: NetworkConditionDelegate) {
+        networkCondition.delegate = viewController
     }
 }

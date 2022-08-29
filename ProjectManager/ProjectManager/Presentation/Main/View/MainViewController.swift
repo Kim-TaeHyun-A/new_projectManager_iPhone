@@ -69,7 +69,7 @@ final class MainViewController: UIViewController {
         didTapAddButton()
         didTapLoadButton()
         networkConditionSign.isEnabled = false
-        NetworkCondition.sharedInstance.delegate = self
+        viewModel?.viewDidLoad(self)
     }
     
     private func didTapHistoryButton() {
