@@ -9,7 +9,7 @@ import RxCocoa
 import RxRelay
 
 protocol HistoryViewModelInputProtocol {
-    func read()
+    func viewDidLoad()
 }
 
 protocol HistoryViewModelOutputProtocol {
@@ -36,7 +36,7 @@ final class HistoryViewModel: HistoryViewModelProtocol {
 // MARK: - Output
 
 extension HistoryViewModel {
-    func read() {
+    func viewDidLoad() {
         currentHistory = history.map {
             $0.sorted { $0.date > $1.date }
         }.asDriver(onErrorJustReturn: [])

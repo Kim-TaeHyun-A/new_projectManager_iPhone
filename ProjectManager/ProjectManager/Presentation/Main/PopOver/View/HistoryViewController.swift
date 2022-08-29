@@ -29,6 +29,7 @@ final class HistoryViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        viewModel?.viewDidLoad()
         bind()
     }
     
@@ -43,7 +44,6 @@ final class HistoryViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel?.read()
         viewModel?.currentHistory?.drive(
             historyView.tableView.rx.items(
                 cellIdentifier: "\(HistoryCell.self)",
