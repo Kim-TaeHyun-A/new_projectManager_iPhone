@@ -51,7 +51,6 @@ final class DetailViewController: UIViewController {
         modalView.navigationBar.modalTitle.text = viewModel?.content?.status.string
         modalView.delegate = self
         viewModel?.delegate = self
-        setUpDisplayView()//
     }
     
     private func setUpLayout() {
