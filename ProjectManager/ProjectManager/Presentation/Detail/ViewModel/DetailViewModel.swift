@@ -6,26 +6,33 @@
 //
 
 import Foundation
+import RxRelay
 
 protocol DetailViewModelInputProtocol {
-    func read()
     func update(_ content: ProjectEntity)
+    func didTapLeftButton()
+    func didTapRightButton()
 }
 
 protocol DetailViewModelOutputProtocol {
-    var content: ProjectEntity { get }
-    var currentProjectEntity: ProjectEntity? { get }
+    var content: ProjectEntity? { get }
 }
 
 protocol DetailViewModelProtocol: DetailViewModelInputProtocol, DetailViewModelOutputProtocol { }
 
 final class DetailViewModel: DetailViewModelProtocol {
+    enum Mode {
+        case display
+        case edit
+    }
+    
     private let projectUseCase: ProjectUseCaseProtocol
+    let mode = BehaviorRelay<Mode>(value: .display)
+    weak var delegate: DetailViewModelDelegate?
     
     // MARK: - Output
     
-    var content: ProjectEntity
-    var currentProjectEntity: ProjectEntity?
+    var content: ProjectEntity?
     
     init(projectUseCase: ProjectUseCaseProtocol, content: ProjectEntity) {
         self.projectUseCase = projectUseCase
@@ -44,12 +51,46 @@ final class DetailViewModel: DetailViewModelProtocol {
 // MARK: - Input
 
 extension DetailViewModel {
-    func read() {
-        currentProjectEntity = projectUseCase.read(projectEntityID: content.id)
-    }
-    
     func update(_ content: ProjectEntity) {
+        self.content = content
         projectUseCase.update(projectEntity: content)
         updateHistory(by: content)
+    }
+    
+    func didTapLeftButton() {
+        switch mode.value {
+        case .display:
+            didTapEditButton()
+        case .edit:
+            didTapCancelButton()
+        }
+    }
+    
+    func didTapRightButton() {
+        switch mode.value {
+        case .display:
+            didTapDoneButton()
+        case .edit:
+            didTapSaveButton()
+        }
+    }
+}
+
+extension DetailViewModel {
+    private func didTapEditButton() {
+        mode.accept(.edit)
+    }
+    
+    private func didTapCancelButton() {
+        mode.accept(.display)
+    }
+    
+    private func didTapSaveButton() {
+        delegate?.save()
+        mode.accept(.display)
+    }
+    
+    private func didTapDoneButton() {
+        delegate?.close()
     }
 }

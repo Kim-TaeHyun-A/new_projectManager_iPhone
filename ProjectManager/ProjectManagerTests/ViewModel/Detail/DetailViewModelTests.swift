@@ -27,15 +27,7 @@ final class DetailViewModelTests: XCTestCase {
         sut = nil
     }
     
-    func test_read_하면_mockProjectUseCase_readWithProjectEntityIDCallCount_1증가하는지() {
-        // when
-        sut.read()
-        
-        // then
-        XCTAssertEqual(mockProjectUseCase.readWithProjectEntityIDCallCount, 1)
-    }
-    
-    func test_registrate_하면_mockProjectUseCase_updateCallCount_1증가하는지() {
+    func test_update_하면_mockProjectUseCase_updateCallCount_1증가하는지() {
         // given
         let dataToUpdate = ProjectEntity(title: "test", deadline: Date(), body: "test_body")
         
@@ -46,7 +38,7 @@ final class DetailViewModelTests: XCTestCase {
         XCTAssertEqual(mockProjectUseCase.updateCallCount, 1)
     }
     
-    func test_registrate_하면_mockProjectUseCase_createHistoryCallCount_1증가하는지() {
+    func test_update_하면_mockProjectUseCase_createHistoryCallCount_1증가하는지() {
         // given
         let dataToUpdate = ProjectEntity(title: "test", deadline: Date(), body: "test_body")
         

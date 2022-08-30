@@ -123,7 +123,7 @@ final class RegistrationViewController: UIViewController {
     }
 }
 
-extension RegistrationViewController: ModalDelegate {
+extension RegistrationViewController: ModalViewDelegate {
     func changeModalViewTopConstant(to constant: Double) {
         topConstraint?.constant = constant
         view.layoutIfNeeded()

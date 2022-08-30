@@ -7,6 +7,11 @@
 
 import Foundation
 
-protocol ModalDelegate: AnyObject {
+protocol ModalViewDelegate: AnyObject {
     func changeModalViewTopConstant(to constant: Double)
+}
+
+protocol DetailViewModelDelegate: AnyObject {
+    func close()
+    func save()
 }

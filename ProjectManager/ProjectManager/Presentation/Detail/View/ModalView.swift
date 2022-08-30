@@ -17,7 +17,7 @@ final class ModalView: UIView {
             return 0
         }
     }()
-    weak var delegate: ModalDelegate?
+    weak var delegate: ModalViewDelegate?
     
     lazy var titleTextField: UITextField = {
         let textField = UITextField()
@@ -143,14 +143,14 @@ final class ModalView: UIView {
         changeColor(isEnable)
     }
     
-    func change(_ content: ProjectEntity) -> ProjectEntity {
+    func editContent(_ content: ProjectEntity) -> ProjectEntity {
         var newContent = content
+        
         newContent.editContent(
             title: titleTextField.text,
             deadline: datePicker.date,
             body: bodyTextView.text
         )
-        
         return newContent
     }
     
