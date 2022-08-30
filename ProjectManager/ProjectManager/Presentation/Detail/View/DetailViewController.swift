@@ -53,6 +53,59 @@ final class DetailViewController: UIViewController {
         viewModel?.delegate = self
     }
     
+    private func bind() {
+        bindView()
+        bindButtons()
+    }
+    
+    private func bindView() {
+        viewModel?.mode
+            .filter { $0 == .display}
+            .bind { [weak self] _ in
+                self?.setUpDisplayView()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel?.mode
+            .filter { $0 == .edit}
+            .bind { [weak self] _ in
+                self?.setUpEditView()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindButtons() {
+        modalView.navigationBar.leftButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                self?.viewModel?.didTapLeftButton()
+            }
+            .disposed(by: disposeBag)
+        
+        modalView.navigationBar.rightButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                self?.viewModel?.didTapRightButton()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func setUpDisplayView() {
+        guard let project = viewModel?.content else {
+            return
+        }
+        modalView.navigationBar.leftButton.setTitle(Constant.edit, for: .normal)
+        modalView.navigationBar.rightButton.setTitle(Constant.done, for: .normal)
+        modalView.compose(content: project)
+        modalView.isUserInteractionEnabled(false)
+    }
+    
+    private func setUpEditView() {
+        modalView.navigationBar.leftButton.setTitle(Constant.cancel, for: .normal)
+        modalView.navigationBar.rightButton.setTitle(Constant.save, for: .normal)
+        modalView.isUserInteractionEnabled(true)
+    }
+    
     private func setUpLayout() {
         view.addSubview(modalView)
         modalView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,66 +131,6 @@ final class DetailViewController: UIViewController {
                 topConstraint
             ].compactMap { $0 })
         }
-    }
-    
-    private func bind() {
-        bindView()
-        bindButton()
-    }
-    
-    private func bindView() {
-        viewModel?.mode
-            .filter { $0 == .display}
-            .bind { [weak self] _ in
-                self?.setUpDisplayView()
-            }
-            .disposed(by: disposeBag)
-        
-        viewModel?.mode
-            .filter { $0 == .edit}
-            .bind { [weak self] _ in
-                self?.setUpEditView()
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    private func bindButton() {
-        bindLeftButton()
-        bindRightButton()
-    }
-    
-    private func bindLeftButton() {
-        modalView.navigationBar.leftButton.rx.tap
-            .asDriver()
-            .drive { [weak self] _ in
-                self?.viewModel?.didTapLeftButton()
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    private func bindRightButton() {
-        modalView.navigationBar.rightButton.rx.tap
-            .asDriver()
-            .drive { [weak self] _ in
-                self?.viewModel?.didTapRightButton()
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    private func setUpDisplayView() {
-        guard let project = viewModel?.content else {
-            return
-        }
-        modalView.navigationBar.leftButton.setTitle(Constant.edit, for: .normal)
-        modalView.navigationBar.rightButton.setTitle(Constant.done, for: .normal)
-        modalView.compose(content: project)
-        modalView.isUserInteractionEnabled(false)
-    }
-    
-    private func setUpEditView() {
-        modalView.navigationBar.leftButton.setTitle(Constant.cancel, for: .normal)
-        modalView.navigationBar.rightButton.setTitle(Constant.save, for: .normal)
-        modalView.isUserInteractionEnabled(true)
     }
 }
 
