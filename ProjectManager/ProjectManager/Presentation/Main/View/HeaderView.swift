@@ -32,7 +32,7 @@ final class HeaderView: UIView {
     private var viewModel: ProjectListViewModelProtocol?
     private let disposeBag = DisposeBag()
     
-    private let listTitleLabel: UILabel = {
+    let listTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Constant.titleFont

@@ -9,15 +9,12 @@ import UIKit
 
 private enum Constant {
     static let deselectedColor: UIColor = .black
-    static let selectedColor: UIColor = .red
+    static let selectedColor: UIColor = .systemBlue
 }
 
 final class SegmentedView: UIView {
     private var buttons: [SegmentedButton]
     private var selectedViews: [UIView]
-    var selectedTextColor: UIColor = Constant.selectedColor
-    var selectedLineColor: UIColor = Constant.selectedColor
-    
     var lineXPosition: NSLayoutConstraint?
     
     private lazy var buttonStackView: UIStackView = {
@@ -31,7 +28,7 @@ final class SegmentedView: UIView {
     
     private lazy var selectedLine: UIView = {
         let view = UIView(frame: .zero)
-        view.backgroundColor = Constant.deselectedColor
+        view.backgroundColor = Constant.selectedColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -118,9 +115,11 @@ final class SegmentedView: UIView {
         selectedViews.enumerated().forEach { (currentIndex, selectedView) in
             if index == currentIndex {
                 selectedView.isHidden = false
+                buttons[safe: index]?.setTextColor(to: Constant.selectedColor)
                 return
             }
             selectedView.isHidden = true
+            buttons[safe: currentIndex]?.setTextColor(to: Constant.deselectedColor)
         }
     }
     
@@ -141,7 +140,6 @@ final class SegmentedView: UIView {
 
 private final class SegmentedButton: UIControl {
     private let label: UIView
-    private var textColor: UIColor = Constant.deselectedColor
     
     init(label: UIView) {
         self.label = label
@@ -166,6 +164,10 @@ private final class SegmentedButton: UIControl {
     }
     
     func setTextColor(to color: UIColor) {
-        textColor = color
+        guard let label = label as? HeaderView else {
+            return
+        }
+        label.listTitleLabel.textColor = color
+        label.countLabel.backgroundColor = color
     }
 }
