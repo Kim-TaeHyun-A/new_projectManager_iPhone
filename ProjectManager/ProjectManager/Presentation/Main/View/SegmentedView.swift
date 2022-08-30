@@ -37,7 +37,6 @@ final class SegmentedView: UIView {
         self.buttons = buttons.map { SegmentedButton(label: $0) }
         self.selectedViews = views
         super.init(frame: .zero)
-        setUpButtons()
         setUpGesture()
         setUpButtonStackViewLayout()
         setUpSelectedViewsLayout()
@@ -45,20 +44,6 @@ final class SegmentedView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setUpButtons(of selectedIndex: Int = 0) {
-        var color: UIColor = Constant.deselectedColor
-        
-        buttons.enumerated().forEach { (index, button) in
-            if index == selectedIndex {
-                color = Constant.selectedColor
-            } else {
-                color = Constant.deselectedColor
-            }
-            
-            button.setTextColor(to: color)
-        }
     }
     
     private func setUpGesture() {
@@ -105,6 +90,7 @@ final class SegmentedView: UIView {
                 selectedView.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
             if index == 0 {
+                buttons[safe: index]?.setTextColor(to: Constant.selectedColor)
                 return
             }
             selectedView.isHidden = true
@@ -129,7 +115,6 @@ final class SegmentedView: UIView {
     }
     
     func slideView(of index: Int) {
-        setUpButtons(of: index)
         setUpSelectedView(of: index)
         UIView.animate(withDuration: 0.3) {
             self.updateLineLayout(of: index)
