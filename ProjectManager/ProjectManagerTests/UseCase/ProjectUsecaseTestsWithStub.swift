@@ -28,7 +28,7 @@ class ProjectUsecaseTestsWithStub: XCTestCase {
                 projectEntities: BehaviorRelay<[ProjectEntity]>(value: []),
                 persistentManager: stubPersistentManager
             ),
-            remoteRepository: RemoteRepository(networkManger: stubNetworkManager),
+            remoteRepository: RemoteRepository(remoteManger: stubNetworkManager),
             historyRepository: HistoryRepository(historyManager: stubHistoryManager)
         )
     }

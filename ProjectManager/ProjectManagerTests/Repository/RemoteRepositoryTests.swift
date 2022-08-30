@@ -17,7 +17,7 @@ final class RemoteRepositoryTests: XCTestCase {
         try super.setUpWithError()
         
         mockRemoteManager = MockRemoteManager()
-        sut = RemoteRepository(networkManger: mockRemoteManager)
+        sut = RemoteRepository(remoteManger: mockRemoteManager)
     }
     
     override func tearDownWithError() throws {
