@@ -97,6 +97,14 @@ final class SegmentedView: UIView {
         }
     }
     
+    private func slideView(of index: Int) {
+        setUpSelectedView(of: index)
+        UIView.animate(withDuration: 0.3) {
+            self.updateLineLayout(of: index)
+            self.layoutIfNeeded()
+        }
+    }
+    
     private func setUpSelectedView(of index: Int) {
         selectedViews.enumerated().forEach { (currentIndex, selectedView) in
             if index == currentIndex {
@@ -112,14 +120,6 @@ final class SegmentedView: UIView {
     private func updateLineLayout(of index: Int = 0) {
         let newPosition = Int(frame.width) / buttons.count * index
         lineXPosition?.constant = CGFloat(newPosition)
-    }
-    
-    func slideView(of index: Int) {
-        setUpSelectedView(of: index)
-        UIView.animate(withDuration: 0.3) {
-            self.updateLineLayout(of: index)
-            self.layoutIfNeeded()
-        }
     }
 }
 
