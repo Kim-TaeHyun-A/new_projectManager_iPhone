@@ -34,9 +34,7 @@ final class HeaderView: UIView {
     
     let listTitleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Constant.titleFont
-        label.sizeToFit()
         return label
     }()
     
@@ -53,11 +51,16 @@ final class HeaderView: UIView {
         return label
     }()
     
+    let baseStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 5
+        return stackView
+    }()
+    
     init(viewModel: ProjectListViewModelProtocol, status: ProjectStatus) {
         self.viewModel = viewModel
-        
         super.init(frame: .zero)
-        
         setUpIsInteractive()
         setUpLayout()
         bind()
@@ -76,20 +79,14 @@ final class HeaderView: UIView {
     }
     
     private func setUpLayout() {
-        addSubview(listTitleLabel)
-        addSubview(countLabel)
+        addSubview(baseStackView)
+        baseStackView.addArrangedSubview(listTitleLabel)
+        baseStackView.addArrangedSubview(countLabel)
         
         NSLayoutConstraint.activate([
-            listTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            listTitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            listTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10)
-        ])
-        
-        NSLayoutConstraint.activate([
-            countLabel.topAnchor.constraint(equalTo: listTitleLabel.topAnchor, constant: 2),
-            countLabel.bottomAnchor.constraint(equalTo: listTitleLabel.bottomAnchor, constant: -2),
-            countLabel.leadingAnchor.constraint(equalTo: listTitleLabel.trailingAnchor, constant: 10),
-            countLabel.widthAnchor.constraint(equalTo: countLabel.heightAnchor, constant: 2)
+            baseStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            baseStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            countLabel.widthAnchor.constraint(equalTo: countLabel.heightAnchor)
         ])
     }
     

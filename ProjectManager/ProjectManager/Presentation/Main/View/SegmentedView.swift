@@ -16,6 +16,7 @@ final class SegmentedView: UIView {
     private var buttons: [SegmentedButton]
     private var selectedViews: [UIView]
     var lineXPosition: NSLayoutConstraint?
+    var lineWidth: NSLayoutConstraint?
     
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: buttons)
@@ -61,10 +62,16 @@ final class SegmentedView: UIView {
         }
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        lineWidth?.constant = buttons[safe: 0]?.frame.width ?? 0
+    }
+    
     private func setUpButtonStackViewLayout() {
         addSubview(buttonStackView)
         addSubview(selectedLine)
         lineXPosition = selectedLine.leadingAnchor.constraint(equalTo: buttonStackView.leadingAnchor)
+        lineWidth = selectedLine.widthAnchor.constraint(equalToConstant: 0)
 
         NSLayoutConstraint.activate([
             buttonStackView.topAnchor.constraint(equalTo: topAnchor),
@@ -73,10 +80,9 @@ final class SegmentedView: UIView {
             buttonStackView.heightAnchor.constraint(equalToConstant: 50),
             selectedLine.heightAnchor.constraint(equalToConstant: 2),
             selectedLine.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor),
-            selectedLine.widthAnchor.constraint(equalToConstant: 100),
+            lineWidth,
             lineXPosition
         ].compactMap { $0 })
-        updateLineLayout()
     }
     
     private func setUpSelectedViewsLayout() {
@@ -118,8 +124,10 @@ final class SegmentedView: UIView {
     }
     
     private func updateLineLayout(of index: Int = 0) {
-        let newPosition = Int(frame.width) / buttons.count * index
-        lineXPosition?.constant = CGFloat(newPosition)
+        let newPosition = buttons[safe: index]?.frame.minX
+        
+        lineWidth?.constant = buttons[safe: index]?.frame.width ?? 0
+        lineXPosition?.constant = CGFloat(newPosition ?? 0)
     }
 }
 
