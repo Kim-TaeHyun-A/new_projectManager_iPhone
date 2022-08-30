@@ -13,5 +13,5 @@ protocol ModalViewDelegate: AnyObject {
 
 protocol DetailViewModelDelegate: AnyObject {
     func close()
-    func save()
+    func getEdittedContent() -> ProjectEntity?
 }

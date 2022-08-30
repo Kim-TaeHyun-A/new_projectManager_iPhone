@@ -9,7 +9,6 @@ import Foundation
 import RxRelay
 
 protocol DetailViewModelInputProtocol {
-    func update(_ content: ProjectEntity)
     func didTapLeftButton()
     func didTapRightButton()
 }
@@ -38,25 +37,11 @@ final class DetailViewModel: DetailViewModelProtocol {
         self.projectUseCase = projectUseCase
         self.content = content
     }
-    
-    private func updateHistory(by content: ProjectEntity) {
-        let historyEntity = HistoryEntity(editedType: .edit,
-                                          title: content.title,
-                                          date: Date().timeIntervalSince1970)
-        
-        projectUseCase.createHistory(historyEntity: historyEntity)
-    }
 }
 
 // MARK: - Input
 
 extension DetailViewModel {
-    func update(_ content: ProjectEntity) {
-        self.content = content
-        projectUseCase.update(projectEntity: content)
-        updateHistory(by: content)
-    }
-    
     func didTapLeftButton() {
         switch mode.value {
         case .display:
@@ -86,11 +71,30 @@ extension DetailViewModel {
     }
     
     private func didTapSaveButton() {
-        delegate?.save()
+        guard let newContent = delegate?.getEdittedContent() else {
+            return
+        }
+        update(newContent)
         mode.accept(.display)
     }
     
     private func didTapDoneButton() {
         delegate?.close()
+    }
+}
+
+extension DetailViewModel {
+    private func update(_ content: ProjectEntity) {
+        self.content = content
+        projectUseCase.update(projectEntity: content)
+        updateHistory(by: content)
+    }
+    
+    private func updateHistory(by content: ProjectEntity) {
+        let historyEntity = HistoryEntity(editedType: .edit,
+                                          title: content.title,
+                                          date: Date().timeIntervalSince1970)
+        
+        projectUseCase.createHistory(historyEntity: historyEntity)
     }
 }

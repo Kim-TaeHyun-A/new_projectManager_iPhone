@@ -10,8 +10,9 @@ import XCTest
 
 // behavior verification with Mock
 final class DetailViewModelTests: XCTestCase {
-    var sut: DetailViewModelProtocol!
+    var sut: DetailViewModel!
     var mockProjectUseCase: MockProjectUseCase!
+    var stubDetailViewModelDelegate = StubDetailViewModelDelegate()
     
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -27,25 +28,37 @@ final class DetailViewModelTests: XCTestCase {
         sut = nil
     }
     
-    func test_update_하면_mockProjectUseCase_updateCallCount_1증가하는지() {
+    func test_didTapRightButton_누르고_editMode면_createHistoryCallCount_1증가하는지() {
         // given
-        let dataToUpdate = ProjectEntity(title: "test", deadline: Date(), body: "test_body")
+        sut.didTapLeftButton()
+        sut.delegate = stubDetailViewModelDelegate
         
         // when
-        sut.update(dataToUpdate)
+        sut.didTapRightButton()
+        
+        // then
+        XCTAssertEqual(mockProjectUseCase.createHistoryCallCount, 1)
+    }
+    
+    func test_didTapRightButton_누르고_editMode면_updateCallCount_1증가하는지() {
+        // given
+        sut.didTapLeftButton()
+        sut.delegate = stubDetailViewModelDelegate
+        
+        // when
+        sut.didTapRightButton()
         
         // then
         XCTAssertEqual(mockProjectUseCase.updateCallCount, 1)
     }
+}
+
+final class StubDetailViewModelDelegate: DetailViewModelDelegate {
+    func close() {
+        // empty
+    }
     
-    func test_update_하면_mockProjectUseCase_createHistoryCallCount_1증가하는지() {
-        // given
-        let dataToUpdate = ProjectEntity(title: "test", deadline: Date(), body: "test_body")
-        
-        // when
-        sut.update(dataToUpdate)
-        
-        // then
-        XCTAssertEqual(mockProjectUseCase.createHistoryCallCount, 1)
+    func getEdittedContent() -> ProjectEntity? {
+        return ProjectEntity(title: "test", deadline: Date(), body: "body_test")
     }
 }

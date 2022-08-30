@@ -146,12 +146,12 @@ extension DetailViewController: DetailViewModelDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    func save() {
+    func getEdittedContent() -> ProjectEntity? {
         guard let content = viewModel?.content else {
-            return
+            return nil
         }
         
         let newContent = modalView.editContent(content)
-        viewModel?.update(newContent)
+        return newContent
     }
 }
