@@ -111,7 +111,7 @@ final class SegmentedView: UIView {
         }
     }
     
-    private func setUpSelectedViewLayout(of index: Int) {
+    private func setUpSelectedView(of index: Int) {
         selectedViews.enumerated().forEach { (currentIndex, selectedView) in
             if index == currentIndex {
                 selectedView.isHidden = false
@@ -130,7 +130,7 @@ final class SegmentedView: UIView {
     
     func slideView(of index: Int) {
         setUpButtons(of: index)
-        setUpSelectedViewLayout(of: index)
+        setUpSelectedView(of: index)
         UIView.animate(withDuration: 0.3) {
             self.updateLineLayout(of: index)
             self.layoutIfNeeded()
