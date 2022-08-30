@@ -43,7 +43,7 @@ final class SegmentedView: UIView {
         setUpButtons()
         setUpGesture()
         setUpButtonStackViewLayout()
-        setUpSelectedViewLayout()
+        setUpSelectedViewsLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -97,19 +97,31 @@ final class SegmentedView: UIView {
         updateLineLayout()
     }
     
-    private func setUpSelectedViewLayout(of index: Int = 0) {
-        guard let selectedView = selectedViews[safe: index] else {
-            return
+    private func setUpSelectedViewsLayout() {
+        selectedViews.enumerated().forEach { (index, selectedView) in
+            addSubview(selectedView)
+            selectedView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                selectedView.topAnchor.constraint(equalTo: selectedLine.bottomAnchor),
+                selectedView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                selectedView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                selectedView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ])
+            if index == 0 {
+                return
+            }
+            selectedView.isHidden = true
         }
-        
-        addSubview(selectedView)
-        selectedView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            selectedView.topAnchor.constraint(equalTo: selectedLine.bottomAnchor),
-            selectedView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            selectedView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            selectedView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+    }
+    
+    private func setUpSelectedViewLayout(of index: Int) {
+        selectedViews.enumerated().forEach { (currentIndex, selectedView) in
+            if index == currentIndex {
+                selectedView.isHidden = false
+                return
+            }
+            selectedView.isHidden = true
+        }
     }
     
     private func updateLineLayout(of index: Int = 0) {
