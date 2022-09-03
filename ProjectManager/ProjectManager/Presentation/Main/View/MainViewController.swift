@@ -199,12 +199,12 @@ extension MainViewController: ProjectListViewDelegate {
 
 extension MainViewController: NetworkConditionDelegate {
     func applyNetworkEnable() {
-        navigationItem.rightBarButtonItems?[2].image = UIImage(systemName: ImageConstant.connected)?
+        navigationItem.rightBarButtonItems?[safe: 2]?.image = UIImage(systemName: ImageConstant.connected)?
             .withTintColor(.systemBlue, renderingMode: .alwaysOriginal)
     }
     
     func applyNetworkUnable() {
-        navigationItem.rightBarButtonItems?[2].image = UIImage(systemName: ImageConstant.disconnected)?
+        navigationItem.rightBarButtonItems?[safe: 2]?.image = UIImage(systemName: ImageConstant.disconnected)?
             .withTintColor(.systemRed, renderingMode: .alwaysOriginal)
     }
 }
