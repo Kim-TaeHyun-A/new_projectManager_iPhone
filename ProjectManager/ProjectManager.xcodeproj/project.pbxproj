@@ -68,6 +68,7 @@
 		0EA304CF28BD3DDD00156BD4 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */; };
 		0EA304D128BD57FC00156BD4 /* LogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D028BD57FC00156BD4 /* LogProtocol.swift */; };
 		0EA304D328BD592D00156BD4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D228BD592D00156BD4 /* NetworkError.swift */; };
+		0EA304D528C3B39400156BD4 /* ToastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D428C3B39400156BD4 /* ToastDelegate.swift */; };
 		0EA67EB82873330100E15093 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EB72873330100E15093 /* ProjectCell.swift */; };
 		0EA67EBC287476B300E15093 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBB287476B300E15093 /* RegistrationViewController.swift */; };
 		0EA67EBE2874789700E15093 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBD2874789700E15093 /* ModalView.swift */; };
@@ -162,6 +163,7 @@
 		0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 		0EA304D028BD57FC00156BD4 /* LogProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogProtocol.swift; sourceTree = "<group>"; };
 		0EA304D228BD592D00156BD4 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		0EA304D428C3B39400156BD4 /* ToastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastDelegate.swift; sourceTree = "<group>"; };
 		0EA67EB72873330100E15093 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		0EA67EBB287476B300E15093 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		0EA67EBD2874789700E15093 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				0EA304D028BD57FC00156BD4 /* LogProtocol.swift */,
+				0EA304D428C3B39400156BD4 /* ToastDelegate.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 				0EB71CDE289377DB0025F66C /* HistoryManager.swift in Sources */,
 				0EA304CB28BD277900156BD4 /* NetworkService.swift in Sources */,
 				0EA304BF28B94FC700156BD4 /* BaseView.swift in Sources */,
+				0EA304D528C3B39400156BD4 /* ToastDelegate.swift in Sources */,
 				0EA67EC928752A0F00E15093 /* ProjectEntity.swift in Sources */,
 				0EA67ED0287674D000E15093 /* ProjectStackView.swift in Sources */,
 				033294B2287C713800EE7CBE /* PopOverViewController.swift in Sources */,

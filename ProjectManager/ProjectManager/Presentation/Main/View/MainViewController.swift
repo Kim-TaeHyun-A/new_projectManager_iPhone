@@ -14,6 +14,10 @@ private enum ImageConstant {
     static let load = "icloud.and.arrow.down"
 }
 
+private enum ToastConstant {
+    static let width: CGFloat = 150
+}
+
 final class MainViewController: UIViewController {
     private let mainView: MainView!
     private var viewModel: MainVCViewModelProtocol?
@@ -206,5 +210,24 @@ extension MainViewController: NetworkConditionDelegate {
     func applyNetworkUnable() {
         navigationItem.rightBarButtonItems?[safe: 2]?.image = UIImage(systemName: ImageConstant.disconnected)?
             .withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+    }
+}
+
+extension MainViewController: ToastDelegte {
+    func show(message: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let view = self?.view else { return }
+            let position = CGRect(x: view.frame.size.width / 2 - ToastConstant.width / 2,
+                                  y: view.frame.size.height - 100,
+                                  width: ToastConstant.width, height: 35)
+            
+            guard let label = self?.makeLabel(frame: position, message: message)
+            else { return }
+            
+            view.addSubview(label)
+            UIView.animate(withDuration: 2,
+                           animations: { label.alpha = 0 },
+                           completion: { _ in label.removeFromSuperview() })
+        }
     }
 }
