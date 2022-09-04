@@ -3,6 +3,10 @@
 
 > 프로젝트 기간 2022-07-04 ~
 
+![Sep-05-2022 07-43-07](https://user-images.githubusercontent.com/70807352/188336308-df730dc4-3681-4630-b3b3-cfeff788729f.gif)![Sep-05-2022 07-44-29](https://user-images.githubusercontent.com/70807352/188336335-55e9835f-ea31-40a9-ba3b-e7679c6666e5.gif)![Sep-05-2022 07-45-06](https://user-images.githubusercontent.com/70807352/188336343-db4dcd16-46ec-4e33-b489-e4df7e845957.gif)
+
+
+
 ### iPad app 
 [바로가기](https://github.com/Kim-TaeHyun-A/ios-project-manager)
  
