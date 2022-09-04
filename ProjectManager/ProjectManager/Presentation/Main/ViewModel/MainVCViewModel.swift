@@ -16,7 +16,7 @@ protocol MainVCViewModelInputProtocol {
 }
 
 protocol MainVCViewModelOutputProtocol {
-    var currnetProjectEntity: ProjectEntity? { get }
+    var currentProjectEntity: ProjectEntity? { get }
 }
 
 protocol MainVCViewModelProtocol: MainVCViewModelInputProtocol, MainVCViewModelOutputProtocol { }
@@ -31,7 +31,7 @@ final class MainVCViewModel: MainVCViewModelProtocol {
     
     // MARK: - Output
     
-    var currnetProjectEntity: ProjectEntity?
+    var currentProjectEntity: ProjectEntity?
     
     init(projectUseCase: ProjectUseCaseProtocol, networkCondition: NetworkCondition) {
         self.projectUseCase = projectUseCase
@@ -43,7 +43,7 @@ final class MainVCViewModel: MainVCViewModelProtocol {
 
 extension MainVCViewModel {
     func didTapCell(_ id: UUID?) {
-        currnetProjectEntity = projectUseCase.read(projectEntityID: id)
+        currentProjectEntity = projectUseCase.read(projectEntityID: id)
     }
     
     func didTapLoadButton() {

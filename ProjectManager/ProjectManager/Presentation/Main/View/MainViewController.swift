@@ -174,7 +174,7 @@ extension MainViewController: ProjectListViewDelegate {
     }
     
     private func presentViewController(cell: ProjectCell) {
-        guard let content = viewModel?.currnetProjectEntity,
+        guard let content = viewModel?.currentProjectEntity,
               let next = sceneDIContainer?.makeDetailViewController(with: content) else {
             return
         }
