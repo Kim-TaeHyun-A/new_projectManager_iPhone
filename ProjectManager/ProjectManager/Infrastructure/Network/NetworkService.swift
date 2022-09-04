@@ -13,7 +13,7 @@ protocol NetworkServiceProtocol {
 }
 
 final class NetworkService: NetworkServiceProtocol {
-    var delegate: ToastDelegte?
+    var delegate: ToastDelegate?
     
     init() {
         RequestMethod.url = EntryPoint.database(child: "user").url

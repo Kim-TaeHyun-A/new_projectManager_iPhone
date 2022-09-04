@@ -213,7 +213,7 @@ extension MainViewController: NetworkConditionDelegate {
     }
 }
 
-extension MainViewController: ToastDelegte {
+extension MainViewController: ToastDelegate {
     func show(message: String) {
         DispatchQueue.main.async { [weak self] in
             guard let view = self?.view else { return }

@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol ToastDelegte: UIViewController {
+protocol ToastDelegate: UIViewController {
     func show(message: String)
 }
 
-extension ToastDelegte {
+extension ToastDelegate {
     func makeLabel(frame: CGRect, message: String) -> UILabel {
         let label = UILabel(frame: frame)
         label.backgroundColor = .systemGray3
