@@ -5,12 +5,19 @@
 //  Created by Tiana on 2022/08/27.
 //
 
-final class ListView: ProjectListViewProtocol {
+import UIKit
+
+final class ListView: UIView, ProjectListViewProtocol {
     let headerView: HeaderView
     let tableView: ProjectTableView
     
     init(with viewModel: ProjectListViewModelProtocol) {
         self.headerView = HeaderView(viewModel: viewModel, status: viewModel.status)
         self.tableView = ProjectTableView(viewModel: viewModel)
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

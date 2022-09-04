@@ -36,11 +36,6 @@ final class BaseStackView: UIStackView, MainViewProtocol {
     }
     
     private func layout() {
-        projects.forEach {
-            guard let view = $0 as? UIView else {
-                return
-            }
-            addArrangedSubview(view)
-        }
+        projects.forEach { addArrangedSubview($0) }
     }
 }

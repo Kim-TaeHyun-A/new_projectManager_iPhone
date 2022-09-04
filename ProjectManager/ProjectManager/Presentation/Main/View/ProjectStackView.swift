@@ -26,5 +26,9 @@ final class ProjectStackView: UIStackView, ProjectListViewProtocol {
         axis = .vertical
         addArrangedSubview(headerView)
         addArrangedSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            headerView.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
 }

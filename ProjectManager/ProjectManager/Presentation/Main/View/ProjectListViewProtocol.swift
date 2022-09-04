@@ -5,7 +5,9 @@
 //  Created by Tiana on 2022/08/27.
 //
 
-protocol ProjectListViewProtocol {
+import UIKit
+
+protocol ProjectListViewProtocol: UIView {
     var headerView: HeaderView { get}
     var tableView: ProjectTableView { get }
 }
