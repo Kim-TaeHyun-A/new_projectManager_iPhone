@@ -64,7 +64,7 @@
 		0EA304C528B951FD00156BD4 /* ProjectListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C428B951FD00156BD4 /* ProjectListViewProtocol.swift */; };
 		0EA304C728B9648500156BD4 /* PopOverAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C628B9648500156BD4 /* PopOverAlertController.swift */; };
 		0EA304CB28BD277900156BD4 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304CA28BD277900156BD4 /* NetworkService.swift */; };
-		0EA304CD28BD287500156BD4 /* EntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304CC28BD287500156BD4 /* EntryPoint.swift */; };
+		0EA304CD28BD287500156BD4 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304CC28BD287500156BD4 /* EndPoint.swift */; };
 		0EA304CF28BD3DDD00156BD4 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */; };
 		0EA304D128BD57FC00156BD4 /* LogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D028BD57FC00156BD4 /* LogProtocol.swift */; };
 		0EA304D328BD592D00156BD4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D228BD592D00156BD4 /* NetworkError.swift */; };
@@ -159,7 +159,7 @@
 		0EA304C428B951FD00156BD4 /* ProjectListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewProtocol.swift; sourceTree = "<group>"; };
 		0EA304C628B9648500156BD4 /* PopOverAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverAlertController.swift; sourceTree = "<group>"; };
 		0EA304CA28BD277900156BD4 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		0EA304CC28BD287500156BD4 /* EntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPoint.swift; sourceTree = "<group>"; };
+		0EA304CC28BD287500156BD4 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 		0EA304D028BD57FC00156BD4 /* LogProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogProtocol.swift; sourceTree = "<group>"; };
 		0EA304D228BD592D00156BD4 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -447,7 +447,7 @@
 			children = (
 				0E02C730288975D200522622 /* NetworkCondition.swift */,
 				0EA304CA28BD277900156BD4 /* NetworkService.swift */,
-				0EA304CC28BD287500156BD4 /* EntryPoint.swift */,
+				0EA304CC28BD287500156BD4 /* EndPoint.swift */,
 				0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */,
 				0EA304D228BD592D00156BD4 /* NetworkError.swift */,
 			);
@@ -856,7 +856,7 @@
 				C7431F0625F51E1D0094C4CF /* AppDelegate.swift in Sources */,
 				0E0AD6F528AF855700A5ADBD /* ProjectListViewModel.swift in Sources */,
 				0EA67EBE2874789700E15093 /* ModalView.swift in Sources */,
-				0EA304CD28BD287500156BD4 /* EntryPoint.swift in Sources */,
+				0EA304CD28BD287500156BD4 /* EndPoint.swift in Sources */,
 				0E02C733288EFB1900522622 /* HistoryViewModel.swift in Sources */,
 				0EA304D328BD592D00156BD4 /* NetworkError.swift in Sources */,
 				03BECD342892C55000BED881 /* ModalDelegate.swift in Sources */,

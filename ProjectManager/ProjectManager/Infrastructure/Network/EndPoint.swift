@@ -1,5 +1,5 @@
 //
-//  EntryPoint.swift
+//  EndPoint.swift
 //  ProjectManager
 //
 //  Created by Tiana on 2022/08/30.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EntryPoint {
+enum EndPoint {
     case database(child: String)
     
     static let hostURL = "https://new-projectmanager-default-rtdb.firebaseio.com/"
@@ -15,7 +15,7 @@ enum EntryPoint {
     var url: URL? {
         switch self {
         case .database(let child):
-            return URL(string: EntryPoint.hostURL + "\(child).json")
+            return URL(string: EndPoint.hostURL + "\(child).json")
         }
     }
 }

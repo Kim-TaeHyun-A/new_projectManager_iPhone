@@ -16,7 +16,7 @@ final class NetworkService: NetworkServiceProtocol {
     weak var delegate: ToastDelegate?
     
     init() {
-        RequestMethod.url = EntryPoint.database(child: "user").url
+        RequestMethod.url = EndPoint.database(child: "user").url
     }
     
     func request(with request: URLRequest?, completion: @escaping (Result<Data, NetworkError>) -> Void) -> URLSessionDataTask? {
