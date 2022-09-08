@@ -59,7 +59,7 @@
 		0EA304BB28B8EE8800156BD4 /* ProjectTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304BA28B8EE8800156BD4 /* ProjectTableView.swift */; };
 		0EA304BD28B94F8600156BD4 /* BaseStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304BC28B94F8600156BD4 /* BaseStackView.swift */; };
 		0EA304BF28B94FC700156BD4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304BE28B94FC700156BD4 /* BaseView.swift */; };
-		0EA304C128B9500500156BD4 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C028B9500500156BD4 /* ListView.swift */; };
+		0EA304C128B9500500156BD4 /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C028B9500500156BD4 /* ProjectListView.swift */; };
 		0EA304C328B951CA00156BD4 /* MainViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C228B951CA00156BD4 /* MainViewProtocol.swift */; };
 		0EA304C528B951FD00156BD4 /* ProjectListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C428B951FD00156BD4 /* ProjectListViewProtocol.swift */; };
 		0EA304C728B9648500156BD4 /* PopOverAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304C628B9648500156BD4 /* PopOverAlertController.swift */; };
@@ -154,7 +154,7 @@
 		0EA304BA28B8EE8800156BD4 /* ProjectTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableView.swift; sourceTree = "<group>"; };
 		0EA304BC28B94F8600156BD4 /* BaseStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStackView.swift; sourceTree = "<group>"; };
 		0EA304BE28B94FC700156BD4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		0EA304C028B9500500156BD4 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		0EA304C028B9500500156BD4 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
 		0EA304C228B951CA00156BD4 /* MainViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
 		0EA304C428B951FD00156BD4 /* ProjectListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewProtocol.swift; sourceTree = "<group>"; };
 		0EA304C628B9648500156BD4 /* PopOverAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverAlertController.swift; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 				0EA304B628B7BD6F00156BD4 /* SegmentedView.swift */,
 				0EA304C428B951FD00156BD4 /* ProjectListViewProtocol.swift */,
 				0EA67ECF287674D000E15093 /* ProjectStackView.swift */,
-				0EA304C028B9500500156BD4 /* ListView.swift */,
+				0EA304C028B9500500156BD4 /* ProjectListView.swift */,
 				0E0AD6F828B00E2300A5ADBD /* HeaderView.swift */,
 				0EA304BA28B8EE8800156BD4 /* ProjectTableView.swift */,
 				0EA67EB72873330100E15093 /* ProjectCell.swift */,
@@ -863,7 +863,7 @@
 				0EA304D128BD57FC00156BD4 /* LogProtocol.swift in Sources */,
 				C7431F0825F51E1D0094C4CF /* SceneDelegate.swift in Sources */,
 				03F0EF8F288EDAF300FBC7EB /* HistoryViewController.swift in Sources */,
-				0EA304C128B9500500156BD4 /* ListView.swift in Sources */,
+				0EA304C128B9500500156BD4 /* ProjectListView.swift in Sources */,
 				0EA304C728B9648500156BD4 /* PopOverAlertController.swift in Sources */,
 				0E34F04C287C7C5600438285 /* DateFormatter.swift in Sources */,
 				0EA304BB28B8EE8800156BD4 /* ProjectTableView.swift in Sources */,

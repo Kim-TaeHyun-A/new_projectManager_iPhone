@@ -16,7 +16,7 @@ final class BaseView: UIView, MainViewProtocol {
     }()
     
     init(viewModels: [ProjectListViewModelProtocol]) {
-        self.projects = viewModels.map { ListView(with: $0) }
+        self.projects = viewModels.map { ProjectListView(with: $0) }
         super.init(frame: .zero)
         layout()
     }

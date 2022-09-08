@@ -1,5 +1,5 @@
 //
-//  ListView.swift
+//  ProjectListView.swift
 //  ProjectManager
 //
 //  Created by Tiana on 2022/08/27.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ListView: UIView, ProjectListViewProtocol {
+final class ProjectListView: UIView, ProjectListViewProtocol {
     let headerView: HeaderView
     let tableView: ProjectTableView
     
