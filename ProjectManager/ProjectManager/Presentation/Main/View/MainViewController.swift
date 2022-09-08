@@ -160,7 +160,7 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: ProjectListViewDelegate {
     func didTap(cell: ProjectCell) {
-        viewModel?.didTapCell(cell.contentID)
+        viewModel?.presentCellDetail(cell.contentID)
         presentViewController(cell: cell)
     }
     

@@ -14,7 +14,6 @@ final class SceneDIContainer {
     }
     
     private let dependencies: Dependencies
-
     lazy var projectUseCase = makeProjectUseCase()
     
     init(dependencies: Dependencies) {

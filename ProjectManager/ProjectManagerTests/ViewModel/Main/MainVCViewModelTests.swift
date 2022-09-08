@@ -29,7 +29,7 @@ final class MainVCViewModelTests: XCTestCase {
     
     func test_didTapCell_id넣으면_mockProjectUseCase_readWithProjectEntityIDCallCount_1증가하는지() {
         // when
-        sut.didTapCell(UUID())
+        sut.presentCellDetail(UUID())
         
         // then
         XCTAssertEqual(mockProjectUseCase.readWithProjectEntityIDCallCount, 1)
