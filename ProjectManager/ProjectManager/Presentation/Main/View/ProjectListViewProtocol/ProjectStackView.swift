@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - iPad
+
 final class ProjectStackView: UIStackView, ProjectListViewProtocol {
     let headerView: HeaderView
     let tableView: ProjectTableView

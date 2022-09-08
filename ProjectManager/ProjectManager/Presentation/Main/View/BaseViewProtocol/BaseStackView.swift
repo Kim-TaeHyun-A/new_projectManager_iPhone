@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class BaseStackView: UIStackView, MainViewProtocol {
+// MARK: - iPad
+
+final class BaseStackView: UIStackView, BaseViewProtocol {
     private var viewModels: [ProjectListViewModelProtocol]
     lazy var projects: [ProjectListViewProtocol] = {
         return viewModels.map {

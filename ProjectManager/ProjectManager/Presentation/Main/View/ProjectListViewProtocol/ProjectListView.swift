@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - iPhone
+
 final class ProjectListView: UIView, ProjectListViewProtocol {
     let headerView: HeaderView
     let tableView: ProjectTableView

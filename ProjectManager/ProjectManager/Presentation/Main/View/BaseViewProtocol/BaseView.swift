@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class BaseView: UIView, MainViewProtocol {
+// MARK: - iPhone
+
+final class BaseView: UIView, BaseViewProtocol {
     var projects: [ProjectListViewProtocol]
     lazy var segmentedView: SegmentedView = {
         let buttons = projects.map { $0.headerView}

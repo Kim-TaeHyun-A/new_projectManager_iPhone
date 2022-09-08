@@ -8,7 +8,7 @@
 import RxCocoa
 
 final class MainView: UIView {
-    let baseView: MainViewProtocol
+    let baseView: BaseViewProtocol
     
     init(projectListViewModels: [ProjectListViewModelProtocol]) {
         let viewModels: [ProjectListViewModelProtocol] = ProjectStatus.allCases

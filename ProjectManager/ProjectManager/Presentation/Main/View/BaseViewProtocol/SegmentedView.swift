@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - iPhone
+
 private enum Constant {
     static let deselectedColor: UIColor = .black
     static let selectedColor: UIColor = .systemBlue
