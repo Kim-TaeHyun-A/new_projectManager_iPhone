@@ -7,7 +7,7 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    private let networkService = NetworkService()
+    private let networkService = NetworkServiceAF()
     private lazy var dependencies = SceneDIContainer.Dependencies(networkService: networkService,
                                                                     networkCondition: NetworkCondition())
     private lazy var sceneDIContainer = SceneDIContainer(dependencies: dependencies)

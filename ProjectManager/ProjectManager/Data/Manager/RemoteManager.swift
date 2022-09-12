@@ -24,9 +24,7 @@ final class RemoteManager {
 extension RemoteManager: RemoteManagerProtocol {
     func read() -> Observable<[ProjectDTO]> {
         return Observable.create { [weak self] emitter in
-            
-            let request = RequestMethod.get.urlRequest
-            self?.networkServie.request(with: request) {
+            self?.networkServie.request(with: EndPoint.database(child: "user").url, method: .get) {
                 switch $0 {
                 case .success(let data):
                     guard let projects = try? JSONDecoder().decode([String: ProjectDTO].self, from: data) else {
@@ -44,9 +42,7 @@ extension RemoteManager: RemoteManagerProtocol {
     
     func update(projects: [ProjectDTO]) {
         let data = parse(from: projects)
-        let request = RequestMethod.put(data: data).urlRequest
-        
-        networkServie.request(with: request) {
+        networkServie.request(with: EndPoint.database(child: "user").url, method: .put(data: data)) {
             switch $0 {
             case .failure(let error):
                 error.printIfDebug()
@@ -58,7 +54,7 @@ extension RemoteManager: RemoteManagerProtocol {
 }
 
 extension RemoteManager {
-    private func parse(from projects: [ProjectDTO]) -> Data? {
+    private func parse(from projects: [ProjectDTO]) -> [String: [String: String]] {
         var value: [String: [String: String]] = [:]
         projects.forEach { value[$0.id] = ["id": $0.id,
                                            "status": $0.status,
@@ -66,10 +62,6 @@ extension RemoteManager {
                                            "deadline": $0.deadline,
                                            "body": $0.body] }
         
-        guard let data = try? JSONEncoder().encode(value) else {
-            NetworkError.encodeError.printIfDebug()
-            return nil
-        }
-        return data
+        return value
     }
 }
