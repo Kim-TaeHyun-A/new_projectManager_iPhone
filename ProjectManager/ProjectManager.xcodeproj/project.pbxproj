@@ -69,6 +69,8 @@
 		0EA304D128BD57FC00156BD4 /* LogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D028BD57FC00156BD4 /* LogProtocol.swift */; };
 		0EA304D328BD592D00156BD4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D228BD592D00156BD4 /* NetworkError.swift */; };
 		0EA304D528C3B39400156BD4 /* ToastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304D428C3B39400156BD4 /* ToastDelegate.swift */; };
+		0EA304F128CF744200156BD4 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304F028CF744200156BD4 /* NetworkServiceProtocol.swift */; };
+		0EA304F328CF74B800156BD4 /* NetworkServiceAF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA304F228CF74B800156BD4 /* NetworkServiceAF.swift */; };
 		0EA67EB82873330100E15093 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EB72873330100E15093 /* ProjectCell.swift */; };
 		0EA67EBC287476B300E15093 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBB287476B300E15093 /* RegistrationViewController.swift */; };
 		0EA67EBE2874789700E15093 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA67EBD2874789700E15093 /* ModalView.swift */; };
@@ -167,6 +169,8 @@
 		0EA304D028BD57FC00156BD4 /* LogProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogProtocol.swift; sourceTree = "<group>"; };
 		0EA304D228BD592D00156BD4 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0EA304D428C3B39400156BD4 /* ToastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastDelegate.swift; sourceTree = "<group>"; };
+		0EA304F028CF744200156BD4 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		0EA304F228CF74B800156BD4 /* NetworkServiceAF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceAF.swift; sourceTree = "<group>"; };
 		0EA67EB72873330100E15093 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		0EA67EBB287476B300E15093 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		0EA67EBD2874789700E15093 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -447,7 +451,7 @@
 			isa = PBXGroup;
 			children = (
 				0E02C730288975D200522622 /* NetworkCondition.swift */,
-				0EA304CA28BD277900156BD4 /* NetworkService.swift */,
+				0EA304F428CF753800156BD4 /* NetworkServiceProtocol */,
 				0EA304CC28BD287500156BD4 /* EndPoint.swift */,
 				0EA304CE28BD3DDD00156BD4 /* RequestMethod.swift */,
 				0EA304D228BD592D00156BD4 /* NetworkError.swift */,
@@ -474,6 +478,16 @@
 				0EA304C028B9500500156BD4 /* ProjectListView.swift */,
 			);
 			path = ProjectListViewProtocol;
+			sourceTree = "<group>";
+		};
+		0EA304F428CF753800156BD4 /* NetworkServiceProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				0EA304F028CF744200156BD4 /* NetworkServiceProtocol.swift */,
+				0EA304CA28BD277900156BD4 /* NetworkService.swift */,
+				0EA304F228CF74B800156BD4 /* NetworkServiceAF.swift */,
+			);
+			path = NetworkServiceProtocol;
 			sourceTree = "<group>";
 		};
 		0EA67EB92874768500E15093 /* Detail */ = {
@@ -910,6 +924,7 @@
 				0EA304CB28BD277900156BD4 /* NetworkService.swift in Sources */,
 				0EA304BF28B94FC700156BD4 /* BaseView.swift in Sources */,
 				0EA304D528C3B39400156BD4 /* ToastDelegate.swift in Sources */,
+				0EA304F328CF74B800156BD4 /* NetworkServiceAF.swift in Sources */,
 				0EA67EC928752A0F00E15093 /* ProjectEntity.swift in Sources */,
 				0EA67ED0287674D000E15093 /* ProjectStackView.swift in Sources */,
 				033294B2287C713800EE7CBE /* PopOverViewController.swift in Sources */,
@@ -931,6 +946,7 @@
 				0E0AD6F928B00E2300A5ADBD /* HeaderView.swift in Sources */,
 				0EA67ED228772C0200E15093 /* RegistrationViewModel.swift in Sources */,
 				03D99936289163BE00BAE6CA /* SceneDIContainer.swift in Sources */,
+				0EA304F128CF744200156BD4 /* NetworkServiceProtocol.swift in Sources */,
 				0EA304B728B7BD6F00156BD4 /* SegmentedView.swift in Sources */,
 				03498B73288676B500D8CB3F /* PersistentManager.swift in Sources */,
 				032D3D11287D629800A32E57 /* DefaultProjectUseCase.swift in Sources */,
