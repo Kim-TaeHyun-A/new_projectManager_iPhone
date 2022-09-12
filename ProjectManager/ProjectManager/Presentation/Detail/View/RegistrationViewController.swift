@@ -51,11 +51,7 @@ final class RegistrationViewController: UIViewController {
     
     private func setUpLayout() {
         view.addSubview(modalView)
-        
         modalView.translatesAutoresizingMaskIntoConstraints = false
-        
-        topConstraint = modalView.topAnchor.constraint(equalTo: view.topAnchor,
-                                                       constant: modalView.defaultTopConstant)
         
         switch UIDevice.current.userInterfaceIdiom {
         case .pad:
