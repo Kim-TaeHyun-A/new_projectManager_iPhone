@@ -60,9 +60,9 @@ extension RemoteRepository {
     
     func read(repository: PersistentRepositoryProtocol) -> Disposable {
         return remoteManger.read()
-            .subscribe(onNext: {[weak self] data in
+            .subscribe { [weak self] data in
                 self?.synchronize(with: data, to: repository)
-            })
+            }
     }
     
     private func synchronize(with projects: [ProjectDTO], to repository: PersistentRepositoryProtocol) {

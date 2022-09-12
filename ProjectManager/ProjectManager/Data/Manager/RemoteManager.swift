@@ -9,7 +9,7 @@ import FirebaseDatabase
 import RxSwift
 
 protocol RemoteManagerProtocol {
-    func read() -> Observable<[ProjectDTO]>
+    func read() -> Single<[ProjectDTO]>
     func update(projects: [ProjectDTO])
 }
 
@@ -22,8 +22,8 @@ final class RemoteManager {
 }
 
 extension RemoteManager: RemoteManagerProtocol {
-    func read() -> Observable<[ProjectDTO]> {
-        return Observable.create { [weak self] emitter in
+    func read() -> Single<[ProjectDTO]> {
+        return Single.create { [weak self] single in
             self?.networkServie.request(with: EndPoint.database(child: "user").url, method: .get) {
                 switch $0 {
                 case .success(let data):
@@ -31,7 +31,7 @@ extension RemoteManager: RemoteManagerProtocol {
                         NetworkError.decodeError.printIfDebug()
                         return
                     }
-                    emitter.onNext(Array(projects.values))
+                    single(.success(Array(projects.values)))
                 case .failure(let error):
                     error.printIfDebug()
                 }

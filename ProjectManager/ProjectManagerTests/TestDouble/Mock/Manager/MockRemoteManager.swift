@@ -12,9 +12,9 @@ final class MockRemoteManager: RemoteManagerProtocol {
     var readCallCount = 0
     var updateCallCount = 0
     
-    func read() -> Observable<[ProjectDTO]> {
+    func read() -> Single<[ProjectDTO]> {
         readCallCount += 1
-        return Observable.create { _ in Disposables.create() }
+        return Single.create { _ in Disposables.create() }
     }
     
     func update(projects: [ProjectDTO]) {

@@ -47,8 +47,8 @@ final class StubRemoteManager {
 }
 
 extension StubRemoteManager: RemoteManagerProtocol {
-    func read() -> Observable<[ProjectDTO]> {
-        return Observable.create { [weak self] emitter in
+    func read() -> Single<[ProjectDTO]> {
+        return Single.create { [weak self] single in
             self?.stubFirebase.getData { error, snapshot in
                 guard error == nil else {
                     return
@@ -60,7 +60,7 @@ extension StubRemoteManager: RemoteManagerProtocol {
                     return
                 }
                 
-                emitter.onNext(projects)
+                single(.success(projects))
             }
             
             return Disposables.create()
